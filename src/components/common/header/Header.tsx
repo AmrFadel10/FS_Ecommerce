@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+
+//icons
 import { CiSearch } from "react-icons/ci";
 import { SlRefresh } from "react-icons/sl";
 import { PiHeartStraightLight } from "react-icons/pi";
 import { CiUser } from "react-icons/ci";
 import { GiShoppingCart } from "react-icons/gi";
-import { TfiMenu } from "react-icons/tfi";
-import { MdKeyboardArrowDown } from "react-icons/md";
+
+//Components
+import Navigation from "./Navigation";
 
 export default function Header() {
   return (
@@ -88,47 +91,7 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <div className="bg-slate-900 text-slate-300 sticky left-0 top-0 z-[21] transition-all">
-        <div className="container flex mx-auto px-2 lg:px-0">
-          <div className="relative">
-            <div className="flex gap-2 items-center cursor-pointer lg:w-60 w-36 hover:text-slate-50 py-3 md:pl-2">
-              <TfiMenu className="text-xl" />
-              <span className="font-bold -mb-1 lg:text-base w-32">
-                Categories
-              </span>
-              <span className="absolute top-[50%] right-0 -translate-y-1/2 text-xl border-r w-8 h-6 border-slate-400 flex justify-start items-center">
-                <MdKeyboardArrowDown />
-              </span>
-            </div>
-          </div>
-          <ul className="flex lg:gap-6 md:gap-3 gap-1 ml-4 sm:text-base text-[12px]">
-            <Link
-              to="/"
-              className="pl-3 py-3  hover:text-orange-300 transition-all block"
-            >
-              Home
-            </Link>
-            <Link
-              to="/products"
-              className="pl-3 py-3 block hover:text-orange-300 transition-all"
-            >
-              Store
-            </Link>
-            <Link
-              to="/blogs"
-              className="pl-3 py-3 block hover:text-orange-300 transition-all"
-            >
-              Blogs
-            </Link>
-            <Link
-              to="/contact"
-              className="pl-3 py-3 block hover:text-orange-300 transition-all"
-            >
-              Contact
-            </Link>
-          </ul>
-        </div>
-      </div>
+      <Navigation />
     </>
   );
 }

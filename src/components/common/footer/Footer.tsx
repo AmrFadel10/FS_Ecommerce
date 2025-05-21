@@ -7,19 +7,16 @@ export default function Footer() {
         <div className="lg:w-fit w-[45%]">
           <h3 className="text-xl font-bold mb-6">Conatct us</h3>
           <ul className="flex flex-col gap-3">
-            <Link to={"#"} className="hover:text-orange-300">
-              Mora store
-            </Link>
             <div>
-              <p>Menouf, Menofia</p>
               <p>Egypt</p>
             </div>
-            <p>
-              <a href="+201012345678" className="hover:text-orange-300">
-                +201093900892
-              </a>
+            <p href className="hover:text-orange-300">
+              +201093900892
             </p>
-            <a href="demo@company.com" className="hover:text-orange-300">
+            <a
+              href="mailto:afadel1310@gmail.com"
+              className="hover:text-orange-300"
+            >
               afadel1310@gmail.com
             </a>
           </ul>
