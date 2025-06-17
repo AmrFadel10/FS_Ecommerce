@@ -16,7 +16,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
               className="transition-all hover:bg-orange-300 rounded-full cursor-pointer"
               size={20}
               onClick={() => setClickHeart(!clickHeart)}
-              color="red"
+              color="black"
               title="Remove from wishlist"
             />
           ) : (
@@ -67,7 +67,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
         </div>
       </div>
       <div className="px-4 py-8 flex-1">
-        <div className="text-red-700 font-medium text-xs my-4 ">brand</div>
+        <div className="text-orange-700 font-medium text-xs my-4 ">brand</div>
         <div className="my-2  text-md text-slate-900 font-medium line-clamp-2">
           {product.title}
         </div>

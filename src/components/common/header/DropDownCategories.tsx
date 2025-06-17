@@ -16,8 +16,10 @@ const DropDownCategories = () => {
   const { categories } = useAppSelector((state) => state.categories);
 
   useEffect(() => {
-    dispatch(getCategoriesApiCall());
-  }, [dispatch]);
+    if (!categories.length) {
+      dispatch(getCategoriesApiCall());
+    }
+  }, [dispatch, categories]);
 
   return (
     <div className="relative select-none">

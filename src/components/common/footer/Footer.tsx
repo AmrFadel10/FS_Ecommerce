@@ -10,9 +10,7 @@ export default function Footer() {
             <div>
               <p>Egypt</p>
             </div>
-            <p href className="hover:text-orange-300">
-              +201093900892
-            </p>
+            <p className="hover:text-orange-300">+201093900892</p>
             <a
               href="mailto:afadel1310@gmail.com"
               className="hover:text-orange-300"

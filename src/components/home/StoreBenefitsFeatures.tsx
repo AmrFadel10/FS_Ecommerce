@@ -5,7 +5,7 @@ import { CiCreditCard1 } from "react-icons/ci";
 
 const StoreBenefitsFeatures = () => {
   return (
-    <>
+    <section>
       <div className="p-12 grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-4    mx-auto xl:grid-cols-5">
         <div className="flex cats-center gap-6  rounded-xl shadow bg-gray-50 py-4 px-4 mx-auto w-full">
           <BsTruck className="text-3xl" />
@@ -43,7 +43,7 @@ const StoreBenefitsFeatures = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

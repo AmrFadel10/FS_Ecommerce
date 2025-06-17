@@ -1,6 +1,6 @@
 const SponsoredFeatures = () => {
   return (
-    <div className={`bg-white py-6 px-4  rounded-xl my-28 shadow-sm`}>
+    <section className={`bg-white py-6 px-4  rounded-xl  shadow-sm`}>
       <div className="justify-between items-center w-full  flex gap-8">
         <img
           src="/assets/images/sponsored/canon.webp"
@@ -46,7 +46,7 @@ const SponsoredFeatures = () => {
           alt="img"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

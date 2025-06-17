@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const TotalPrice = () => {
+  console.log("Totla");
   return (
     <>
       <div className="my-6">

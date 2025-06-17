@@ -14,6 +14,7 @@ import CompareProducts from "@pages/CompareProducts";
 import Cart from "@pages/Cart";
 import OurStore from "@pages/OurStore";
 import Product from "@pages/Product";
+import Blogs from "@pages/Blogs";
 
 const AppRoute = () => {
   const route = createBrowserRouter([
@@ -35,6 +36,7 @@ const AppRoute = () => {
           element: <Cart />,
         },
         { path: "products", element: <OurStore /> },
+        { path: "blogs", element: <Blogs /> },
         {
           path: "product/:id",
           element: <Product />,

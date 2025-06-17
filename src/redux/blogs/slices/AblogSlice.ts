@@ -1,28 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBlogsApiCall } from "../apiCalls/blogs.ApiCall";
-import type { TBlogsIntialState } from "@customeTypes/blogs";
+import { getABlog } from "../apiCalls/AblogApiCall";
+import type { TAblogStateType } from "@customeTypes/blogs";
 
-const initialState: TBlogsIntialState = {
+const initialState: TAblogStateType = {
   loading: "idle",
-  blogs: [],
+  ablog: null,
   error: null,
 };
 
 const AblogSlice = createSlice({
-  name: "blogs",
+  name: "ablog",
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(getBlogsApiCall.pending, (state) => {
+      .addCase(getABlog.pending, (state) => {
         state.loading = "pending";
         state.error = null;
       })
-      .addCase(getBlogsApiCall.fulfilled, (state, action) => {
+      .addCase(getABlog.fulfilled, (state, action) => {
         state.loading = "succeeded";
-        state.blogs = action.payload;
+        state.ablog = action.payload;
       })
-      .addCase(getBlogsApiCall.rejected, (state, action) => {
+      .addCase(getABlog.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.payload as string;
       });

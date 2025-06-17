@@ -5,12 +5,13 @@ import { CiSearch } from "react-icons/ci";
 import { SlRefresh } from "react-icons/sl";
 import { PiHeartStraightLight } from "react-icons/pi";
 import { CiUser } from "react-icons/ci";
-import { GiShoppingCart } from "react-icons/gi";
 
 //Components
 import Navigation from "./Navigation";
+import CartIcon from "./CartIcon";
 
 export default function Header() {
+  console.log("header");
   return (
     <>
       <header className="relative z-[23]">
@@ -39,13 +40,16 @@ export default function Header() {
                   <CiSearch className="!text-slate-800 text-lg" />
                 </span>
               </div>
-              <div className="flex lg:gap-4 md:gap-2 gap-1 order-2 lg:order-3 ">
+              <div className="flex lg:gap-4  gap-1 order-2 lg:order-3 ">
                 <Link
                   to={"/compare"}
-                  className="flex items-center md:gap-2 gap-1 hover:text-slate-50"
+                  className="flex items-center  gap-1 hover:text-slate-50 group"
                 >
-                  <SlRefresh size={25} />
-                  <div className="font-light lg:font-normal text-xs">
+                  <SlRefresh
+                    size={28}
+                    className="group-hover:rotate-y-360 transition-all duration-700"
+                  />
+                  <div className="font-light lg:font-normal text-xs lg:block hidden">
                     Compare
                     <br />
                     Products
@@ -53,10 +57,13 @@ export default function Header() {
                 </Link>
                 <Link
                   to="/wishlist"
-                  className="flex items-center md:gap-2 gap-1 hover:text-slate-50"
+                  className="flex items-center  gap-1 hover:text-slate-50 group"
                 >
-                  <PiHeartStraightLight size={25} />
-                  <div className="font-light lg:font-normal text-xs">
+                  <PiHeartStraightLight
+                    size={32}
+                    className="group-hover:rotate-y-360 transition-all duration-700"
+                  />
+                  <div className="font-light lg:font-normal text-xs lg:block hidden">
                     Favourite
                     <br />
                     Wishlist
@@ -65,27 +72,20 @@ export default function Header() {
 
                 <Link
                   to="/login"
-                  className="flex items-center md:gap-2 gap-1 hover:text-slate-50"
+                  className="flex items-center  gap-1 hover:text-slate-50 group"
                 >
-                  <CiUser className="text-3xl font-light lg:font-normal" />
-                  <div className="font-normal text-xs">
+                  <CiUser
+                    size={32}
+                    className="group-hover:rotate-y-360 transition-all duration-700"
+                  />
+                  <div className="font-normal text-xs lg:block hidden">
                     Login
                     <br />
                     Account
                   </div>
                 </Link>
-                <Link
-                  to="/cart"
-                  className="flex items-center md:gap-2 gap-1 hover:text-slate-50"
-                >
-                  <GiShoppingCart size={30} className="text-orange-300" />
-                  <div className="md:text-sm text-xs font-medium">
-                    <span className="px-[6px] rounded-full bg-slate-100 text-slate-950 ">
-                      0
-                    </span>
-                    <br /> 0 $
-                  </div>
-                </Link>
+                {/* Cart icon*/}
+                <CartIcon />
               </div>
             </div>
           </div>

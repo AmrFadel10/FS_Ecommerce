@@ -11,7 +11,8 @@ import ImageProductPage from "@components/common/products/ImageProductPage";
 import RightSideProductPage from "@components/common/products/RightSideProductPage";
 
 //APIS
-import { getAProductApiCall } from "@redux/products/apiCalls/AProduct.ApiCall";
+import { getAProductApiCall } from "@redux/products/apiCalls/AProductApiCall";
+import { cleanUpAProduct } from "@redux/products/slices/AProductSlice";
 
 export default function Product() {
   const { aproduct } = useAppSelector((state) => state.aProduct);
@@ -19,9 +20,13 @@ export default function Product() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id) dispatch(getAProductApiCall({ id }));
+    dispatch(getAProductApiCall({ id: id! }));
+    return () => {
+      dispatch(cleanUpAProduct());
+    };
   }, [dispatch, id]);
 
+  console.log(aproduct);
   if (aproduct) {
     return (
       <section className="mb-36">

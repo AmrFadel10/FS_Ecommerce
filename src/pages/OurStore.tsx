@@ -1,4 +1,7 @@
-// import SideBarStore from "../components/SideBarStore";
+// Hooks & APIS
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
+import { useEffect } from "react";
 
 //Icons
 import { RxColumns } from "react-icons/rx";
@@ -8,16 +11,20 @@ import { LuEqual } from "react-icons/lu";
 
 //Components
 import ProductCard from "@components/common/products/ProductCard";
+import SideBarStore from "@components/ourStore/SidebarStore";
 
 export default function OurStore() {
+  const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(getproductsApiCall({ limit: 8 }));
+  }, [dispatch]);
+
   return (
     <section className="mb-16">
       <div className="container mx-auto mt-8 flex gap-8">
-        {/* <SideBarStore
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          products={products}
-        /> */}
+        <SideBarStore />
         <div className="flex-[4] rounded-lg ">
           <div className="flex justify-between bg-white p-4 rounded-xl">
             <div className="flex items-center gap-4">
@@ -55,7 +62,9 @@ export default function OurStore() {
             </div>
           </div>
           <div className={`grid md:grid-cols-4 gap-6 py-6 grid-cols-1`}>
-            <ProductCard />
+            {products.map((product) => {
+              return <ProductCard product={product} key={product._id} />;
+            })}
           </div>
         </div>
       </div>

@@ -23,5 +23,5 @@ export type TProductsInitialState = {
 export type TAProductsInitialState = {
   loading: TLoading;
   error: string | null;
-  aproduct: (TProduct & { color: { _id: string; title: string } }) | null;
+  aproduct: TProduct | null;
 };

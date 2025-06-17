@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "@redux/hooks";
 import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
-import { getBlogsApiCall } from "@redux/blogs/apiCalls/blogs.ApiCall";
+import { getBlogsApiCall } from "@redux/blogs/apiCalls/blogsApiCall";
 
 //Components
 import BlogsCollection from "@components/home/blogs/BlogsCollection";
@@ -11,20 +11,18 @@ import FeatureProductCollections from "@components/home/products/FeatureProductC
 import HomeLayout from "@components/home/HomeLayout";
 import NewProductsCollections from "@components/home/products/NewProductsCollections";
 import SponsoredFeatures from "@components/home/SponsoredFeatures";
-import StoreBenefitsFeatures from "@components/home/StoreBenefitsFeatures";
 
 export default function Home() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getproductsApiCall({ limit: 5 }));
-    dispatch(getBlogsApiCall());
+    dispatch(getBlogsApiCall({ limit: 4 }));
   }, [dispatch]);
 
   return (
-    <>
+    <section className="flex flex-col gap-y-24 pb-18 pt-8">
       <HomeLayout />
-      <StoreBenefitsFeatures />
       {/* feature collections */}
       <FeatureProductCollections where={"Home"} />
       {<NewProductsCollections />}
@@ -32,6 +30,6 @@ export default function Home() {
       <EventProductCollections />
       <SponsoredFeatures />
       <BlogsCollection />
-    </>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { TAProductsInitialState, TProduct } from "@customeTypes/products";
-import { getAProductApiCall } from "../apiCalls/AProduct.ApiCall";
+import { getAProductApiCall } from "../apiCalls/AProductApiCall";
 
 const initialState: TAProductsInitialState = {
   aproduct: null,
@@ -11,7 +11,11 @@ const initialState: TAProductsInitialState = {
 const aProductsSlice = createSlice({
   name: "aproduct",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanUpAProduct(state) {
+      state.aproduct = null;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(getAProductApiCall.pending, (state) => {
       state.loading = "pending";
@@ -27,5 +31,5 @@ const aProductsSlice = createSlice({
     });
   },
 });
-
+export const { cleanUpAProduct } = aProductsSlice.actions;
 export default aProductsSlice.reducer;

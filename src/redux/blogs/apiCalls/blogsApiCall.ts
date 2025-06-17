@@ -3,9 +3,9 @@ import axios, { isAxiosError } from "axios";
 
 export const getBlogsApiCall = createAsyncThunk(
   "blogs/get-all",
-  async (_, { rejectWithValue, signal }) => {
+  async ({ limit }: { limit?: number }, { rejectWithValue, signal }) => {
     try {
-      const { data } = await axios.get("/blog/", { signal });
+      const { data } = await axios.get(`/blog/?limit=${limit}`, { signal });
 
       return data;
     } catch (error) {

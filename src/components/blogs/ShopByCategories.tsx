@@ -1,12 +1,6 @@
-import { useEffect } from "react";
-import { getCategories } from "../redux/categories/apiCall/categories.ApiCall";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppSelector } from "@redux/hooks";
 
 export default function ShopByCategories() {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getCategories());
-  }, []);
   const { categories } = useAppSelector((state) => state.categories);
 
   return (
@@ -15,18 +9,11 @@ export default function ShopByCategories() {
         Shop By Categories
       </h4>
       <ul className="flex flex-col gap-2">
-        {categories?.map((item, index) => {
+        {categories?.map((item) => {
           return (
             <li
-              key={index}
+              key={item._id}
               className="text-xs md:text-sm text-gray-500 hover:text-gray-700 font-medium cursor-pointer"
-              onClick={() =>
-                setSearchParams({
-                  category: `${item.title}`,
-                  limit: 20,
-                  page: 1,
-                })
-              }
             >
               {item.title}
             </li>
