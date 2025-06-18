@@ -21,3 +21,9 @@ export type TProductCart = {
   images: TImage[];
   color: string;
 };
+
+export type TQuantityForm = {
+  count: number;
+  _id: string;
+  color: string;
+};

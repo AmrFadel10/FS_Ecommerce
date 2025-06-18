@@ -8,10 +8,9 @@ import { CiUser } from "react-icons/ci";
 
 //Components
 import Navigation from "./Navigation";
-import CartIcon from "./CartIcon";
+import CartIcon from "./cartIcon/CartIcon";
 
 export default function Header() {
-  console.log("header");
   return (
     <>
       <header className="relative z-[23]">

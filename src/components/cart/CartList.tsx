@@ -18,7 +18,7 @@ const CartList = () => {
       return [];
     })
     .flat();
-  console.log("List");
+
   useEffect(() => {
     dispatch(getProductsCartApiCall());
   }, [dispatch]);
