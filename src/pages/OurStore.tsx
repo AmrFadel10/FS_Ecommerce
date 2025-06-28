@@ -1,6 +1,10 @@
-// React & APIS
+// React & Redux
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { cleanUpProducts } from "@redux/products/slices/productsSlice";
+import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
+
+//API
 import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
 import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
 
@@ -26,6 +30,11 @@ export default function OurStore() {
   useEffect(() => {
     dispatch(getproductsApiCall({ limit: 8 }));
     dispatch(getWishlistProductsApiCall());
+
+    return () => {
+      dispatch(cleanUpProducts());
+      dispatch(cleanUpWishlist());
+    };
   }, [dispatch]);
 
   return (
