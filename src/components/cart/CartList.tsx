@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CartProduct from "./CartProduct";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { getProductsCartApiCall } from "@redux/cart/apicalls/cartApiCall";
+import { cleanUpCart } from "@redux/cart/slices/cartSlice";
 
 const CartList = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,10 @@ const CartList = () => {
 
   useEffect(() => {
     dispatch(getProductsCartApiCall());
+
+    return () => {
+      dispatch(cleanUpCart());
+    };
   }, [dispatch]);
 
   return (

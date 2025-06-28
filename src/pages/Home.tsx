@@ -1,6 +1,12 @@
-//Hooks
+//react & redux
 import { useEffect } from "react";
 import { useAppDispatch } from "@redux/hooks";
+import { cleanUpBlog } from "@redux/blogs/slices/BlogsSlice";
+import { cleanUpProducts } from "@redux/products/slices/productsSlice";
+import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
+
+//API
+import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
 import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
 import { getBlogsApiCall } from "@redux/blogs/apiCalls/blogsApiCall";
 
@@ -18,6 +24,13 @@ export default function Home() {
   useEffect(() => {
     dispatch(getproductsApiCall({ limit: 5 }));
     dispatch(getBlogsApiCall({ limit: 4 }));
+    dispatch(getWishlistProductsApiCall());
+
+    return () => {
+      dispatch(cleanUpBlog());
+      dispatch(cleanUpProducts());
+      dispatch(cleanUpWishlist());
+    };
   }, [dispatch]);
 
   return (

@@ -45,6 +45,9 @@ const cartSlice = createSlice({
         }
       }
     },
+    cleanUpCart: (state) => {
+      state.getProductFullInfo = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -72,5 +75,5 @@ export const countProductCart = (state: RootState) => {
   return count;
 };
 export { productsCount };
-export const { addToCart, deleteFromCart } = cartSlice.actions;
+export const { addToCart, deleteFromCart, cleanUpCart } = cartSlice.actions;
 export default cartSlice.reducer;

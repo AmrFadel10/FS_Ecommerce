@@ -11,7 +11,11 @@ const initialState: TProductsInitialState = {
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanUpProducts: (state) => {
+      state.products = [];
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getproductsApiCall.pending, (state) => {
@@ -28,5 +32,5 @@ const productsSlice = createSlice({
       });
   },
 });
-
+export const { cleanUpProducts } = productsSlice.actions;
 export default productsSlice.reducer;

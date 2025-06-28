@@ -15,6 +15,7 @@ import Cart from "@pages/Cart";
 import OurStore from "@pages/OurStore";
 import Product from "@pages/Product";
 import Blogs from "@pages/Blogs";
+import Wishlist from "@pages/Wishlist";
 
 const AppRoute = () => {
   const route = createBrowserRouter([
@@ -30,6 +31,10 @@ const AppRoute = () => {
         {
           path: "compare",
           element: <CompareProducts />,
+        },
+        {
+          path: "wishlist",
+          element: <Wishlist />,
         },
         {
           path: "cart",

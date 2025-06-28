@@ -1,7 +1,8 @@
-// Hooks & APIS
+// React & APIS
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
-import { useEffect } from "react";
+import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
 
 //Icons
 import { RxColumns } from "react-icons/rx";
@@ -10,15 +11,21 @@ import { BsList } from "react-icons/bs";
 import { LuEqual } from "react-icons/lu";
 
 //Components
-import ProductCard from "@components/common/products/ProductCard";
 import SideBarStore from "@components/ourStore/SidebarStore";
+import ProductsList from "@components/home/products/ProductsList";
 
 export default function OurStore() {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.products);
+  const { items } = useAppSelector((state) => state.wishlist);
+
+  const ourStoreProducts = products.map((product) => {
+    return { ...product, isLiked: items.includes(product._id) };
+  });
 
   useEffect(() => {
     dispatch(getproductsApiCall({ limit: 8 }));
+    dispatch(getWishlistProductsApiCall());
   }, [dispatch]);
 
   return (
@@ -61,11 +68,7 @@ export default function OurStore() {
               </div>
             </div>
           </div>
-          <div className={`grid md:grid-cols-4 gap-6 py-6 grid-cols-1`}>
-            {products.map((product) => {
-              return <ProductCard product={product} key={product._id} />;
-            })}
-          </div>
+          <ProductsList products={ourStoreProducts} />
         </div>
       </div>
     </section>

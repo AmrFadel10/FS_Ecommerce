@@ -6,10 +6,29 @@ import { AiFillHeart, AiOutlineEye, AiOutlineHeart } from "react-icons/ai";
 import type { TProduct } from "@customeTypes/products";
 import { useState } from "react";
 import { IoIosShuffle } from "react-icons/io";
+import { useAppDispatch } from "@redux/hooks";
+import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistApiCall";
 
-const ProductCard = ({ product }: { product: TProduct }) => {
-  const [heart, setHeart] = useState(false);
+const ProductCard = ({
+  images,
+  brand,
+  _id,
+  title,
+  price,
+  sold,
+  isLiked,
+}: TProduct & { isLiked: boolean }) => {
   const [inCompare, setinCompare] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const handleToggleWishlist = () => {
+    setLoading(true);
+    dispatch(toggleWishlistApiCall(_id))
+      .unwrap()
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
+  };
   return (
     <div
       className={`rounded-2xl overflow-hidden group shadow-lg bg-white py-2`}
@@ -17,13 +36,18 @@ const ProductCard = ({ product }: { product: TProduct }) => {
       <div className=" relative overflow-hidden">
         <div className="overflow-auto w-full md:h-64 h-36 inline-block ">
           <img
-            src={product.images[0].url}
+            src={images?.[0]?.url}
             alt="music"
             className=" w-full h-full object-contain "
           />
         </div>
-        <div className=" transition-all duration-500  rounded-full p-[4px] absolute top-[2%] right-3 hover:bg-orange-300">
-          {heart ? (
+        <div
+          className=" transition-all duration-500  rounded-full p-[4px] absolute top-[2%] right-3 hover:bg-orange-300"
+          onClick={handleToggleWishlist}
+        >
+          {loading ? (
+            "loading"
+          ) : isLiked ? (
             <AiFillHeart
               className="transition-all  rounded-full "
               size={20}
@@ -60,22 +84,20 @@ const ProductCard = ({ product }: { product: TProduct }) => {
       </div>
       <div className="px-4 py-4">
         <h3 className="hover:text-orange-800 font-medium text-xs md:text-sm capitalize text-orange-700">
-          {product.brand}
+          {brand}
         </h3>
         <Link
-          to={`/product/${product._id}`}
+          to={`/product/${_id}`}
           className="my-4 md:text-base text-sm  text-slate-800 font-medium line-clamp-2 hover:underline"
         >
-          {product.title}
+          {title}
         </Link>
         <div className="mt-2 flex  justify-between">
           <div className="flex gap-4">
-            <div className="font-semibold md:text-base text-sm">
-              {product.price}$
-            </div>
+            <div className="font-semibold md:text-base text-sm">{price}$</div>
           </div>
           <div className="text-orange-700 font-medium md:text-sm text-xs">
-            {product.sold} Sold
+            {sold} Sold
           </div>
         </div>
       </div>

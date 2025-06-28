@@ -8,10 +8,14 @@ const initialState: TBlogsIntialState = {
   error: null,
 };
 
-const AblogSlice = createSlice({
+const blogsSlice = createSlice({
   name: "blogs",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanUpBlog: (state) => {
+      state.blogs = [];
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getBlogsApiCall.pending, (state) => {
@@ -29,4 +33,5 @@ const AblogSlice = createSlice({
   },
 });
 
-export default AblogSlice.reducer;
+export const { cleanUpBlog } = blogsSlice.actions;
+export default blogsSlice.reducer;

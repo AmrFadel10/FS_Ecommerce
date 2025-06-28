@@ -7,6 +7,7 @@ import ablog from "./blogs/slices/AblogSlice";
 import products from "./products/slices/productsSlice";
 import aProduct from "./products/slices/AProductSlice";
 import cart from "./cart/slices/cartSlice";
+import wishlist from "./wishlist/slices/wishlistSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     products,
     aProduct,
     cart,
+    wishlist,
   },
 });
 
