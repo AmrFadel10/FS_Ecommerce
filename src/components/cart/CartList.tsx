@@ -21,10 +21,11 @@ const CartList = () => {
     .flat();
 
   useEffect(() => {
-    dispatch(getProductsCartApiCall());
+    const promise = dispatch(getProductsCartApiCall());
 
     return () => {
       dispatch(cleanUpCart());
+      promise.abort();
     };
   }, [dispatch]);
 

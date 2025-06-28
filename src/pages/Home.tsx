@@ -22,11 +22,14 @@ export default function Home() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getproductsApiCall({ limit: 5 }));
-    dispatch(getBlogsApiCall({ limit: 4 }));
-    dispatch(getWishlistProductsApiCall());
+    const productsApi = dispatch(getproductsApiCall({ limit: 5 }));
+    const blogsApi = dispatch(getBlogsApiCall({ limit: 4 }));
+    const wishlistApi = dispatch(getWishlistProductsApiCall());
 
     return () => {
+      productsApi.abort();
+      blogsApi.abort();
+      wishlistApi.abort();
       dispatch(cleanUpBlog());
       dispatch(cleanUpProducts());
       dispatch(cleanUpWishlist());

@@ -28,10 +28,12 @@ export default function OurStore() {
   });
 
   useEffect(() => {
-    dispatch(getproductsApiCall({ limit: 8 }));
-    dispatch(getWishlistProductsApiCall());
+    const productsApi = dispatch(getproductsApiCall({ limit: 8 }));
+    const wishlistApi = dispatch(getWishlistProductsApiCall());
 
     return () => {
+      productsApi.abort();
+      wishlistApi.abort();
       dispatch(cleanUpProducts());
       dispatch(cleanUpWishlist());
     };

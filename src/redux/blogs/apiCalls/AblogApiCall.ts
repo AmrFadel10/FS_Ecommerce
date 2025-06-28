@@ -3,9 +3,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getABlog = createAsyncThunk(
   "ablog/get-ablog",
-  async (arg: { id: string }, { rejectWithValue }) => {
+  async (arg: { id: string }, { rejectWithValue, signal }) => {
     try {
-      const { data } = await axios.get("/blog/" + arg.id);
+      const { data } = await axios.get("/blog/" + arg.id, { signal });
       return data;
     } catch (error) {
       if (isAxiosError(error)) {

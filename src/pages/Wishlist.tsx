@@ -1,17 +1,22 @@
 //React & Redux
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
+import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
 
 //Compontents
 import ProductsList from "@components/home/products/ProductsList";
-import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
 
 export default function Wishlist() {
   const dispatch = useAppDispatch();
   const { productFullInfo } = useAppSelector((state) => state.wishlist);
 
   useEffect(() => {
-    dispatch(getWishlistProductsApiCall());
+    const promise = dispatch(getWishlistProductsApiCall());
+    return () => {
+      promise.abort();
+      dispatch(cleanUpWishlist());
+    };
   }, [dispatch]);
 
   const wishlistProducts = productFullInfo.map((product) => {

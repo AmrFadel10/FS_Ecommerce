@@ -20,13 +20,13 @@ export default function Product() {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getAProductApiCall({ id: id! }));
+    const promise = dispatch(getAProductApiCall({ id: id! }));
     return () => {
+      promise.abort();
       dispatch(cleanUpAProduct());
     };
   }, [dispatch, id]);
 
-  console.log(aproduct);
   if (aproduct) {
     return (
       <section className="mb-36">

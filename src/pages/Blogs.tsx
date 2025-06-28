@@ -1,15 +1,26 @@
+//React & Redux
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { getBlogsApiCall } from "@redux/blogs/apiCalls/blogsApiCall";
+import { cleanUpBlog } from "@redux/blogs/slices/BlogsSlice";
+
+// Components
 import ShopByCategories from "@components/blogs/ShopByCategories";
 import BlogCard from "@components/common/blogs/BlogCard";
-import { getBlogsApiCall } from "@redux/blogs/apiCalls/blogsApiCall";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { useEffect } from "react";
 
 export default function Blogs() {
   const dispatch = useAppDispatch();
   const { blogs } = useAppSelector((state) => state.blogs);
+
   useEffect(() => {
-    dispatch(getBlogsApiCall({ limit: 6 }));
+    const promise = dispatch(getBlogsApiCall({ limit: 6 }));
+
+    return () => {
+      promise.abort();
+      dispatch(cleanUpBlog());
+    };
   }, [dispatch]);
+
   return (
     <section className="container mx-auto my-16">
       <div className="flex gap-6 md:flex-row flex-col items-stretch">

@@ -23,6 +23,7 @@ const ProductCard = ({
   const dispatch = useAppDispatch();
 
   const handleToggleWishlist = () => {
+    if (loading) return;
     setLoading(true);
     dispatch(toggleWishlistApiCall(_id))
       .unwrap()
@@ -36,7 +37,7 @@ const ProductCard = ({
       <div className=" relative overflow-hidden">
         <div className="overflow-auto w-full md:h-64 h-36 inline-block ">
           <img
-            src={images?.[0]?.url}
+            src={images[0].url}
             alt="music"
             className=" w-full h-full object-contain "
           />

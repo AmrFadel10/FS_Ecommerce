@@ -4,7 +4,7 @@ import axios, { isAxiosError } from "axios";
 
 export const getProductsCartApiCall = createAsyncThunk(
   "cart/getProductsCart",
-  async (_, { rejectWithValue, getState, fulfillWithValue }) => {
+  async (_, { rejectWithValue, getState, fulfillWithValue, signal }) => {
     try {
       const ids = Object.keys((getState() as RootState).cart.items);
       if (!ids.length) {
@@ -12,7 +12,7 @@ export const getProductsCartApiCall = createAsyncThunk(
       }
 
       const query = ids.map((id) => `id=${id}`).join("&");
-      const cart = await axios.get(`/product/cart?${query}`);
+      const cart = await axios.get(`/product/cart?${query}`, { signal });
       return cart.data;
     } catch (error) {
       if (isAxiosError(error)) {

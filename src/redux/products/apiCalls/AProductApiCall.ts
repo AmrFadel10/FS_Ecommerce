@@ -5,9 +5,9 @@ import axios, { isAxiosError } from "axios";
 export const getAProductApiCall = createAsyncThunk(
   "aproduct/get-one",
   async ({ id }: { id: string }, thunkApi) => {
-    const { rejectWithValue } = thunkApi;
+    const { rejectWithValue, signal } = thunkApi;
     try {
-      const { data } = await axios.get<TProduct>("/product/" + id);
+      const { data } = await axios.get<TProduct>("/product/" + id, { signal });
       return data;
     } catch (error) {
       if (isAxiosError(error)) {
