@@ -35,10 +35,10 @@ export default function EventProductCard({ product }: { product: TProduct }) {
             src={product.images[0].url}
             alt="music"
             className={` ${
-              product.images.length > 1 && "group-hover:hidden"
+              !!(product.images.length > 1) && "group-hover:hidden"
             }  object-cover`}
           />
-          {product.images.length > 1 && (
+          {!!(product.images.length > 1) && (
             <img
               src={product.images[1].url}
               alt="music"
@@ -76,7 +76,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
         <div className="flex  justify-between mt-8">
           <div className="flex gap-4">
             <div className=" font-semibold">{product.price}$</div>
-            {product.discountPrice && (
+            {!!product.discountPrice && (
               <sup className=" font-semibold text-red-600 text-base line-through">
                 {product.discountPrice}$
               </sup>

@@ -3,23 +3,21 @@ import type { TProduct } from "@customeTypes/products";
 
 const ProductsList = ({
   products,
+  where,
 }: {
   products: (TProduct & { isLiked: boolean })[];
+  where?: string;
 }) => {
   return (
-    <>
-      {products.length > 0 ? (
-        <div className="grid md:grid-cols-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 lg:grid-cols-4  gap-8 my-10">
-          {products.map((product) => {
-            return <ProductCard {...product} key={product._id} />;
-          })}
-        </div>
-      ) : (
-        <div className=" text-sm font-semibold text-slate-700 flex justify-center items-center flex-1">
-          No products available
-        </div>
-      )}
-    </>
+    <div
+      className={`grid md:grid-cols-3 grid-cols-1 sm:grid-cols-2 ${
+        where === "public" ? "xl:grid-cols-5" : ""
+      } lg:grid-cols-4  gap-8 my-6`}
+    >
+      {products.map((product) => {
+        return <ProductCard {...product} key={product._id} />;
+      })}
+    </div>
   );
 };
 

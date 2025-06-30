@@ -13,14 +13,17 @@ import RightSideProductPage from "@components/common/products/RightSideProductPa
 //APIS
 import { getAProductApiCall } from "@redux/products/apiCalls/AProductApiCall";
 import { cleanUpAProduct } from "@redux/products/slices/AProductSlice";
+import Loading from "@feedback/loading/Loading";
 
 export default function Product() {
-  const { aproduct } = useAppSelector((state) => state.aProduct);
+  const { aproduct, loading, error } = useAppSelector(
+    (state) => state.aProduct
+  );
   const dispatch = useAppDispatch();
   const { id } = useParams();
 
   useEffect(() => {
-    const promise = dispatch(getAProductApiCall({ id: id! }));
+    const promise = dispatch(getAProductApiCall({ id: id as string }));
     return () => {
       promise.abort();
       dispatch(cleanUpAProduct());
@@ -29,15 +32,17 @@ export default function Product() {
 
   if (aproduct) {
     return (
-      <section className="mb-36">
-        <div className="flex my-8 gap-x-8 flex-col md:flex-row ">
-          <ImageProductPage images={aproduct.images} />
-          <RightSideProductPage {...aproduct} />
-        </div>
-        <DescriptionProductPage description={aproduct.description} />
-        <ReviewProductPage />
-        <FeatureProductCollections where={"productPage"} />
-      </section>
+      <Loading error={error} status={loading} type="productPage">
+        <section className="mb-36 min-h-screen">
+          <div className="flex my-8 gap-x-8 flex-col md:flex-row ">
+            <ImageProductPage images={aproduct.images} />
+            <RightSideProductPage {...aproduct} />
+          </div>
+          <DescriptionProductPage description={aproduct.description} />
+          <ReviewProductPage />
+          <FeatureProductCollections where={"private"} />
+        </section>
+      </Loading>
     );
   } else {
     <Navigate to={"/"} />;

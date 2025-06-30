@@ -52,6 +52,7 @@ const wishlistSlice = createSlice({
       })
       .addCase(getWishlistProductsApiCall.rejected, (state, action) => {
         state.loading = "failed";
+        console.log(action.payload);
         state.error = action.payload as string;
       });
   },

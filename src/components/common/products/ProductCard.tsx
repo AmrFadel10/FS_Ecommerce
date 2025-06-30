@@ -32,7 +32,7 @@ const ProductCard = ({
   };
   return (
     <div
-      className={`rounded-2xl overflow-hidden group shadow-lg bg-white py-2`}
+      className={`rounded-2xl overflow-hidden group shadow-md bg-white py-2`}
     >
       <div className=" relative overflow-hidden">
         <div className="overflow-auto w-full md:h-64 h-36 inline-block ">

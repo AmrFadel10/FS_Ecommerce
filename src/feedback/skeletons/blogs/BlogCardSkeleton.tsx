@@ -10,6 +10,7 @@ export default function BlogCardSkeleton() {
         <p className="bg-gray-300 w-1/2 p-2 rounded-lg"></p>
         <h4 className="md:my-3 my-1 p-3 rounded-lg bg-gray-300"></h4>
         <p className="bg-gray-300 w-full p-2 rounded-lg"></p>
+        <p className="bg-gray-300 w-full p-2 rounded-lg"></p>
       </div>
     </div>
   );

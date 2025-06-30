@@ -29,7 +29,7 @@ const FAQ = () => {
             } transition-all`}
           />
         </button>
-        {active === 1 && (
+        {!!(active === 1) && (
           <div className="text-gray-400 ">
             {`If you're not satisfied with your purchase, we accept returns within
 						30 days of delivery. To initiate a return, please email us at
@@ -51,7 +51,7 @@ const FAQ = () => {
             } transition-all`}
           />
         </button>
-        {active === 2 && (
+        {!!(active === 2) && (
           <div className="text-gray-400 ">
             {`You can track your order by clicking the tracking link in your
 						shipping confirmation email, or by logging into your account on our
@@ -72,7 +72,7 @@ const FAQ = () => {
             } transition-all`}
           />
         </button>
-        {active === 3 && (
+        {!!(active === 3) && (
           <div className="text-gray-400 ">
             {`You can contact our customer support team by emailing us at
 						support@myecommercestore.com, or by calling us at 010 1234 5678
@@ -93,7 +93,7 @@ const FAQ = () => {
             } transition-all`}
           />
         </button>
-        {active === 4 && (
+        {!!(active === 4) && (
           <div className="text-gray-400 ">
             {`Unfortunately, once an order has been placed, we are not able to
 						make changes or cancellations. If you no longer want the items
@@ -115,7 +115,7 @@ const FAQ = () => {
             } transition-all`}
           />
         </button>
-        {active === 5 && (
+        {!!(active === 5) && (
           <div className="text-gray-400 ">
             {`Currently, we only offer shipping within the United States.`}
           </div>
@@ -134,7 +134,7 @@ const FAQ = () => {
             } transition-all`}
           />
         </button>
-        {active === 6 && (
+        {!!(active === 6) && (
           <div className="text-gray-400 ">
             {`We accept visa,mastercard,paypal payment method also we have cash on
 						delivery system.`}

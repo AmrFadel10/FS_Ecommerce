@@ -10,7 +10,7 @@ const getproductsApiCall = createAsyncThunk(
       return data;
     } catch (error) {
       if (isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.error);
+        return rejectWithValue(error.response?.data.message || error.message);
       } else {
         return rejectWithValue("an Unexpected error");
       }

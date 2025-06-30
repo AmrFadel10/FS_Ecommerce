@@ -9,7 +9,7 @@ const ProductForm = ({ color, _id }: { color: TColor[]; _id: string }) => {
   const [quantity, setQuantity] = useState<number>(1);
 
   const handleSubmit = () => {
-    if (quantity > 0 && !!selectedColor) {
+    if (!!(quantity > 0) && !!selectedColor) {
       dispatch(addToCart({ id: _id, color: selectedColor, count: +quantity }));
     }
   };

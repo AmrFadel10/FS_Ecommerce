@@ -4,6 +4,15 @@ import { lazy, Suspense } from "react";
 
 //Pages
 import Error from "@pages/Error";
+import ProductsListSkeleton from "@feedback/skeletons/products/ProductsListSkeleton";
+import LayoutLoading from "@feedback/loading/LayoutLoading";
+import LayoutSkeleton from "@feedback/skeletons/home/LayoutSkeleton";
+import StoreInfoFeaturesSkeleton from "@feedback/skeletons/home/StoreInfoFeaturesSkeleton";
+import BlogsPageSkeleton from "@feedback/skeletons/blogs/BlogsPageSkeleton";
+import OurStoreSkeleton from "@feedback/skeletons/ourStore/OurStoreSkeleton";
+import AProductPageSkeleton from "@feedback/skeletons/aProduct/AProductPageSkeleton";
+
+//Lazy pages
 const RootLayout = lazy(() => import("@components/layout/RootLayout"));
 const Home = lazy(() => import("@pages/Home"));
 const PrivacyPolicy = lazy(() => import("@pages/PrivacyPolicy"));
@@ -24,8 +33,8 @@ const AppRoute = () => {
     {
       path: "/",
       element: (
-        <Suspense fallback="loading please wait...">
-          <RootLayout />,
+        <Suspense fallback={<LayoutLoading />}>
+          <RootLayout />
         </Suspense>
       ),
       errorElement: <Error />,
@@ -33,8 +42,15 @@ const AppRoute = () => {
         {
           index: true,
           element: (
-            <Suspense fallback="loading please wait...">
-              <Home />,
+            <Suspense
+              fallback={
+                <section className="flex flex-col gap-y-24 pb-18 pt-8">
+                  <LayoutSkeleton />
+                  <StoreInfoFeaturesSkeleton />
+                </section>
+              }
+            >
+              <Home />
             </Suspense>
           ),
         },
@@ -49,7 +65,9 @@ const AppRoute = () => {
         {
           path: "wishlist",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense
+              fallback={<ProductsListSkeleton count={5} where="public" />}
+            >
               <Wishlist />
             </Suspense>
           ),
@@ -57,7 +75,9 @@ const AppRoute = () => {
         {
           path: "cart",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense
+              fallback={<ProductsListSkeleton count={5} where="public" />}
+            >
               <Cart />
             </Suspense>
           ),
@@ -65,7 +85,7 @@ const AppRoute = () => {
         {
           path: "products",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<OurStoreSkeleton />}>
               <OurStore />
             </Suspense>
           ),
@@ -73,7 +93,7 @@ const AppRoute = () => {
         {
           path: "blogs",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<BlogsPageSkeleton limit={8} />}>
               <Blogs />
             </Suspense>
           ),
@@ -81,7 +101,7 @@ const AppRoute = () => {
         {
           path: "product/:id",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<AProductPageSkeleton />}>
               <Product />
             </Suspense>
           ),
@@ -98,7 +118,7 @@ const AppRoute = () => {
         {
           path: "privacy-policy",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<LayoutLoading />}>
               <PrivacyPolicy />
             </Suspense>
           ),
@@ -106,7 +126,7 @@ const AppRoute = () => {
         {
           path: "refund-policy",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<LayoutLoading />}>
               <RefundPolicy />
             </Suspense>
           ),
@@ -114,7 +134,7 @@ const AppRoute = () => {
         {
           path: "shipping-policy",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<LayoutLoading />}>
               <ShippingPolicy />
             </Suspense>
           ),
@@ -122,7 +142,7 @@ const AppRoute = () => {
         {
           path: "terms-condition",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<LayoutLoading />}>
               <TermsAndConditions />
             </Suspense>
           ),
@@ -130,7 +150,7 @@ const AppRoute = () => {
         {
           path: "faq",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<LayoutLoading />}>
               <FAQ />
             </Suspense>
           ),
@@ -138,7 +158,7 @@ const AppRoute = () => {
         {
           path: "contact",
           element: (
-            <Suspense fallback="loading please wait...">
+            <Suspense fallback={<LayoutLoading />}>
               <Contact />
             </Suspense>
           ),

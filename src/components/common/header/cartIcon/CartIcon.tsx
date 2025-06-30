@@ -37,7 +37,7 @@ const CartIcon = () => {
       />
       <span
         className={`w-5 h-5 flex justify-center items-center text-xs font-bold rounded-full bg-slate-50 text-slate-700 absolute -top-2 -right-1 ${
-          animate && animate_cart
+          !!animate && animate_cart
         }`}
       >
         {productCounter}

@@ -9,7 +9,7 @@ export const getABlog = createAsyncThunk(
       return data;
     } catch (error) {
       if (isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.message);
+        return rejectWithValue(error.response?.data.message || error.message);
       } else {
         return rejectWithValue("Unexpected error");
       }

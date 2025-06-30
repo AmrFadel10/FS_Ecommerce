@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function BlogCard({ blog }: { blog: TBlog }) {
   return (
     <Link
-      to={"/blog/1"}
+      to={`/blog/${blog._id}`}
       className=" relative rounded-xl overflow-hidden group shadow-md bg-white"
     >
       <div className="">

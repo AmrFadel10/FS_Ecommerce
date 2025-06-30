@@ -42,12 +42,16 @@ const Banner = () => {
                  ${activeImg === idx + 1 ? `${next} ` : ""}
                 ${activeImg === idx - 1 ? `${prev} ` : ""}
                 ${
-                  idx === 0 && activeImg === images.length - 1 ? `${prev} ` : ""
+                  !!(idx === 0) && activeImg === images.length - 1
+                    ? `${prev} `
+                    : ""
                 }
                 ${
-                  idx === images.length - 1 && activeImg === 0 ? `${next} ` : ""
+                  !!(idx === images.length - 1) && activeImg === 0
+                    ? `${next} `
+                    : ""
                 }
-             w-full `}
+             w-full bg-gray-200 rounded-lg`}
             key={idx}
           >
             <img

@@ -6,10 +6,14 @@ import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
 
 //Compontents
 import ProductsList from "@components/home/products/ProductsList";
+import Empty from "@components/common/Empty";
+import Loading from "@feedback/loading/Loading";
 
 export default function Wishlist() {
   const dispatch = useAppDispatch();
-  const { productFullInfo } = useAppSelector((state) => state.wishlist);
+  const { productFullInfo, loading, error } = useAppSelector(
+    (state) => state.wishlist
+  );
 
   useEffect(() => {
     const promise = dispatch(getWishlistProductsApiCall());
@@ -24,8 +28,14 @@ export default function Wishlist() {
   });
 
   return (
-    <section>
-      <ProductsList products={wishlistProducts} />
-    </section>
+    <Loading error={error} status={loading} type="wishlist">
+      <section>
+        {wishlistProducts.length ? (
+          <ProductsList products={wishlistProducts} where="public" />
+        ) : (
+          <Empty />
+        )}
+      </section>
+    </Loading>
   );
 }

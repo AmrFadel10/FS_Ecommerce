@@ -10,16 +10,24 @@ import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
 
 //Components
 import ProductsList from "./ProductsList";
+import Empty from "@components/common/Empty";
+import Loading from "@feedback/loading/Loading";
 
 const FeatureProductCollections = ({
   where,
   limit,
 }: {
-  where: string | null;
+  where?: "public" | "private";
   limit?: number;
 }) => {
-  const { products } = useAppSelector((state) => state.products);
-  const { items } = useAppSelector((state) => state.wishlist);
+  const {
+    products,
+    error,
+    loading: productLoading,
+  } = useAppSelector((state) => state.products);
+  const { items, loading: wishLoading } = useAppSelector(
+    (state) => state.wishlist
+  );
 
   const dispatch = useAppDispatch();
 
@@ -40,10 +48,29 @@ const FeatureProductCollections = ({
 
   return (
     <>
-      <h3 className="text-2xl font-semibold ">
-        {where === "productPage" ? "You may also like" : "Featured Collection"}
+      <h3 className="text-2xl font-semibold mb-10">
+        {where === "private" ? "You may also like" : "Featured Collection"}
       </h3>
-      <ProductsList products={homeProducts} />
+      <Loading
+        status={
+          productLoading === "idle" || wishLoading === "idle"
+            ? "idle"
+            : productLoading === "pending" || wishLoading === "pending"
+            ? "pending"
+            : productLoading === "failed" || wishLoading === "failed"
+            ? "failed"
+            : "succeeded"
+        }
+        error={error}
+        size={150}
+        type="homeProducts"
+      >
+        {homeProducts.length > 0 ? (
+          <ProductsList products={homeProducts} where={where} />
+        ) : (
+          <Empty size={150} />
+        )}
+      </Loading>
     </>
   );
 };

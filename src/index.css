@@ -2,6 +2,7 @@
 
 body {
   font-family: Rubik, Arial, serif;
+  @apply bg-gray-50;
 }
 
 /* Font Family*/

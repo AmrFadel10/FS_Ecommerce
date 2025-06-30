@@ -4,7 +4,7 @@ export default function SideBarStore() {
   return (
     <div className="flex-1 md:flex flex-col gap-4 hidden">
       <SearchByCategory />
-      <div className="shadow rounded-xl bg-white p-4 w-full">
+      <div className="shadow-md rounded-xl bg-white p-4 w-full">
         <div className=" bg-white p-4 w-full">
           <h4 className="mb-4 font-semibold">Brands</h4>
           <ul className="flex  gap-5 mb-4 flex-wrap">

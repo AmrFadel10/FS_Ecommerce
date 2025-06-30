@@ -34,7 +34,7 @@ const DropDownInfo = () => {
               } transition-all`}
             />
           </div>
-          {open === 1 && (
+          {!!(open === 1) && (
             <div className={`pl-2 block mt-2 text-gray-500 text-xs `}>
               Free shipping and returns available on all orders! <br />
               We ship all US domestic orders within{" "}
@@ -59,7 +59,7 @@ const DropDownInfo = () => {
               } transition-all`}
             />
           </div>
-          {open === 2 && (
+          {!!(open === 2) && (
             <div className={`pl-2 block mt-2 text-gray-500 text-xs `}>
               Running Shoes cushions your stride with soft foam to keep you
               running in comfort. Lightweight knit material wraps your foot in
@@ -83,7 +83,7 @@ const DropDownInfo = () => {
               } transition-all`}
             />
           </div>
-          {open === 3 && (
+          {!!(open === 3) && (
             <div className={`pl-2 block mt-2 text-gray-500 text-xs `}>
               Use a soft damp cloth and a drop of mild soap to remove any haze.
               Air dry.

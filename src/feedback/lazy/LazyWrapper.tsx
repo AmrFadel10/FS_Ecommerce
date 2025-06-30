@@ -7,15 +7,15 @@ import SponsoredFeatureSkeleton from "@feedback/skeletons/home/SponsoredFeatureS
 import StoreInfoFeaturesSkeleton from "@feedback/skeletons/home/StoreInfoFeaturesSkeleton";
 import HomeProductsSkeleton from "@feedback/skeletons/products/HomeProductsSkeleton";
 
-const skeletonComponentsObj = {
-  banner: LayoutSkeleton,
-  sponsored: SponsoredFeatureSkeleton,
-  info: StoreInfoFeaturesSkeleton,
-  homeProducts: HomeProductsSkeleton,
-  homeBlogs: BlogsSkeleton,
+const loadingComponents = {
+  banner: <LayoutSkeleton />,
+  info: <StoreInfoFeaturesSkeleton />,
+  sponsored: <SponsoredFeatureSkeleton />,
+  homeProducts: <HomeProductsSkeleton />,
+  homeBlogs: <BlogsSkeleton where="home" limit={4} />,
 };
 
-type Ttype = keyof typeof skeletonComponentsObj;
+type Ttype = keyof typeof loadingComponents;
 
 const LazyWrapper = ({
   children,
@@ -40,10 +40,10 @@ const LazyWrapper = ({
     );
     observer.observe(ref.current);
   }, [isVisible]);
-  const Skelton = skeletonComponentsObj[type];
+  const Skelton = loadingComponents[type];
   return (
     <div ref={ref}>
-      {isVisible && <Suspense fallback={<Skelton />}>{children}</Suspense>}
+      {!!isVisible && <Suspense fallback={Skelton}>{children}</Suspense>}
     </div>
   );
 };

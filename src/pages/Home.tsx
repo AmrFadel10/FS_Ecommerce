@@ -31,7 +31,7 @@ export default function Home() {
       </LazyWrapper>
       {/* feature collections */}
       <LazyWrapper type="homeProducts">
-        <FeatureProductCollections where={"Home"} limit={5} />
+        <FeatureProductCollections where={"public"} limit={5} />
       </LazyWrapper>
 
       {<NewProductsCollections />}

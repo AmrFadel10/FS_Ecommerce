@@ -1,6 +1,6 @@
 export default function SearchByCategory() {
   return (
-    <div className="shadow rounded-xl bg-white p-4 w-full">
+    <div className="shadow-md rounded-xl bg-white p-4 w-full">
       <h4 className="md:mb-8 mb-2 text-sm md:text-lg font-semibold">
         Shop By Categories
       </h4>
