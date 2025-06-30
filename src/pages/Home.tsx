@@ -1,51 +1,48 @@
-//react & redux
-import { useEffect } from "react";
-import { useAppDispatch } from "@redux/hooks";
-import { cleanUpBlog } from "@redux/blogs/slices/BlogsSlice";
-import { cleanUpProducts } from "@redux/products/slices/productsSlice";
-import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
-
-//API
-import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
-import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
-import { getBlogsApiCall } from "@redux/blogs/apiCalls/blogsApiCall";
+import { lazy } from "react";
 
 //Components
-import BlogsCollection from "@components/home/blogs/BlogsCollection";
-import EventProductCollections from "@components/home/events/EventProductCollections";
-import FeatureProductCollections from "@components/home/products/FeatureProductCollections";
-import HomeLayout from "@components/home/HomeLayout";
 import NewProductsCollections from "@components/home/products/NewProductsCollections";
-import SponsoredFeatures from "@components/home/SponsoredFeatures";
+import LazyWrapper from "@feedback/lazy/LazyWrapper";
+import EventProductCollections from "@components/home/events/EventProductCollections";
+const Banner = lazy(() => import("@components/home/banner/Banner"));
+const BlogsCollection = lazy(
+  () => import("@components/home/blogs/BlogsCollection")
+);
+const FeatureProductCollections = lazy(
+  () => import("@components/home/products/FeatureProductCollections")
+);
+const SponsoredFeatures = lazy(
+  () => import("@components/home/SponsoredFeatures")
+);
+const StoreInfoFeatures = lazy(
+  () => import("@components/home/StoreBenefitsFeatures")
+);
 
 export default function Home() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const productsApi = dispatch(getproductsApiCall({ limit: 5 }));
-    const blogsApi = dispatch(getBlogsApiCall({ limit: 4 }));
-    const wishlistApi = dispatch(getWishlistProductsApiCall());
-
-    return () => {
-      productsApi.abort();
-      blogsApi.abort();
-      wishlistApi.abort();
-      dispatch(cleanUpBlog());
-      dispatch(cleanUpProducts());
-      dispatch(cleanUpWishlist());
-    };
-  }, [dispatch]);
-
   return (
     <section className="flex flex-col gap-y-24 pb-18 pt-8">
-      <HomeLayout />
+      <LazyWrapper type="banner">
+        <Banner />
+      </LazyWrapper>
+
+      {/* Info */}
+      <LazyWrapper type="info">
+        <StoreInfoFeatures />
+      </LazyWrapper>
       {/* feature collections */}
-      <FeatureProductCollections where={"Home"} />
+      <LazyWrapper type="homeProducts">
+        <FeatureProductCollections where={"Home"} limit={5} />
+      </LazyWrapper>
+
       {<NewProductsCollections />}
       {/* Special products */}
       <EventProductCollections />
-      <SponsoredFeatures />
-      <BlogsCollection />
+      <LazyWrapper type="sponsored">
+        <SponsoredFeatures />
+      </LazyWrapper>
+      <LazyWrapper type="homeBlogs">
+        <BlogsCollection />
+      </LazyWrapper>
     </section>
   );
 }

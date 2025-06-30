@@ -13,7 +13,7 @@ export default function Blogs() {
   const { blogs } = useAppSelector((state) => state.blogs);
 
   useEffect(() => {
-    const promise = dispatch(getBlogsApiCall({ limit: 6 }));
+    const promise = dispatch(getBlogsApiCall({ limit: 5 }));
 
     return () => {
       promise.abort();

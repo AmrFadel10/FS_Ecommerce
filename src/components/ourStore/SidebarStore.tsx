@@ -124,7 +124,8 @@ export default function SideBarStore() {
             return (
               <li className="flex items-center p-4 gap-3" key={index}>
                 <Link to={product._id}>
-                  <img src={product?.images?.[0]?.url} alt="img" />
+                  <img src={product?.images?.[0]?.url}         loading="lazy"
+ alt="img" />
                 </Link>
                 <div>
                   <p

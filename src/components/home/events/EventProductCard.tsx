@@ -31,6 +31,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
         </div>
         <div className="min-h-[270px]">
           <img
+            loading="lazy"
             src={product.images[0].url}
             alt="music"
             className={` ${

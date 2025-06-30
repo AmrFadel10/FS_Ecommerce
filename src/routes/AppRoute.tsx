@@ -1,50 +1,90 @@
+//React & react router dom
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "@components/layout/RootLayout";
+import { lazy, Suspense } from "react";
 
 //Pages
-import Home from "@pages/Home";
 import Error from "@pages/Error";
-import PrivacyPolicy from "@pages/PrivacyPolicy";
-import RefundPolicy from "@pages/RefundPolicy";
-import ShippingPolicy from "@pages/ShippingPolicy";
-import TermsAndConditions from "@pages/TermsAndConditions";
-import FAQ from "@pages/FAQ";
-import Contact from "@pages/Contact";
-import CompareProducts from "@pages/CompareProducts";
-import Cart from "@pages/Cart";
-import OurStore from "@pages/OurStore";
-import Product from "@pages/Product";
-import Blogs from "@pages/Blogs";
-import Wishlist from "@pages/Wishlist";
+const RootLayout = lazy(() => import("@components/layout/RootLayout"));
+const Home = lazy(() => import("@pages/Home"));
+const PrivacyPolicy = lazy(() => import("@pages/PrivacyPolicy"));
+const RefundPolicy = lazy(() => import("@pages/RefundPolicy"));
+const ShippingPolicy = lazy(() => import("@pages/ShippingPolicy"));
+const TermsAndConditions = lazy(() => import("@pages/TermsAndConditions"));
+const FAQ = lazy(() => import("@pages/FAQ"));
+const Contact = lazy(() => import("@pages/Contact"));
+const CompareProducts = lazy(() => import("@pages/CompareProducts"));
+const Cart = lazy(() => import("@pages/Cart"));
+const OurStore = lazy(() => import("@pages/OurStore"));
+const Product = lazy(() => import("@pages/Product"));
+const Blogs = lazy(() => import("@pages/Blogs"));
+const Wishlist = lazy(() => import("@pages/Wishlist"));
 
 const AppRoute = () => {
   const route = createBrowserRouter([
     {
       path: "/",
-      element: <RootLayout />,
+      element: (
+        <Suspense fallback="loading please wait...">
+          <RootLayout />,
+        </Suspense>
+      ),
       errorElement: <Error />,
       children: [
         {
           index: true,
-          element: <Home />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <Home />,
+            </Suspense>
+          ),
         },
         {
           path: "compare",
-          element: <CompareProducts />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <CompareProducts />
+            </Suspense>
+          ),
         },
         {
           path: "wishlist",
-          element: <Wishlist />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <Wishlist />
+            </Suspense>
+          ),
         },
         {
           path: "cart",
-          element: <Cart />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <Cart />
+            </Suspense>
+          ),
         },
-        { path: "products", element: <OurStore /> },
-        { path: "blogs", element: <Blogs /> },
+        {
+          path: "products",
+          element: (
+            <Suspense fallback="loading please wait...">
+              <OurStore />
+            </Suspense>
+          ),
+        },
+        {
+          path: "blogs",
+          element: (
+            <Suspense fallback="loading please wait...">
+              <Blogs />
+            </Suspense>
+          ),
+        },
         {
           path: "product/:id",
-          element: <Product />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <Product />
+            </Suspense>
+          ),
           loader: ({ params }) => {
             if (!/^[a-fA-F-0-9]{24}$/.test(params.id as string)) {
               throw new Response("Invalid id", {
@@ -57,27 +97,51 @@ const AppRoute = () => {
         },
         {
           path: "privacy-policy",
-          element: <PrivacyPolicy />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <PrivacyPolicy />
+            </Suspense>
+          ),
         },
         {
           path: "refund-policy",
-          element: <RefundPolicy />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <RefundPolicy />
+            </Suspense>
+          ),
         },
         {
           path: "shipping-policy",
-          element: <ShippingPolicy />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <ShippingPolicy />
+            </Suspense>
+          ),
         },
         {
           path: "terms-condition",
-          element: <TermsAndConditions />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <TermsAndConditions />
+            </Suspense>
+          ),
         },
         {
           path: "faq",
-          element: <FAQ />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <FAQ />
+            </Suspense>
+          ),
         },
         {
           path: "contact",
-          element: <Contact />,
+          element: (
+            <Suspense fallback="loading please wait...">
+              <Contact />
+            </Suspense>
+          ),
         },
       ],
     },
