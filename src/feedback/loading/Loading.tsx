@@ -9,12 +9,12 @@ import HomeProductsSkeleton from "@feedback/skeletons/products/HomeProductsSkele
 import AProductPageSkeleton from "@feedback/skeletons/aProduct/AProductPageSkeleton";
 
 const loadingComponents = {
-  wishlist: <ProductsListSkeleton count={5} where="public" />,
-  cart: <ProductsListSkeleton count={5} where="public" />,
-  blogsPage: <BlogsPageSkeleton limit={8} />,
-  homeProducts: <HomeProductsSkeleton />,
-  outStore: <OurStoreSkeleton />,
-  productPage: <AProductPageSkeleton />,
+  wishlist: () => <ProductsListSkeleton count={3} where="public" />,
+  cart: () => <ProductsListSkeleton count={5} where="public" />,
+  blogsPage: () => <BlogsPageSkeleton limit={8} />,
+  homeProducts: () => <HomeProductsSkeleton />,
+  outStore: () => <OurStoreSkeleton />,
+  productPage: () => <AProductPageSkeleton />,
 };
 type Ttype = keyof typeof loadingComponents;
 const Loading = ({
@@ -32,7 +32,7 @@ const Loading = ({
 }) => {
   const Skeleton = loadingComponents[type];
   if (status === "pending") {
-    return Skeleton;
+    return Skeleton();
   }
 
   if (status === "failed") {

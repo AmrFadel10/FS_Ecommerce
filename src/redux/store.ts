@@ -8,9 +8,11 @@ import products from "./products/slices/productsSlice";
 import aProduct from "./products/slices/AProductSlice";
 import cart from "./cart/slices/cartSlice";
 import wishlist from "./wishlist/slices/wishlistSlice";
+import auth from "./auth/slices/AuthSlice";
 
 const store = configureStore({
   reducer: {
+    auth,
     categories,
     blogs,
     ablog,

@@ -1,23 +1,70 @@
 import { z } from "zod";
 
-export const loginSchema = z.object({
-  email: z.string().email("This field must be email"),
-  password: z.string().min(6, "Password must be above 6 characters"),
+//Login validation
+
+export const loginValidation = z.object({
+  email: z
+    .string({
+      required_error: "This field is required!",
+      invalid_type_error: "This field must be string!",
+    })
+    .email({ message: "This field must contain a valid email address!" }),
+  password: z
+    .string({
+      required_error: "This field is required!",
+      invalid_type_error: "This field must be string!",
+    })
+    .min(6, { message: "This field must contain at least 6 characters!" }),
 });
 
 //Signup validation
-export const SignupSchema = z.object({
-  fullname: z.string().min(2, "Full name must be above 6 characters"),
-  email: z.string().email("This field must be email"),
-  password: z.string().min(6, "Password must be above 6 characters"),
-  image: z
-    .any()
-    .refine((file) => file.length > 0, "No photo provided!")
-    .refine(
-      (file) =>
-        ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(
-          file?.[0]?.type
-        ),
-      "Just photo accept!"
-    ),
-});
+
+export const SignupValidation = z
+  .object({
+    image: z
+      .instanceof(File, { message: "Please upload a valid image file!" })
+      .refine((file) => file.size <= 2 * 1024 * 1024, {
+        message: "Image must be less than 2MB!",
+      })
+      .refine(
+        (file) =>
+          ["image/jpeg", "image/png", "image/webp", "image/jpg"].includes(
+            file.type
+          ),
+        { message: "Only images are allowed!" }
+      ),
+    firstName: z
+      .string({
+        required_error: "This field is required!",
+        invalid_type_error: "This field must be string!",
+      })
+      .min(2, { message: "This field must contain at least 2 characters!" }),
+    lastName: z
+      .string({
+        required_error: "This field is required!",
+        invalid_type_error: "This field must be string!",
+      })
+      .min(2, { message: "This field must contain at least 2 characters!" }),
+    email: z
+      .string({
+        required_error: "This field is required!",
+        invalid_type_error: "This field must be string!",
+      })
+      .email({ message: "This field must contain a valid email address!" }),
+    password: z
+      .string({
+        required_error: "This field is required!",
+        invalid_type_error: "This field must be string!",
+      })
+      .min(6, { message: "This field must contain at least 6 characters!" }),
+    confirmPassword: z
+      .string({
+        required_error: "This field is required!",
+        invalid_type_error: "This field must be string!",
+      })
+      .min(6, { message: "This field must contain at least 6 characters!" }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "This field should be identical to the password!",
+    path: ["confirmPassword"],
+  });

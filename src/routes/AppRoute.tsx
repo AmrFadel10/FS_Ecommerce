@@ -5,7 +5,7 @@ import { lazy, Suspense } from "react";
 //Pages
 import Error from "@pages/Error";
 import ProductsListSkeleton from "@feedback/skeletons/products/ProductsListSkeleton";
-import LayoutLoading from "@feedback/loading/LayoutLoading";
+import RootLoading from "@feedback/loading/RootLoading";
 import LayoutSkeleton from "@feedback/skeletons/home/LayoutSkeleton";
 import StoreInfoFeaturesSkeleton from "@feedback/skeletons/home/StoreInfoFeaturesSkeleton";
 import BlogsPageSkeleton from "@feedback/skeletons/blogs/BlogsPageSkeleton";
@@ -27,13 +27,15 @@ const OurStore = lazy(() => import("@pages/OurStore"));
 const Product = lazy(() => import("@pages/Product"));
 const Blogs = lazy(() => import("@pages/Blogs"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
+const Signup = lazy(() => import("@pages/Signup"));
+const Login = lazy(() => import("@pages/Login"));
 
 const AppRoute = () => {
   const route = createBrowserRouter([
     {
       path: "/",
       element: (
-        <Suspense fallback={<LayoutLoading />}>
+        <Suspense fallback={<RootLoading />}>
           <RootLayout />
         </Suspense>
       ),
@@ -66,7 +68,7 @@ const AppRoute = () => {
           path: "wishlist",
           element: (
             <Suspense
-              fallback={<ProductsListSkeleton count={5} where="public" />}
+              fallback={<ProductsListSkeleton count={3} where="public" />}
             >
               <Wishlist />
             </Suspense>
@@ -118,7 +120,7 @@ const AppRoute = () => {
         {
           path: "privacy-policy",
           element: (
-            <Suspense fallback={<LayoutLoading />}>
+            <Suspense fallback={<RootLoading />}>
               <PrivacyPolicy />
             </Suspense>
           ),
@@ -126,7 +128,7 @@ const AppRoute = () => {
         {
           path: "refund-policy",
           element: (
-            <Suspense fallback={<LayoutLoading />}>
+            <Suspense fallback={<RootLoading />}>
               <RefundPolicy />
             </Suspense>
           ),
@@ -134,7 +136,7 @@ const AppRoute = () => {
         {
           path: "shipping-policy",
           element: (
-            <Suspense fallback={<LayoutLoading />}>
+            <Suspense fallback={<RootLoading />}>
               <ShippingPolicy />
             </Suspense>
           ),
@@ -142,7 +144,7 @@ const AppRoute = () => {
         {
           path: "terms-condition",
           element: (
-            <Suspense fallback={<LayoutLoading />}>
+            <Suspense fallback={<RootLoading />}>
               <TermsAndConditions />
             </Suspense>
           ),
@@ -150,7 +152,7 @@ const AppRoute = () => {
         {
           path: "faq",
           element: (
-            <Suspense fallback={<LayoutLoading />}>
+            <Suspense fallback={<RootLoading />}>
               <FAQ />
             </Suspense>
           ),
@@ -158,12 +160,30 @@ const AppRoute = () => {
         {
           path: "contact",
           element: (
-            <Suspense fallback={<LayoutLoading />}>
+            <Suspense fallback={<RootLoading />}>
               <Contact />
             </Suspense>
           ),
         },
       ],
+    },
+    {
+      path: "/login",
+      errorElement: <Error />,
+      element: (
+        <Suspense fallback={<RootLoading />}>
+          <Login />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/signup",
+      errorElement: <Error />,
+      element: (
+        <Suspense fallback={<RootLoading />}>
+          <Signup />
+        </Suspense>
+      ),
     },
   ]);
   return <RouterProvider router={route} />;

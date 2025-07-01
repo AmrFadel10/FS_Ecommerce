@@ -1,5 +1,5 @@
 import ShopByCategorySkeleton from "../common/ShopByCategorySkeleton";
-import BlogsSkeleton from "./blogsSkeleton";
+import BlogsSkeleton from "./BlogsSkeleton";
 
 export default function BlogsPageSkeleton({ limit }: { limit: number }) {
   return (

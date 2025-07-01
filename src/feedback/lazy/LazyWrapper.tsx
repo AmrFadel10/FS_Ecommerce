@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
 //Components
-import BlogsSkeleton from "@feedback/skeletons/blogs/blogsSkeleton";
+import BlogsSkeleton from "@feedback/skeletons/blogs/BlogsSkeleton";
 import LayoutSkeleton from "@feedback/skeletons/home/LayoutSkeleton";
 import SponsoredFeatureSkeleton from "@feedback/skeletons/home/SponsoredFeatureSkeleton";
 import StoreInfoFeaturesSkeleton from "@feedback/skeletons/home/StoreInfoFeaturesSkeleton";
