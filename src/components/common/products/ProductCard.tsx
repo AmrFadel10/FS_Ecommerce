@@ -8,6 +8,7 @@ import { useState } from "react";
 import { IoIosShuffle } from "react-icons/io";
 import { useAppDispatch } from "@redux/hooks";
 import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistApiCall";
+import { Spinner } from "../Spinner";
 
 const ProductCard = ({
   images,
@@ -17,18 +18,23 @@ const ProductCard = ({
   price,
   sold,
   isLiked,
-}: TProduct & { isLiked: boolean }) => {
+  isActivation,
+}: TProduct & { isLiked: boolean; isActivation: boolean }) => {
   const [inCompare, setinCompare] = useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-
+  console.log(isActivation);
   const handleToggleWishlist = () => {
-    if (loading) return;
-    setLoading(true);
-    dispatch(toggleWishlistApiCall(_id))
-      .unwrap()
-      .then(() => setLoading(false))
-      .catch(() => setLoading(false));
+    if (isActivation) {
+      if (loading) return;
+      setLoading(true);
+      dispatch(toggleWishlistApiCall(_id))
+        .unwrap()
+        .then(() => setLoading(false))
+        .catch(() => setLoading(false));
+    } else {
+      alert("Please, login first!");
+    }
   };
   return (
     <div
@@ -43,11 +49,17 @@ const ProductCard = ({
           />
         </div>
         <div
-          className=" transition-all duration-500  rounded-full p-[4px] absolute top-[2%] right-3 hover:bg-orange-300"
+          className=" transition-all duration-300  rounded-full p-[4px] absolute top-[2%] right-3 hover:bg-orange-300 flex justify-center items-center w-7 h-7"
           onClick={handleToggleWishlist}
         >
           {loading ? (
-            "loading"
+            <Spinner
+              size={15}
+              color="black"
+              className={`w-full h-full ${
+                loading && "bg-orange-300"
+              } rounded-full`}
+            />
           ) : isLiked ? (
             <AiFillHeart
               className="transition-all  rounded-full "
@@ -66,14 +78,14 @@ const ProductCard = ({
         </div>
 
         <div className="absolute top-[14%] -right-6 flex gap-2 flex-col group-hover:right-3 transition-all  text-lg">
-          <div className=" transition-all  rounded-full p-[4px] hover:bg-orange-300 duration-500">
+          <div className=" transition-all  rounded-full  hover:bg-orange-300 duration-300 flex justify-center items-center w-7 h-7">
             {!inCompare ? (
               <FaCheck size={18} color="#333" title="Compare between" />
             ) : (
               <IoIosShuffle size={20} color="#333" title="Compare between" />
             )}
           </div>
-          <div className=" transition-all  rounded-full p-1 flex justify-center items-center hover:bg-orange-300 duration-300">
+          <div className=" transition-all  rounded-full flex justify-center items-center hover:bg-orange-300 duration-300 w-7 h-7">
             <AiOutlineEye
               // onClick={() => navigate("/product" + product?._id.toString())}
               size={20}

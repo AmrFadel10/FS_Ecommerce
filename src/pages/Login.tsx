@@ -1,8 +1,5 @@
-import { Spinner } from "@components/common/Spinner";
-import { LoginApiCall } from "@redux/auth/apicalls/LoginApiCall";
-import { resetAuth } from "@redux/auth/slices/AuthSlice";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { loginValidation } from "@utils/validations/authValidation";
+//React
+import { Link, useNavigate } from "react-router-dom";
 import {
   useEffect,
   useRef,
@@ -10,23 +7,47 @@ import {
   type ChangeEvent,
   type FormEvent,
 } from "react";
+
+//APIS
+import { LoginApiCall } from "@redux/auth/apicalls/LoginApiCall";
+import { resetAuth } from "@redux/auth/slices/AuthSlice";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+
+//Validations
+import { loginValidation } from "@utils/validations/authValidation";
+
+//Icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+
+//components
+import { Spinner } from "@components/common/Spinner";
 
 const Login = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { loading } = useAppSelector((state) => state.auth);
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [showPassword, setShowPassword] = useState(true);
-
   const dataRef = useRef({ email: "", password: "" });
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetAuth());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (loading === "succeeded") {
+      navigate("/");
+    }
+  }, [loading, navigate]);
 
   const handleInputData = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     dataRef.current[name as keyof { email: string }] = value;
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (loading === "pending") return;
     setFormErrors({});
@@ -41,7 +62,9 @@ const Login = () => {
       setFormErrors(errors);
       return;
     }
-    dispatch(LoginApiCall(dataRef.current));
+    dispatch(LoginApiCall(dataRef.current))
+      .unwrap()
+      .catch((error) => alert(error));
   };
 
   const handleClearError = (error: string) => {
@@ -50,11 +73,6 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetAuth());
-    };
-  }, []);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-3">
       <h2 className="text-3xl font-extrabold text-gray-800 font-Roboto">
@@ -75,7 +93,11 @@ const Login = () => {
               name="email"
               onChange={handleInputData}
               onFocus={() => handleClearError("email")}
-              className="focus:ring-1 ring-blue-300 focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium"
+              className={`${
+                formErrors["email"]
+                  ? "ring-1 ring-red-400 border-red-400"
+                  : "focus:ring-1 ring-blue-400 focus:border-blue-400"
+              } focus:outline-none  shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
               autoComplete="email"
             />
             {formErrors["email"] && (
@@ -98,7 +120,11 @@ const Login = () => {
                 name="password"
                 onChange={handleInputData}
                 onFocus={() => handleClearError("password")}
-                className="focus:ring-1 ring-blue-300 focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium"
+                className={`${
+                  formErrors["password"]
+                    ? "ring-1 ring-red-400 border-red-400"
+                    : "focus:ring-1 ring-blue-400 focus:border-blue-400"
+                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
                 autoComplete="current-password"
               />
               <div
@@ -128,20 +154,21 @@ const Login = () => {
           >
             {loading === "pending" ? (
               <>
-                <Spinner size={20} /> loading...
+                <Spinner size={18} color="white" /> Loading...
               </>
             ) : (
               <span>Submit</span>
             )}
           </button>
           <div className="flex items-center gap-2 text-sm w-full">
-            <h4 className="text-gray-400">Already have an account</h4>
+            <h4 className="text-gray-400">Don't have an account?</h4>
             <Link
               to={"/signup"}
               className="text-gray-800 hover:underline hover:text-gray-950 font-medium"
             >
               Signup
             </Link>
+            <div onClick={() => navigate("/")}>Goo</div>
           </div>
         </form>
       </div>

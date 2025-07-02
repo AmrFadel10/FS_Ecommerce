@@ -1,16 +1,41 @@
+// React redux
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { logout } from "@redux/auth/slices/AuthSlice";
+import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
+
+//APIS
+import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
 
 //icons
 import { CiSearch } from "react-icons/ci";
 import { SlRefresh } from "react-icons/sl";
 import { PiHeartStraightLight } from "react-icons/pi";
 import { CiUser } from "react-icons/ci";
+import CartIcon from "./cartIcon/CartIcon";
 
 //Components
 import Navigation from "./Navigation";
-import CartIcon from "./cartIcon/CartIcon";
 
 export default function Header() {
+  const dispatch = useAppDispatch();
+  const { user, accessToken } = useAppSelector((state) => state.auth);
+  const [open, setOpen] = useState(false);
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  useEffect(() => {
+    if (accessToken) {
+      const wishlistApi = dispatch(getWishlistProductsApiCall());
+      return () => {
+        wishlistApi.abort();
+        dispatch(cleanUpWishlist());
+      };
+    }
+  }, [dispatch]);
+
   return (
     <>
       <header className="relative z-[23]">
@@ -68,21 +93,65 @@ export default function Header() {
                     Wishlist
                   </div>
                 </Link>
-
-                <Link
-                  to="/login"
-                  className="flex items-center  gap-1 hover:text-slate-50 group"
-                >
-                  <CiUser
-                    size={32}
-                    className="group-hover:rotate-y-360 transition-all duration-700"
-                  />
-                  <div className="font-normal text-xs lg:block hidden">
-                    Login
-                    <br />
-                    Account
+                {user ? (
+                  <div
+                    className="flex items-center  gap-1 hover:text-slate-200 text-slate-50 group cursor-pointer relative"
+                    onClick={() => setOpen((pre) => !pre)}
+                  >
+                    <div className="w-8 h-8 rounded-md">
+                      <img
+                        src={user.avatar?.url}
+                        className="group-hover:opacity-90 transition-all  rounded-md h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="font-normal text-sm lg:block hidden">
+                      Welcome
+                      <br />
+                      <span className="capitalize">{user.fullName}</span>
+                    </div>
+                    <ul
+                      className={`${
+                        open ? "max-h-60" : "max-h-0"
+                      } transition-all  duration-500  absolute left-1 top-[calc(100%+10px)] w-36  bg-slate-950 rounded-sm text-slate-50 flex  flex-col  overflow-hidden text-sm font-medium`}
+                    >
+                      <Link
+                        to={"/profile"}
+                        className=" px-3 py-2  hover:pl-4 hover:text-orange-300 transition-all w-full text-left cursor-pointer"
+                        onClick={() => setOpen(false)}
+                      >
+                        Profile
+                      </Link>
+                      <Link
+                        to={"/profile"}
+                        className=" px-3 py-2  hover:pl-4 hover:text-orange-300 transition-all w-full text-left cursor-pointer"
+                        onClick={() => setOpen(false)}
+                      >
+                        Orders
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className=" px-3 py-2  hover:pl-4 hover:text-orange-300 transition-all text-left border-t-slate-800  cursor-pointer border-t"
+                      >
+                        Logout
+                      </button>
+                    </ul>
                   </div>
-                </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="flex items-center  gap-1 hover:text-slate-50 group"
+                  >
+                    <CiUser
+                      size={32}
+                      className="group-hover:rotate-y-360 transition-all duration-700"
+                    />
+                    <div className="font-normal text-xs lg:block hidden">
+                      Login
+                      <br />
+                      Account
+                    </div>
+                  </Link>
+                )}
                 {/* Cart icon*/}
                 <CartIcon />
               </div>

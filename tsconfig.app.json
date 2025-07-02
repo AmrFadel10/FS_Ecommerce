@@ -15,7 +15,7 @@
       "@assets/*": ["src/assets/*"],
       "@redux/*": ["src/redux/*"],
       "@customeTypes/*": ["src/types/*"],
-      "@customHooks/*": ["src/customHooks/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@feedback/*": ["src/feedback/*"]
     },
     /* Bundler mode */

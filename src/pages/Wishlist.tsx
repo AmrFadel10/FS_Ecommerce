@@ -14,7 +14,7 @@ export default function Wishlist() {
   const { productFullInfo, loading, error } = useAppSelector(
     (state) => state.wishlist
   );
-
+  const { accessToken } = useAppSelector((state) => state.auth);
   useEffect(() => {
     const promise = dispatch(getWishlistProductsApiCall());
     return () => {
@@ -24,7 +24,7 @@ export default function Wishlist() {
   }, [dispatch]);
 
   const wishlistProducts = productFullInfo.map((product) => {
-    return { ...product, isLiked: true };
+    return { ...product, isLiked: true, isActivation: !!accessToken };
   });
 
   return (

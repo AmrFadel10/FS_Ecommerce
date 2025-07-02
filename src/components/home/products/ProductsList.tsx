@@ -5,7 +5,7 @@ const ProductsList = ({
   products,
   where,
 }: {
-  products: (TProduct & { isLiked: boolean })[];
+  products: (TProduct & { isLiked: boolean; isActivation: boolean })[];
   where?: string;
 }) => {
   return (

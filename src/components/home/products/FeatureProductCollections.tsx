@@ -3,10 +3,8 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 
 //APIS
-import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
 import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
 import { cleanUpProducts } from "@redux/products/slices/productsSlice";
-import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
 
 //Components
 import ProductsList from "./ProductsList";
@@ -25,25 +23,28 @@ const FeatureProductCollections = ({
     error,
     loading: productLoading,
   } = useAppSelector((state) => state.products);
+
   const { items, loading: wishLoading } = useAppSelector(
     (state) => state.wishlist
   );
+  const { accessToken } = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const productsApi = dispatch(getproductsApiCall({ limit: limit! }));
-    const wishlistApi = dispatch(getWishlistProductsApiCall());
     return () => {
       productsApi.abort();
-      wishlistApi.abort();
       dispatch(cleanUpProducts());
-      dispatch(cleanUpWishlist());
     };
   }, [dispatch]);
 
   const homeProducts = products.map((product) => {
-    return { ...product, isLiked: items.includes(product._id) };
+    return {
+      ...product,
+      isLiked: items.includes(product._id),
+      isActivation: !!accessToken,
+    };
   });
 
   return (

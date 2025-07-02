@@ -2,11 +2,11 @@ import type { TWishlistSlice } from "@customeTypes/wishlist";
 import { createSlice } from "@reduxjs/toolkit";
 import { toggleWishlistApiCall } from "../apicalls/toggleWishlistApiCall";
 import { getWishlistProductsApiCall } from "../apicalls/getWishlistProductsApiCall";
+import { logout } from "@redux/auth/slices/AuthSlice";
+import type { TProduct } from "@customeTypes/products";
 
 const initialState: TWishlistSlice = {
-  items: localStorage.getItem("wishlist")
-    ? JSON.parse(localStorage.getItem("wishlist") || "")
-    : [],
+  items: [],
   productFullInfo: [],
   loading: "idle",
   error: null,
@@ -31,12 +31,11 @@ const wishlistSlice = createSlice({
           state.items.push(action.payload.id);
         } else if (action.payload.type == "removed") {
           state.items = state.items.filter((id) => id !== action.payload.id);
-
           state.productFullInfo = state.productFullInfo.filter(
             (prod) => prod._id !== action.payload.id
           );
         }
-        localStorage.setItem("wishlist", JSON.stringify(state.items));
+        console.log(state.items);
       })
       .addCase(toggleWishlistApiCall.rejected, (state, action) => {
         state.error = action.payload as string;
@@ -49,11 +48,17 @@ const wishlistSlice = createSlice({
       .addCase(getWishlistProductsApiCall.fulfilled, (state, action) => {
         state.loading = "succeeded";
         state.productFullInfo = action.payload.wishlist;
+        state.items = action.payload.wishlist.map((prod: TProduct) => prod._id);
       })
       .addCase(getWishlistProductsApiCall.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.payload as string;
       });
+    //reset wishlist with logout
+    builder.addCase(logout, (state) => {
+      state.productFullInfo = [];
+      state.items = [];
+    });
   },
 });
 

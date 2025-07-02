@@ -1,8 +1,7 @@
 import type { TError, TLoading } from "./common";
 
 export type TSignup = {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   password: string;
   confirmPassword: string;
   email: string;
@@ -14,9 +13,10 @@ export type TLogin = {
 };
 
 export type TUser = {
-  firstName: string;
-  lasstName: string;
+  _id: string;
+  fullName: string;
   email: string;
+  avatar: { public_id: string; url: string } | null;
 } | null;
 
 export type TAuthIntialState = {
@@ -24,6 +24,7 @@ export type TAuthIntialState = {
   error: TError;
   user: TUser;
   accessToken: string | null;
+  message: null | string;
 };
 
 export type TLoginResponse = {

@@ -27,14 +27,13 @@ import { Spinner } from "@components/common/Spinner";
 
 const Signup = () => {
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.auth);
+  const { loading, message, error } = useAppSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [render, setRender] = useState(true);
   const dataRef = useRef<TSignup>({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     password: "",
     confirmPassword: "",
     email: "",
@@ -42,6 +41,11 @@ const Signup = () => {
   });
 
   console.log("render");
+  useEffect(() => {
+    return () => {
+      dispatch(resetAuth());
+    };
+  }, [dispatch]);
 
   const handleInputData = (e: ChangeEvent<HTMLInputElement>) => {
     const { files, name, value } = e.target;
@@ -70,20 +74,16 @@ const Signup = () => {
     }
 
     const formData = new FormData();
-    formData.set("firstName", dataRef.current.firstName);
-    formData.set("lastName", dataRef.current.lastName);
+    formData.set("fullName", dataRef.current.fullName);
     formData.set("password", dataRef.current.password);
     formData.set("email", dataRef.current.email);
     formData.set("image", dataRef.current.image as File);
 
-    dispatch(SignupApiCall(formData));
+    dispatch(SignupApiCall(formData))
+      .unwrap()
+      .then((res) => alert(res.message))
+      .catch((res) => alert(res));
   };
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetAuth());
-    };
-  }, []);
 
   const handleClearError = (error: string) => {
     if (formErrors[error]) {
@@ -131,49 +131,30 @@ const Signup = () => {
               </p>
             )}
           </div>
-          <div className="flex gap-x-3">
-            <div className="flex flex-col ">
-              <label
-                htmlFor="firstName"
-                className="text-gray-500 text-sm font-semibold "
-              >
-                First name:
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                onChange={handleInputData}
-                onFocus={() => handleClearError("firstName")}
-                className="focus:ring-1 ring-blue-300 focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium"
-              />
-              {formErrors["firstName"] && (
-                <p className="text-[11px] font-medium text-red-600 mt-2">
-                  {formErrors["firstName"]}
-                </p>
-              )}
-            </div>
-            <div className="flex flex-col ">
-              <label
-                htmlFor="lastName"
-                className="text-gray-500 text-sm font-semibold "
-              >
-                Last name:
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                onChange={handleInputData}
-                onFocus={() => handleClearError("lastName")}
-                className="focus:ring-1 ring-blue-300 focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium"
-              />
-              {formErrors["lastName"] && (
-                <p className="text-[11px] font-medium text-red-600 mt-2">
-                  {formErrors["lastName"]}
-                </p>
-              )}
-            </div>
+          <div className="flex flex-col ">
+            <label
+              htmlFor="fullName"
+              className="text-gray-500 text-sm font-semibold "
+            >
+              First name:
+            </label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              onChange={handleInputData}
+              onFocus={() => handleClearError("fullName")}
+              className={`${
+                formErrors["fullName"]
+                  ? "ring-1 ring-red-400 border-red-400"
+                  : "focus:ring-1 ring-blue-400 focus:border-blue-400"
+              } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
+            />
+            {formErrors["fullName"] && (
+              <p className="text-[11px] font-medium text-red-600 mt-2">
+                {formErrors["fullName"]}
+              </p>
+            )}
           </div>
           <div className="flex flex-col ">
             <label
@@ -188,7 +169,11 @@ const Signup = () => {
               name="email"
               onChange={handleInputData}
               onFocus={() => handleClearError("email")}
-              className="focus:ring-1 ring-blue-300 focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium"
+              className={`${
+                formErrors["email"]
+                  ? "ring-1 ring-red-400 border-red-400"
+                  : "focus:ring-1 ring-blue-400 focus:border-blue-400"
+              } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
               autoComplete="email"
             />
             {formErrors["email"] && (
@@ -211,7 +196,11 @@ const Signup = () => {
                 name="password"
                 onChange={handleInputData}
                 onFocus={() => handleClearError("password")}
-                className="focus:ring-1 ring-blue-300 focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium"
+                className={`${
+                  formErrors["password"]
+                    ? "ring-1 ring-red-400 border-red-400"
+                    : "focus:ring-1 ring-blue-400 focus:border-blue-400"
+                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
                 autoComplete="current-password"
               />
               <div
@@ -245,7 +234,11 @@ const Signup = () => {
                 name="confirmPassword"
                 onChange={handleInputData}
                 onFocus={() => handleClearError("confirmPassword")}
-                className="focus:ring-1 ring-blue-300 focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium"
+                className={`${
+                  formErrors["confirmPassword"]
+                    ? "ring-1 ring-red-400 border-red-400"
+                    : "focus:ring-1 ring-blue-400 focus:border-blue-400"
+                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
                 autoComplete="current-password"
               />
               <div
@@ -277,14 +270,14 @@ const Signup = () => {
           >
             {loading === "pending" ? (
               <>
-                <Spinner size={20} /> loading...
+                <Spinner size={18} color="white" /> Loading...
               </>
             ) : (
               <span>Submit</span>
             )}
           </button>
           <div className="flex items-center gap-2 text-sm w-full">
-            <h4 className="text-gray-400">Already have an account</h4>
+            <h4 className="text-gray-400">Already have an account?</h4>
             <Link
               to={"/login"}
               className="text-gray-800 hover:underline hover:text-gray-950 font-medium"

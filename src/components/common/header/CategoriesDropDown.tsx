@@ -1,4 +1,4 @@
-import type { TCategory } from "@types/common";
+import type { TCategory } from "@customeTypes/categories";
 
 //type props
 type PropsType = {

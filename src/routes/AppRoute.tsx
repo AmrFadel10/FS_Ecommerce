@@ -1,5 +1,9 @@
 //React & react router dom
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 //Pages
@@ -11,6 +15,8 @@ import StoreInfoFeaturesSkeleton from "@feedback/skeletons/home/StoreInfoFeature
 import BlogsPageSkeleton from "@feedback/skeletons/blogs/BlogsPageSkeleton";
 import OurStoreSkeleton from "@feedback/skeletons/ourStore/OurStoreSkeleton";
 import AProductPageSkeleton from "@feedback/skeletons/aProduct/AProductPageSkeleton";
+import Activation from "@pages/Activation";
+import { useAppSelector } from "@redux/hooks";
 
 //Lazy pages
 const RootLayout = lazy(() => import("@components/layout/RootLayout"));
@@ -31,6 +37,8 @@ const Signup = lazy(() => import("@pages/Signup"));
 const Login = lazy(() => import("@pages/Login"));
 
 const AppRoute = () => {
+  const { user } = useAppSelector((state) => state.auth);
+
   const route = createBrowserRouter([
     {
       path: "/",
@@ -66,12 +74,14 @@ const AppRoute = () => {
         },
         {
           path: "wishlist",
-          element: (
+          element: user ? (
             <Suspense
               fallback={<ProductsListSkeleton count={3} where="public" />}
             >
               <Wishlist />
             </Suspense>
+          ) : (
+            <Navigate to={"/"} />
           ),
         },
         {
@@ -170,18 +180,32 @@ const AppRoute = () => {
     {
       path: "/login",
       errorElement: <Error />,
-      element: (
+      element: user ? (
+        <Navigate to={"/"} />
+      ) : (
         <Suspense fallback={<RootLoading />}>
           <Login />
         </Suspense>
       ),
     },
+
     {
       path: "/signup",
       errorElement: <Error />,
-      element: (
+      element: user ? (
+        <Navigate to={"/"} />
+      ) : (
         <Suspense fallback={<RootLoading />}>
           <Signup />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/activation/:activationToken",
+      errorElement: <Error />,
+      element: (
+        <Suspense fallback={<RootLoading />}>
+          <Activation />
         </Suspense>
       ),
     },

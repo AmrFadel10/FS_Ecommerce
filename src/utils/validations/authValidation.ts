@@ -33,18 +33,13 @@ export const SignupValidation = z
           ),
         { message: "Only images are allowed!" }
       ),
-    firstName: z
+    fullName: z
       .string({
         required_error: "This field is required!",
         invalid_type_error: "This field must be string!",
       })
       .min(2, { message: "This field must contain at least 2 characters!" }),
-    lastName: z
-      .string({
-        required_error: "This field is required!",
-        invalid_type_error: "This field must be string!",
-      })
-      .min(2, { message: "This field must contain at least 2 characters!" }),
+
     email: z
       .string({
         required_error: "This field is required!",

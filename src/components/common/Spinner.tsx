@@ -1,5 +1,13 @@
-export const Spinner = ({ size }: { size: number }) => (
-  <div className="flex justify-center items-center h-screen">
+export const Spinner = ({
+  size,
+  color = "#fb923c",
+  className,
+}: {
+  size: number;
+  color?: string;
+  className?: string;
+}) => (
+  <div className={`flex justify-center items-center ${className}`}>
     <svg
       width={`${size}`}
       height={`${size}`}
@@ -11,7 +19,7 @@ export const Spinner = ({ size }: { size: number }) => (
         cy="25"
         r="20"
         fill="none"
-        stroke="#fb923c"
+        stroke={`${color}`}
         strokeWidth="7"
         strokeLinecap="round"
         strokeDasharray="30 150"
