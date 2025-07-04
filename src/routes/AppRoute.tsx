@@ -20,6 +20,7 @@ import { useAppSelector } from "@redux/hooks";
 
 //Lazy pages
 const RootLayout = lazy(() => import("@components/layout/RootLayout"));
+const ProfileLayout = lazy(() => import("@components/layout/ProfileLayout"));
 const Home = lazy(() => import("@pages/Home"));
 const PrivacyPolicy = lazy(() => import("@pages/PrivacyPolicy"));
 const RefundPolicy = lazy(() => import("@pages/RefundPolicy"));
@@ -35,6 +36,8 @@ const Blogs = lazy(() => import("@pages/Blogs"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
 const Signup = lazy(() => import("@pages/Signup"));
 const Login = lazy(() => import("@pages/Login"));
+import UpdateInfo from "@pages/UpdateInfo";
+import Orders from "@pages/Orders";
 
 const AppRoute = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -174,6 +177,20 @@ const AppRoute = () => {
               <Contact />
             </Suspense>
           ),
+        },
+        {
+          path: "profile",
+          element: user ? (
+            <Suspense fallback={<RootLoading />}>
+              <ProfileLayout />
+            </Suspense>
+          ) : (
+            <Navigate to={"/"} />
+          ),
+          children: [
+            { index: true, element: <UpdateInfo /> },
+            { path: "orders", element: <Orders /> },
+          ],
         },
       ],
     },

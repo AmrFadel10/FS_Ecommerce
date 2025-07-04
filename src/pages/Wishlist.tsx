@@ -16,6 +16,7 @@ export default function Wishlist() {
   );
   const { accessToken } = useAppSelector((state) => state.auth);
   useEffect(() => {
+    if (!accessToken) return;
     const promise = dispatch(getWishlistProductsApiCall());
     return () => {
       promise.abort();

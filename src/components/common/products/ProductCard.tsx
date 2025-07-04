@@ -9,6 +9,7 @@ import { IoIosShuffle } from "react-icons/io";
 import { useAppDispatch } from "@redux/hooks";
 import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistApiCall";
 import { Spinner } from "../Spinner";
+import { addToast } from "@redux/toast/slices/ToastSlice";
 
 const ProductCard = ({
   images,
@@ -23,17 +24,40 @@ const ProductCard = ({
   const [inCompare, setinCompare] = useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-  console.log(isActivation);
   const handleToggleWishlist = () => {
     if (isActivation) {
       if (loading) return;
       setLoading(true);
       dispatch(toggleWishlistApiCall(_id))
         .unwrap()
-        .then(() => setLoading(false))
-        .catch(() => setLoading(false));
+        .then(() => {
+          setLoading(false);
+          if (!isLiked) {
+            dispatch(
+              addToast({
+                title: "add to wishlist",
+                comment: `${title.slice(0, 40)} is now in your wishlist`,
+                type: "success",
+              })
+            );
+          }
+        })
+        .catch((error) => {
+          setLoading(false);
+          dispatch(
+            addToast({
+              comment: `${error}`,
+              type: "error",
+            })
+          );
+        });
     } else {
-      alert("Please, login first!");
+      dispatch(
+        addToast({
+          comment: `Please log in first`,
+          type: "info",
+        })
+      );
     }
   };
   return (

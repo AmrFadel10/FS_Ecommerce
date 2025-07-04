@@ -1,14 +1,15 @@
 import { GrNext, GrPrevious } from "react-icons/gr";
 import img1 from "@assets/images/banner/banner1.jpg";
 import img2 from "@assets/images/banner/banner2.jpg";
-import img3 from "@assets/images/banner/banner3.jpg";
+// import img3 from "@assets/images/banner/banner3.webp";
+import img4 from "@assets/images/banner/banner4.webp";
 import style from "./banner.module.css";
 const { active, next, prev } = style;
 import { useEffect, useState } from "react";
 const Banner = () => {
   const [activeImg, setActiveImg] = useState(0);
 
-  const images = [img1, img2, img3];
+  const images = [img4, img2, img1];
 
   const handlebanner = (btn: string) => {
     if (btn === "next") {
@@ -34,7 +35,7 @@ const Banner = () => {
     };
   }, [activeImg]);
   return (
-    <div className={`h-[450px] relative w-full overflow-hidden`}>
+    <div className={`h-[480px] relative w-full overflow-hidden`}>
       {images.map((img, idx) => {
         return (
           <div
@@ -58,7 +59,7 @@ const Banner = () => {
               src={img}
               loading="lazy"
               alt="banner"
-              className="h-full w-full object-cover select-none pointer-events-none rounded-lg"
+              className="h-full w-full  select-none pointer-events-none rounded-lg"
             />
           </div>
         );

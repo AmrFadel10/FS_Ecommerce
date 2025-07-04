@@ -42,3 +42,7 @@ body {
   src: url("/assets/fonts/Rubik-Light.ttf");
   font-weight: 200;
 }
+
+.change-color a.active {
+  @apply bg-slate-950 text-slate-50;
+}

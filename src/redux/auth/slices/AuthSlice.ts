@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { SignupApiCall } from "../apicalls/SignupApiCall";
 import { LoginApiCall } from "../apicalls/LoginApiCall";
 import { activationAccountApiCall } from "../apicalls/AtivationApiCall";
+import { updateAccountInfoApiCall } from "../apicalls/updateAccountInfoApiCall";
 
 const initialState: TAuthIntialState = {
   loading: "idle",
@@ -87,6 +88,21 @@ const AuthSlice = createSlice({
         localStorage.setItem("user", JSON.stringify(action.payload.user));
       })
       .addCase(activationAccountApiCall.rejected, (state, action) => {
+        state.error = action.payload as string;
+        state.loading = "failed";
+      });
+    //Update user
+    builder
+      .addCase(updateAccountInfoApiCall.pending, (state) => {
+        state.loading = "pending";
+        state.error = null;
+      })
+      .addCase(updateAccountInfoApiCall.fulfilled, (state, action) => {
+        state.loading = "succeeded";
+        state.user = action.payload;
+        localStorage.setItem("user", JSON.stringify(action.payload));
+      })
+      .addCase(updateAccountInfoApiCall.rejected, (state, action) => {
         state.error = action.payload as string;
         state.loading = "failed";
       });

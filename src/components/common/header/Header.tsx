@@ -1,6 +1,6 @@
 // React redux
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState, type MouseEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { logout } from "@redux/auth/slices/AuthSlice";
 import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
@@ -17,13 +17,17 @@ import CartIcon from "./cartIcon/CartIcon";
 
 //Components
 import Navigation from "./Navigation";
+import { addToast } from "@redux/toast/slices/ToastSlice";
 
 export default function Header() {
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const naviaget = useNavigate();
   const { user, accessToken } = useAppSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
   const handleLogout = () => {
     dispatch(logout());
+    naviaget("/");
   };
 
   useEffect(() => {
@@ -36,9 +40,12 @@ export default function Header() {
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
   return (
     <>
-      <header className="relative z-[23]">
+      <header className="relative z-[23] change-color">
         <div className="bg-slate-950 text-slate-100">
           <div className="mx-auto container text-slate-300 lg:px-0 px-2">
             <div className="flex justify-between items-center py-4 lg:flex-nowrap flex-wrap gap-4">
@@ -82,6 +89,17 @@ export default function Header() {
                 <Link
                   to="/wishlist"
                   className="flex items-center  gap-1 hover:text-slate-50 group"
+                  onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+                    if (!accessToken) {
+                      e.preventDefault();
+                      dispatch(
+                        addToast({
+                          comment: `Please login first`,
+                          type: "info",
+                        })
+                      );
+                    }
+                  }}
                 >
                   <PiHeartStraightLight
                     size={32}
@@ -112,22 +130,27 @@ export default function Header() {
                     <ul
                       className={`${
                         open ? "max-h-60" : "max-h-0"
-                      } transition-all  duration-500  absolute left-1 top-[calc(100%+10px)] w-36  bg-slate-950 rounded-sm text-slate-50 flex  flex-col  overflow-hidden text-sm font-medium`}
+                      } transition-all  duration-500  absolute left-1 top-[calc(100%+10px)] w-[180px]  bg-slate-950 rounded-sm text-slate-50 flex  flex-col  overflow-hidden text-sm font-medium`}
                     >
-                      <Link
+                      <li className="text-xs px-2 py-3 border-b border-b-slate-800 font-medium cursor-not-allowed text-orange-400">
+                        {user.email}
+                      </li>
+                      <NavLink
                         to={"/profile"}
+                        end
                         className=" px-3 py-2  hover:pl-4 hover:text-orange-300 transition-all w-full text-left cursor-pointer"
                         onClick={() => setOpen(false)}
                       >
                         Profile
-                      </Link>
-                      <Link
-                        to={"/profile"}
+                      </NavLink>
+                      <NavLink
+                        to={"/profile/orders"}
+                        end
                         className=" px-3 py-2  hover:pl-4 hover:text-orange-300 transition-all w-full text-left cursor-pointer"
                         onClick={() => setOpen(false)}
                       >
                         Orders
-                      </Link>
+                      </NavLink>
                       <button
                         onClick={handleLogout}
                         className=" px-3 py-2  hover:pl-4 hover:text-orange-300 transition-all text-left border-t-slate-800  cursor-pointer border-t"

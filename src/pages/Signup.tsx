@@ -24,6 +24,7 @@ import type { TSignup } from "@customeTypes/auth";
 
 //Components
 import { Spinner } from "@components/common/Spinner";
+import { addToast } from "@redux/toast/slices/ToastSlice";
 
 const Signup = () => {
   const dispatch = useAppDispatch();
@@ -81,8 +82,8 @@ const Signup = () => {
 
     dispatch(SignupApiCall(formData))
       .unwrap()
-      .then((res) => alert(res.message))
-      .catch((res) => alert(res));
+      .then((res) => dispatch(addToast({ type: "info", comment: res.message })))
+      .catch((error) => dispatch(addToast({ type: "error", comment: error })));
   };
 
   const handleClearError = (error: string) => {
@@ -134,21 +135,22 @@ const Signup = () => {
           <div className="flex flex-col ">
             <label
               htmlFor="fullName"
-              className="text-gray-500 text-sm font-semibold "
+              className="text-gray-600 text-sm font-semibold "
             >
-              First name:
+              Your name:
             </label>
             <input
               type="text"
               id="fullName"
               name="fullName"
+              placeholder="First and last name"
               onChange={handleInputData}
               onFocus={() => handleClearError("fullName")}
               className={`${
                 formErrors["fullName"]
                   ? "ring-1 ring-red-400 border-red-400"
                   : "focus:ring-1 ring-blue-400 focus:border-blue-400"
-              } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
+              } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-400 rounded-md py-2 px-3 text-sm w-full placeholder-gray-500 `}
             />
             {formErrors["fullName"] && (
               <p className="text-[11px] font-medium text-red-600 mt-2">
@@ -159,7 +161,7 @@ const Signup = () => {
           <div className="flex flex-col ">
             <label
               htmlFor="email"
-              className="text-gray-500 text-sm font-semibold "
+              className="text-gray-600 text-sm font-semibold "
             >
               Email address:
             </label>
@@ -173,7 +175,7 @@ const Signup = () => {
                 formErrors["email"]
                   ? "ring-1 ring-red-400 border-red-400"
                   : "focus:ring-1 ring-blue-400 focus:border-blue-400"
-              } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
+              } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-400 rounded-md py-2 px-3 text-sm w-full placeholder-gray-500 appearance-none `}
               autoComplete="email"
             />
             {formErrors["email"] && (
@@ -185,7 +187,7 @@ const Signup = () => {
           <div className="flex flex-col ">
             <label
               htmlFor="password"
-              className="text-gray-500 text-sm font-semibold "
+              className="text-gray-600 text-sm font-semibold "
             >
               Password:
             </label>
@@ -194,13 +196,14 @@ const Signup = () => {
                 type={showPassword ? "password" : "text"}
                 id="password"
                 name="password"
+                placeholder="At least 6 characters"
                 onChange={handleInputData}
                 onFocus={() => handleClearError("password")}
                 className={`${
                   formErrors["password"]
                     ? "ring-1 ring-red-400 border-red-400"
                     : "focus:ring-1 ring-blue-400 focus:border-blue-400"
-                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
+                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-400 rounded-md py-2 px-3 text-sm w-full placeholder-gray-500  `}
                 autoComplete="current-password"
               />
               <div
@@ -223,7 +226,7 @@ const Signup = () => {
           <div className="flex flex-col mb-8">
             <label
               htmlFor="confirmPassword"
-              className="text-gray-500 text-sm font-semibold "
+              className="text-gray-600 text-sm font-semibold "
             >
               Confirm password:
             </label>
@@ -238,7 +241,7 @@ const Signup = () => {
                   formErrors["confirmPassword"]
                     ? "ring-1 ring-red-400 border-red-400"
                     : "focus:ring-1 ring-blue-400 focus:border-blue-400"
-                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
+                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-400 rounded-md py-2 px-3 text-sm w-full placeholder-gray-500 `}
                 autoComplete="current-password"
               />
               <div

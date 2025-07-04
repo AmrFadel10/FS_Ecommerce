@@ -9,6 +9,7 @@ import aProduct from "./products/slices/AProductSlice";
 import cart from "./cart/slices/cartSlice";
 import wishlist from "./wishlist/slices/wishlistSlice";
 import auth from "./auth/slices/AuthSlice";
+import toast from "./toast/slices/ToastSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     categories,
     blogs,
     ablog,
+    toast,
     products,
     aProduct,
     cart,

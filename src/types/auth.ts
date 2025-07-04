@@ -15,6 +15,7 @@ export type TLogin = {
 export type TUser = {
   _id: string;
   fullName: string;
+  mobile?: string;
   email: string;
   avatar: { public_id: string; url: string } | null;
 } | null;
@@ -30,4 +31,11 @@ export type TAuthIntialState = {
 export type TLoginResponse = {
   user: TUser;
   accessToken: string;
+};
+
+export type TUpdateAccountInfo = {
+  fullName?: string;
+  mobile?: string;
+  password?: string;
+  confirmPassword?: string;
 };

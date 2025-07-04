@@ -36,7 +36,7 @@ const LazyWrapper = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: "250px 0px" }
     );
     observer.observe(ref.current);
   }, [isVisible]);

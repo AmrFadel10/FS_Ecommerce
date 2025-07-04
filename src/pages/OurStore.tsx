@@ -2,11 +2,9 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { cleanUpProducts } from "@redux/products/slices/productsSlice";
-import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
 
 //API
 import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
-import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
 
 //Components
 import SideBarStore from "@components/ourStore/SidebarStore";
@@ -25,20 +23,22 @@ export default function OurStore() {
   const { items, loading: wishLoading } = useAppSelector(
     (state) => state.wishlist
   );
+  const { accessToken } = useAppSelector((state) => state.auth);
 
   const ourStoreProducts = products.map((product) => {
-    return { ...product, isLiked: items.includes(product._id) };
+    return {
+      ...product,
+      isLiked: items.includes(product._id),
+      isActivation: !!accessToken,
+    };
   });
 
   useEffect(() => {
     const productsApi = dispatch(getproductsApiCall({ limit: 8 }));
-    const wishlistApi = dispatch(getWishlistProductsApiCall());
 
     return () => {
       productsApi.abort();
-      wishlistApi.abort();
       dispatch(cleanUpProducts());
-      dispatch(cleanUpWishlist());
     };
   }, [dispatch]);
 

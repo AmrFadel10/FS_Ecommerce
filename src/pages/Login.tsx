@@ -21,6 +21,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 //components
 import { Spinner } from "@components/common/Spinner";
+import { addToast } from "@redux/toast/slices/ToastSlice";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -64,7 +65,7 @@ const Login = () => {
     }
     dispatch(LoginApiCall(dataRef.current))
       .unwrap()
-      .catch((error) => alert(error));
+      .catch((error) => dispatch(addToast({ type: "error", comment: error })));
   };
 
   const handleClearError = (error: string) => {
@@ -83,7 +84,7 @@ const Login = () => {
           <div className="flex flex-col ">
             <label
               htmlFor="email"
-              className="text-gray-500 text-sm font-semibold "
+              className="text-gray-600 text-sm font-semibold "
             >
               Email address:
             </label>
@@ -97,7 +98,7 @@ const Login = () => {
                 formErrors["email"]
                   ? "ring-1 ring-red-400 border-red-400"
                   : "focus:ring-1 ring-blue-400 focus:border-blue-400"
-              } focus:outline-none  shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
+              } focus:outline-none  shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 `}
               autoComplete="email"
             />
             {formErrors["email"] && (
@@ -109,7 +110,7 @@ const Login = () => {
           <div className="flex flex-col ">
             <label
               htmlFor="password"
-              className="text-gray-500 text-sm font-semibold "
+              className="text-gray-600 text-sm font-semibold "
             >
               Password:
             </label>
@@ -124,8 +125,7 @@ const Login = () => {
                   formErrors["password"]
                     ? "ring-1 ring-red-400 border-red-400"
                     : "focus:ring-1 ring-blue-400 focus:border-blue-400"
-                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full placeholder-gray-400 appearance-none font-medium`}
-                autoComplete="current-password"
+                } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-300 rounded-md py-2 px-3 text-sm w-full`}
               />
               <div
                 className="right-2 top-2 absolute cursor-pointer"
@@ -148,7 +148,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading === "pending"}
-            className={`h-[40px] flex items-center justify-center gap-x-2 text-white font-semibold bg-gray-800 w-full rounded-md  hover:bg-gray-950 ${
+            className={`h-[40px] flex items-center justify-center gap-x-2 text-slate-50 font-semibold bg-gray-800 w-full rounded-md  hover:bg-gray-950 ${
               loading === "pending" ? " cursor-no-drop" : "cursor-pointer"
             }`}
           >
@@ -168,7 +168,6 @@ const Login = () => {
             >
               Signup
             </Link>
-            <div onClick={() => navigate("/")}>Goo</div>
           </div>
         </form>
       </div>
