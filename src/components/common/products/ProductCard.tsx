@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 
 //Icons
-import { FaCheck } from "react-icons/fa6";
-import { AiFillHeart, AiOutlineEye, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import type { TProduct } from "@customeTypes/products";
 import { useState } from "react";
-import { IoIosShuffle } from "react-icons/io";
 import { useAppDispatch } from "@redux/hooks";
 import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistApiCall";
 import { Spinner } from "../Spinner";
 import { addToast } from "@redux/toast/slices/ToastSlice";
+import { MdZoomOutMap } from "react-icons/md";
 
 const ProductCard = ({
   images,
@@ -21,7 +20,6 @@ const ProductCard = ({
   isLiked,
   isActivation,
 }: TProduct & { isLiked: boolean; isActivation: boolean }) => {
-  const [inCompare, setinCompare] = useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const handleToggleWishlist = () => {
@@ -61,9 +59,7 @@ const ProductCard = ({
     }
   };
   return (
-    <div
-      className={`rounded-2xl overflow-hidden group shadow-md bg-white py-2`}
-    >
+    <div className={`rounded-2xl overflow-hidden group shadow-md bg-white p-2`}>
       <div className=" relative overflow-hidden">
         <div className="overflow-auto w-full md:h-64 h-36 inline-block ">
           <img
@@ -73,7 +69,7 @@ const ProductCard = ({
           />
         </div>
         <div
-          className=" transition-all duration-300  rounded-full p-[4px] absolute top-[2%] right-3 hover:bg-orange-300 flex justify-center items-center w-7 h-7"
+          className=" transition-all duration-300  rounded-full p-1 absolute top-[2%] right-0 hover:bg-orange-300 flex justify-center items-center w-7 h-7"
           onClick={handleToggleWishlist}
         >
           {loading ? (
@@ -101,16 +97,9 @@ const ProductCard = ({
           )}
         </div>
 
-        <div className="absolute top-[14%] -right-6 flex gap-2 flex-col group-hover:right-3 transition-all  text-lg">
-          <div className=" transition-all  rounded-full  hover:bg-orange-300 duration-300 flex justify-center items-center w-7 h-7">
-            {!inCompare ? (
-              <FaCheck size={18} color="#333" title="Compare between" />
-            ) : (
-              <IoIosShuffle size={20} color="#333" title="Compare between" />
-            )}
-          </div>
+        <div className="absolute top-[14%] -right-12 flex gap-2 flex-col group-hover:right-0 transition-all  text-lg">
           <div className=" transition-all  rounded-full flex justify-center items-center hover:bg-orange-300 duration-300 w-7 h-7">
-            <AiOutlineEye
+            <MdZoomOutMap
               // onClick={() => navigate("/product" + product?._id.toString())}
               size={20}
               color="#333"
@@ -142,7 +131,6 @@ const ProductCard = ({
         <FeatureDetailsCard
           setOpen={setOpen}
           inWishList={inWishList}
-          inCompareList={inCompareList}
           images={images}
           title={title}
           description={description}

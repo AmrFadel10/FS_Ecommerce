@@ -43,22 +43,22 @@ const ToastItem = ({ title, type, comment, id, color }: TToast) => {
 
   return (
     <article
-      className={` relative rounded-xl px-3 py-2 flex gap-x-2 shadow-md  bg-slate-50 z-2 items-center overflow-hidden cursor-pointer`}
+      className={` relative rounded-xl px-2 py-2 flex gap-x-2 shadow-md  bg-slate-50 z-2 items-center overflow-hidden cursor-pointer `}
       onMouseEnter={() => setPauseWhenHover(true)}
       onMouseLeave={() => setPauseWhenHover(false)}
     >
       <div className="pr-2 border-r border-r-slate-400">
         <div
-          className={`${color} rounded-full bg-slate-50 w-9 h-9 flex justify-center items-center shadow `}
+          className={`${color} rounded-full bg-white w-10 h-10 flex justify-center items-center shadow-md `}
         >
           {type === "info" ? (
-            <IoIosInformationCircle size={24} />
+            <IoIosInformationCircle size={28} />
           ) : type === "warning" ? (
-            <PiShieldWarningBold size={24} />
+            <PiShieldWarningBold size={28} />
           ) : type === "success" ? (
-            <IoCheckmarkCircle size={24} />
+            <IoCheckmarkCircle size={28} />
           ) : (
-            <IoIosCloseCircle size={24} />
+            <IoIosCloseCircle size={28} />
           )}
         </div>
       </div>
@@ -67,7 +67,9 @@ const ToastItem = ({ title, type, comment, id, color }: TToast) => {
         <h3 className="text-slate-700 capitalize text-sm font-bold">
           {title || type}
         </h3>
-        <p className="text-slate-500 text-xs font-medium">{comment}</p>
+        <p className="text-slate-500 text-xs font-medium line-clamp-2">
+          {comment}
+        </p>
         <span
           className="absolute top-2 right-2 cursor-pointer text-slate-700 hover:text-slate-950"
           onClick={handleRemoveToast}

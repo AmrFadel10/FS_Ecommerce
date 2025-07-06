@@ -1,5 +1,10 @@
+// React && Redux
 import { memo, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { cleanUpCategories } from "@redux/categories/slices/categoriesSlice";
+
+//APIS
+import getCategoriesApiCall from "@redux/categories/apiCalls/categoriesApiCall";
 
 //Components
 import CategoriesDropDown from "./CategoriesDropDown";
@@ -7,7 +12,6 @@ import CategoriesDropDown from "./CategoriesDropDown";
 //Icons
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { TfiMenu } from "react-icons/tfi";
-import getCategoriesApiCall from "@redux/categories/apiCalls/categoriesApiCall";
 
 const DropDownCategories = () => {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -16,10 +20,12 @@ const DropDownCategories = () => {
   const { categories } = useAppSelector((state) => state.categories);
 
   useEffect(() => {
-    if (!categories.length) {
-      dispatch(getCategoriesApiCall());
-    }
-  }, [dispatch, categories]);
+    if (categories.length) return;
+    dispatch(getCategoriesApiCall());
+    return () => {
+      dispatch(cleanUpCategories());
+    };
+  }, [dispatch]);
 
   return (
     <div className="relative select-none">

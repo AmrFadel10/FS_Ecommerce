@@ -7,6 +7,7 @@ import BlogsPageSkeleton from "@feedback/skeletons/blogs/BlogsPageSkeleton";
 import OurStoreSkeleton from "@feedback/skeletons/ourStore/OurStoreSkeleton";
 import HomeProductsSkeleton from "@feedback/skeletons/products/HomeProductsSkeleton";
 import AProductPageSkeleton from "@feedback/skeletons/aProduct/AProductPageSkeleton";
+import SideBarStoreSkeleton from "@feedback/skeletons/ourStore/SideBarStoreSkeleton";
 
 const loadingComponents = {
   wishlist: () => <ProductsListSkeleton count={3} where="public" />,
@@ -15,6 +16,8 @@ const loadingComponents = {
   homeProducts: () => <HomeProductsSkeleton />,
   outStore: () => <OurStoreSkeleton />,
   productPage: () => <AProductPageSkeleton />,
+  sidebarProductPage: () => <SideBarStoreSkeleton />,
+  productsListPage: () => <ProductsListSkeleton count={8} />,
 };
 type Ttype = keyof typeof loadingComponents;
 const Loading = ({

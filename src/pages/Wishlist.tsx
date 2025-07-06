@@ -32,7 +32,7 @@ export default function Wishlist() {
     <Loading error={error} status={loading} type="wishlist">
       <section>
         {wishlistProducts.length ? (
-          <ProductsList products={wishlistProducts} where="public" />
+          <ProductsList products={wishlistProducts} />
         ) : (
           <Empty />
         )}

@@ -11,7 +11,13 @@ const initialState: TAblogStateType = {
 const AblogSlice = createSlice({
   name: "ablog",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanUpBlog: (state) => {
+      state.ablog = null;
+      state.loading = "idle";
+      state.error = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getABlog.pending, (state) => {
@@ -28,5 +34,5 @@ const AblogSlice = createSlice({
       });
   },
 });
-
+export const { cleanUpBlog } = AblogSlice.actions;
 export default AblogSlice.reducer;

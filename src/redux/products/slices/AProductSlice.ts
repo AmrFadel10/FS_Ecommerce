@@ -14,6 +14,8 @@ const aProductsSlice = createSlice({
   reducers: {
     cleanUpAProduct(state) {
       state.aproduct = null;
+      state.loading = "idle";
+      state.error = null;
     },
   },
   extraReducers(builder) {

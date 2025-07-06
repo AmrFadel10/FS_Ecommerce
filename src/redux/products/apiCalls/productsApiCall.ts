@@ -1,12 +1,42 @@
+import type { TProduct } from "@customeTypes/products";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { isAxiosError } from "axios";
 
 const getproductsApiCall = createAsyncThunk(
   "products/get-products",
-  async ({ limit }: { limit: number }, thunkApi) => {
+  async (
+    {
+      limit,
+      sort,
+      category,
+      brand,
+      gte,
+      lte,
+      sr,
+      page,
+    }: {
+      limit: number;
+      sort?: string | null;
+      category?: string | null;
+      brand?: string | null;
+      gte?: string | null;
+      lte?: string | null;
+      sr?: string | null;
+      page?: string | null;
+    },
+    thunkApi
+  ) => {
     const { rejectWithValue, signal } = thunkApi;
+    console.log(sort, limit);
     try {
-      const { data } = await axios.get(`/product/?limit=${limit}`, { signal });
+      const { data } = await axios.get<{ products: TProduct[]; count: number }>(
+        `/product/?limit=${limit}&sort=${sort || "createdAt"}${
+          category ? `&category=${category}` : ""
+        }${brand ? `&brand=${brand}` : ""}${lte ? `&price[lte]=${lte}` : ""}${
+          gte ? `&price[gte]=${gte}` : ""
+        }${sr ? `&search=${sr}` : ""}${`&page=${page ? page : ""}`}`,
+        { signal }
+      );
       return data;
     } catch (error) {
       if (isAxiosError(error)) {

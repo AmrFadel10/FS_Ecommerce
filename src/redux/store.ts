@@ -10,10 +10,12 @@ import cart from "./cart/slices/cartSlice";
 import wishlist from "./wishlist/slices/wishlistSlice";
 import auth from "./auth/slices/AuthSlice";
 import toast from "./toast/slices/ToastSlice";
+import brands from "./brands/slices/BrandsSlice";
 
 const store = configureStore({
   reducer: {
     auth,
+    brands,
     categories,
     blogs,
     ablog,

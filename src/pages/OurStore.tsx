@@ -1,10 +1,15 @@
 // React & Redux
-import { useEffect } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  type ChangeEvent,
+} from "react";
+import { useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { cleanUpBrands } from "@redux/brands/slices/BrandsSlice";
 import { cleanUpProducts } from "@redux/products/slices/productsSlice";
-
-//API
-import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
 
 //Components
 import SideBarStore from "@components/ourStore/SidebarStore";
@@ -13,8 +18,20 @@ import ProductControlsPanel from "@components/common/products/ProductControlsPan
 import Empty from "@components/common/Empty";
 import Loading from "@feedback/loading/Loading";
 
+//APIS
+import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
+import getBrandsApiCall from "@redux/brands/apiCalls/BrandsApiCall";
+import Pagination from "@components/ourStore/Pagination";
+
 export default function OurStore() {
   const dispatch = useAppDispatch();
+  const ref = useRef<NodeJS.Timeout>(null);
+  const [query, setQuery] = useSearchParams();
+  const currentParams = useMemo(
+    () => Object.fromEntries(query.entries()),
+    [query]
+  );
+  const { sort, category, brand, gte, lte, sr, page } = currentParams;
   const {
     products,
     error,
@@ -23,6 +40,15 @@ export default function OurStore() {
   const { items, loading: wishLoading } = useAppSelector(
     (state) => state.wishlist
   );
+
+  const { loading: categoryLoading } = useAppSelector(
+    (state) => state.categories
+  );
+
+  const { loading: brandsLoading, error: brandsError } = useAppSelector(
+    (state) => state.brands
+  );
+
   const { accessToken } = useAppSelector((state) => state.auth);
 
   const ourStoreProducts = products.map((product) => {
@@ -33,40 +59,110 @@ export default function OurStore() {
     };
   });
 
+  const handleQueryInInputs = useCallback(
+    (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+      const { value, name } = e.target;
+      if (!isNaN(+value) && +value < 0) return;
+      if (ref.current) clearTimeout(ref.current);
+      ref.current = setTimeout(() => {
+        query.set(name, value);
+        setQuery(query);
+      }, 500);
+    },
+    [query, setQuery]
+  );
+
+  const handleQueryLinks = useCallback(
+    (key: string, value: string) => {
+      if (!value) {
+        query.delete(key);
+      } else {
+        query.set(`${key}`, value);
+      }
+      setQuery(query);
+    },
+    [setQuery, query]
+  );
+
   useEffect(() => {
-    const productsApi = dispatch(getproductsApiCall({ limit: 8 }));
+    const brandsPromise = dispatch(getBrandsApiCall());
 
     return () => {
-      productsApi.abort();
-      dispatch(cleanUpProducts());
+      brandsPromise.abort();
+      dispatch(cleanUpBrands());
+      if (ref.current) clearTimeout(ref.current);
     };
   }, [dispatch]);
 
+  useEffect(() => {
+    const productsPromise = dispatch(
+      getproductsApiCall({
+        limit: 8,
+        sort,
+        category,
+        brand,
+        gte,
+        lte,
+        sr,
+        page,
+      })
+    );
+    return () => {
+      productsPromise.abort();
+      dispatch(cleanUpProducts());
+    };
+  }, [dispatch, sort, category, brand, gte, lte, sr, page]);
+
   return (
-    <Loading
-      status={
-        productLoading === "idle" || wishLoading === "idle"
-          ? "idle"
-          : productLoading === "pending" || wishLoading === "pending"
-          ? "pending"
-          : productLoading === "failed" || wishLoading === "failed"
-          ? "failed"
-          : "succeeded"
-      }
-      error={error}
-      type="outStore"
-    >
-      <div className="container mx-auto mt-8 flex gap-8">
-        <SideBarStore />
-        <div className="flex-[4] rounded-lg w-full">
-          <ProductControlsPanel />
+    <div className=" mt-8 flex gap-8 min-h-[700px]">
+      <div className="lg:w-60 lg:flex flex-col gap-4 hidden ">
+        <Loading
+          error={brandsError}
+          type="sidebarProductPage"
+          status={
+            brandsLoading === "idle" || categoryLoading === "idle"
+              ? "idle"
+              : brandsLoading === "pending" || categoryLoading === "pending"
+              ? "pending"
+              : brandsLoading === "failed" || categoryLoading === "failed"
+              ? "failed"
+              : "succeeded"
+          }
+          size={50}
+        >
+          <SideBarStore
+            handleLowerAndGreaterthan={handleQueryInInputs}
+            handleQueryLinks={handleQueryLinks}
+            gte={query.get("gte")}
+            lte={query.get("lte")}
+          />
+        </Loading>
+      </div>
+      <div className="flex-[5] flex flex-col rounded-lg w-full">
+        <ProductControlsPanel handleSort={handleQueryInInputs} />
+        <Loading
+          status={
+            productLoading === "idle" || wishLoading === "idle"
+              ? "idle"
+              : productLoading === "pending" || wishLoading === "pending"
+              ? "pending"
+              : productLoading === "failed" || wishLoading === "failed"
+              ? "failed"
+              : "succeeded"
+          }
+          error={error}
+          type="productsListPage"
+        >
           {ourStoreProducts.length ? (
-            <ProductsList products={ourStoreProducts} />
+            <>
+              <ProductsList products={ourStoreProducts} />
+              <Pagination />
+            </>
           ) : (
             <Empty />
           )}
-        </div>
+        </Loading>
       </div>
-    </Loading>
+    </div>
   );
 }

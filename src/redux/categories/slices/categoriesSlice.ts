@@ -11,7 +11,13 @@ const initialState: TCategoriesInitialState = {
 const categoriesSlice = createSlice({
   name: "categories",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanUpCategories(state) {
+      state.loading = "idle";
+      state.error = null;
+      state.categories = [];
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getCategoriesApiCall.pending, (state) => {
@@ -28,5 +34,5 @@ const categoriesSlice = createSlice({
       });
   },
 });
-
+export const { cleanUpCategories } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

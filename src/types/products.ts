@@ -19,6 +19,7 @@ export type TProductsInitialState = {
   loading: TLoading;
   error: string | null;
   products: TProduct[];
+  count: number | null;
 };
 export type TAProductsInitialState = {
   loading: TLoading;

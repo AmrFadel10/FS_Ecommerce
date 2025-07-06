@@ -38,6 +38,7 @@ const Signup = lazy(() => import("@pages/Signup"));
 const Login = lazy(() => import("@pages/Login"));
 import UpdateInfo from "@pages/UpdateInfo";
 import Orders from "@pages/Orders";
+import Blog from "@pages/Blog";
 
 const AppRoute = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -106,6 +107,23 @@ const AppRoute = () => {
           ),
         },
         {
+          path: "blogs/:blogId",
+          loader: ({ params }) => {
+            if (!/^[a-fA-F-0-9]{24}$/.test(params.blogId as string)) {
+              throw new Response("Invalid id", {
+                status: 400,
+                statusText: "Blog not found",
+              });
+            }
+            return true;
+          },
+          element: (
+            <Suspense fallback={<RootLoading />}>
+              <Blog />
+            </Suspense>
+          ),
+        },
+        {
           path: "blogs",
           element: (
             <Suspense fallback={<BlogsPageSkeleton limit={8} />}>
@@ -113,6 +131,7 @@ const AppRoute = () => {
             </Suspense>
           ),
         },
+
         {
           path: "product/:id",
           element: (

@@ -3,7 +3,7 @@ import EmptyIcon from "@assets/animations/empty.json";
 
 const Empty = ({ size }: { size?: number }) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center min-h-[500px]">
       <Lottie
         animationData={EmptyIcon}
         style={{ width: `${size ? `${size}px` : "250px"}` }}

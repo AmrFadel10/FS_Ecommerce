@@ -28,7 +28,7 @@ import { addToast } from "@redux/toast/slices/ToastSlice";
 
 const Signup = () => {
   const dispatch = useAppDispatch();
-  const { loading, message, error } = useAppSelector((state) => state.auth);
+  const { loading } = useAppSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});

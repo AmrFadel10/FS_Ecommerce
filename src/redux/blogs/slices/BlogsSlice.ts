@@ -13,6 +13,8 @@ const blogsSlice = createSlice({
   initialState,
   reducers: {
     cleanUpBlog: (state) => {
+      state.loading = "idle";
+      state.error = null;
       state.blogs = [];
     },
   },

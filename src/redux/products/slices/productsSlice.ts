@@ -6,6 +6,7 @@ const initialState: TProductsInitialState = {
   loading: "idle",
   error: null,
   products: [],
+  count: null,
 };
 
 const productsSlice = createSlice({
@@ -14,6 +15,8 @@ const productsSlice = createSlice({
   reducers: {
     cleanUpProducts: (state) => {
       state.products = [];
+      state.loading = "idle";
+      state.error = null;
     },
   },
   extraReducers(builder) {
@@ -24,7 +27,8 @@ const productsSlice = createSlice({
       })
       .addCase(getproductsApiCall.fulfilled, (state, action) => {
         state.loading = "succeeded";
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.count = action.payload.count;
       })
       .addCase(getproductsApiCall.rejected, (state, action) => {
         state.loading = "failed";
