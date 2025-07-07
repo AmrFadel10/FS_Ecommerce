@@ -10,14 +10,14 @@ const ProductsList = ({
 }) => {
   return (
     <div
-      className={`grid md:grid-cols-3 grid-cols-1 sm:grid-cols-2 ${
+      className={`${
         where === "public"
-          ? "xl:grid-cols-5 lg:grid-cols-4 md:grid-col-3"
-          : "xl:grid-cols-4 lg:grid-col-3 md:grid-col-2 min-h-[650px] items-start"
-      }   gap-8 my-6`}
+          ? "flex flex-nowrap"
+          : "grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 grid-cols-2 sm:grid-cols-3 min-h-[650px] items-start"
+      }   gap-4 my-6`}
     >
       {products.map((product) => {
-        return <ProductCard {...product} key={product._id} />;
+        return <ProductCard {...product} key={product._id} where={where} />;
       })}
     </div>
   );

@@ -1,64 +1,71 @@
 //React & Redux
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 
 //APIS
-import getproductsApiCall from "@redux/products/apiCalls/productsApiCall";
-import { cleanUpProducts } from "@redux/products/slices/productsSlice";
+import { getPopularProductsApiCall } from "@redux/products/apiCalls/productsApiCall";
 
 //Components
 import ProductsList from "./ProductsList";
 import Empty from "@components/common/Empty";
 import Loading from "@feedback/loading/Loading";
+import type { TLoading } from "@customeTypes/common";
+import type { TProduct } from "@customeTypes/products";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const FeatureProductCollections = ({
+const LatestPorductsCollection = ({
   where,
   limit,
 }: {
   where?: "public" | "private";
   limit?: number;
 }) => {
-  const {
-    products,
-    error,
-    loading: productLoading,
-  } = useAppSelector((state) => state.products);
-
+  const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.wishlist);
   const { accessToken } = useAppSelector((state) => state.auth);
+  const [loading, setLoading] = useState<TLoading>("idle");
+  const [error, setError] = useState<null | string>(null);
+  const [latestPorducts, setLatestPorducts] = useState<TProduct[]>([]);
   const productRef = useRef<HTMLDivElement>(null);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const productsApi = dispatch(
-      getproductsApiCall({ limit: limit!, page: 1 })
-    );
-    return () => {
-      productsApi.abort();
-      dispatch(cleanUpProducts());
-    };
+    setLoading("pending");
+    dispatch(
+      getPopularProductsApiCall({
+        limit: limit!,
+        sort: "createdAt",
+      })
+    )
+      .unwrap()
+      .then((data) => {
+        setLoading("succeeded");
+        setLatestPorducts(data.products);
+      })
+      .catch((error) => {
+        setLoading("failed");
+        setError(error);
+      });
   }, [dispatch, limit]);
 
-  const homeProducts = products.map((product) => {
+  const homeProducts = latestPorducts.map((product) => {
     return {
       ...product,
       isLiked: items.includes(product._id),
       isActivation: !!accessToken,
     };
   });
-
   return (
     <section>
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold mb-8">
-          {where === "private" ? "You may also like" : "Featured Collection:"}
-        </h3>
+        <h3 className="text-xl font-semibold mb-4">Latest Collection:</h3>
         <div className="flex gap-x-2">
           <span
             className="hover:cursor-pointer hover:text-slate-950 text-slate-500"
             onClick={() =>
-              productRef.current?.scrollTo({ behavior: "smooth", left: -1000 })
+              productRef.current?.scrollTo({
+                behavior: "smooth",
+                left: -1000,
+              })
             }
           >
             <IoIosArrowBack size={23} />
@@ -73,12 +80,7 @@ const FeatureProductCollections = ({
           </span>
         </div>
       </div>
-      <Loading
-        status={productLoading}
-        error={error}
-        size={150}
-        type="homeProducts"
-      >
+      <Loading status={loading} error={error} size={150} type="homeProducts">
         {homeProducts.length > 0 ? (
           <div className="overflow-x-scroll hide-scrollbar" ref={productRef}>
             <ProductsList products={homeProducts} where={where} />
@@ -91,4 +93,4 @@ const FeatureProductCollections = ({
   );
 };
 
-export default FeatureProductCollections;
+export default LatestPorductsCollection;

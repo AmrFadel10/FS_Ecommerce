@@ -16,13 +16,13 @@ const toastSlice = createSlice({
   initialState,
   reducers: {
     addToast(state, action: PayloadAction<TToast>) {
-      const t = action.payload.type;
+      const type = action.payload.type;
       state.items.push({
         id: nanoid(),
         type: action.payload.type,
         title: action.payload.title || action.payload.type,
         comment: action.payload.comment,
-        color: colors[t],
+        color: colors[type],
       });
     },
     removeToast(state, action: PayloadAction<string>) {

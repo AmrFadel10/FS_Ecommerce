@@ -15,7 +15,6 @@ export default function Blogs() {
 
   useEffect(() => {
     const promise = dispatch(getBlogsApiCall({ limit: 5 }));
-
     return () => {
       promise.abort();
       dispatch(cleanUpBlog());
@@ -29,7 +28,7 @@ export default function Blogs() {
           <div className="flex-1 hidden lg:block">
             <ShopByCategories />
           </div>
-          <div className="flex-[5] grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4 md:gap-8 min-h-screen items-start">
+          <div className="flex-[5] grid sm:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-4 md:gap-8  justify-start min-h-screen items-start">
             {blogs.map((blog) => {
               return <BlogCard blog={blog} key={blog._id} />;
             })}

@@ -1,10 +1,5 @@
 // React && Redux
-import { memo, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { cleanUpCategories } from "@redux/categories/slices/categoriesSlice";
-
-//APIS
-import getCategoriesApiCall from "@redux/categories/apiCalls/categoriesApiCall";
+import { memo, useState } from "react";
 
 //Components
 import CategoriesDropDown from "./CategoriesDropDown";
@@ -12,20 +7,10 @@ import CategoriesDropDown from "./CategoriesDropDown";
 //Icons
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { TfiMenu } from "react-icons/tfi";
+import type { TCategory } from "@customeTypes/categories";
 
-const DropDownCategories = () => {
+const DropDownCategories = ({ categories }: { categories: TCategory[] }) => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const dispatch = useAppDispatch();
-
-  const { categories } = useAppSelector((state) => state.categories);
-
-  useEffect(() => {
-    if (categories.length) return;
-    dispatch(getCategoriesApiCall());
-    return () => {
-      dispatch(cleanUpCategories());
-    };
-  }, [dispatch]);
 
   return (
     <div className="relative select-none">

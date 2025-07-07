@@ -20,7 +20,6 @@ const AccountInfo = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     dataRef.current[name as keyof TUpdateAccountInfo] = value;
-    console.log(dataRef.current);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -35,7 +34,6 @@ const AccountInfo = () => {
       setFormErrors({});
       const schema = updateAccountInfoValidation.safeParse(dataRef.current);
       if (!schema.success) {
-        console.log("first");
         const errors: { [key: string]: string } = {};
         schema.error.errors.map((error) => {
           errors[error.path[0]] = error.message;

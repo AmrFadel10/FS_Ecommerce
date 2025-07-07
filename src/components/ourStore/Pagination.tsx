@@ -1,5 +1,4 @@
 import { useAppSelector } from "@redux/hooks";
-import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const Pagination = () => {
@@ -8,10 +7,7 @@ const Pagination = () => {
   const [query, setQuery] = useSearchParams();
   const page = query.get("page") || 1;
   const nums = Array(lastPage).fill(1);
-  console.log(page, lastPage, count);
-  useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
+
   return (
     <section className="w-full flex gap-x-2 justify-center my-8 text-sm font-medium">
       <button

@@ -13,7 +13,6 @@ const SearchForm = () => {
       setSearch("");
     }
   }, [location.pathname]);
-  console.log("search");
   return (
     <form
       className="flex items-center order-4 lg:order-2 w-full lg:min-w-[500px] xl:min-w-[600px] relative lg:max-w-[400px]"

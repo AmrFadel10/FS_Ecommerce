@@ -57,7 +57,6 @@ const Banner = () => {
           >
             <img
               src={img}
-              loading="lazy"
               alt="banner"
               className="h-full w-full  select-none pointer-events-none rounded-lg"
             />

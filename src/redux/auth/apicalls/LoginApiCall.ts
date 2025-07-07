@@ -10,7 +10,6 @@ export const LoginApiCall = createAsyncThunk(
       const { data } = await axios.post<TLoginResponse>("/auth/login", info, {
         signal,
       });
-      console.log(data);
       return data;
     } catch (error) {
       if (isAxiosError(error)) {

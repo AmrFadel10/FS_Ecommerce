@@ -32,7 +32,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
-  const [render, setRender] = useState(true);
+  const [, setRender] = useState(true);
   const dataRef = useRef<TSignup>({
     fullName: "",
     password: "",
@@ -41,7 +41,6 @@ const Signup = () => {
     image: null as File | null,
   });
 
-  console.log("render");
   useEffect(() => {
     return () => {
       dispatch(resetAuth());

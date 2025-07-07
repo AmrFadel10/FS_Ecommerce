@@ -20,6 +20,7 @@ const productsSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    //For store page and fetaure products in home page
     builder
       .addCase(getproductsApiCall.pending, (state) => {
         state.loading = "pending";

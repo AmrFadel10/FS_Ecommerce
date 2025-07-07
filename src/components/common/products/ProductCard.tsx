@@ -19,7 +19,8 @@ const ProductCard = ({
   sold,
   isLiked,
   isActivation,
-}: TProduct & { isLiked: boolean; isActivation: boolean }) => {
+  where,
+}: TProduct & { isLiked: boolean; isActivation: boolean; where?: string }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const handleToggleWishlist = () => {
@@ -59,9 +60,15 @@ const ProductCard = ({
     }
   };
   return (
-    <div className={`rounded-2xl overflow-hidden group shadow-md bg-white p-2`}>
+    <div
+      className={`${
+        where === "public"
+          ? "max-w-[97] sm:max-w-[47%] md:max-w-[31%] lg:max-w-[23%] xl:max-w-[18%] shrink-0 "
+          : ""
+      } rounded-2xl overflow-hidden group shadow-md bg-white p-2 `}
+    >
       <div className=" relative overflow-hidden">
-        <div className="overflow-auto w-full md:h-64 h-36 inline-block ">
+        <div className="overflow-auto w-full md:h-52 h-36 inline-block ">
           <img
             src={images[0].url}
             alt="music"
@@ -108,13 +115,13 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-      <div className="px-4 py-4">
-        <h3 className="hover:text-orange-800 font-medium text-xs md:text-sm capitalize text-orange-700">
+      <div className="px-4 py-2">
+        <h3 className="hover:text-orange-800 text-xs capitalize text-orange-700 hover:cursor-default">
           {brand}
         </h3>
         <Link
           to={`/product/${_id}`}
-          className="my-4 md:text-base text-sm  text-slate-800 font-medium line-clamp-2 hover:underline"
+          className="my-2 md:text-base text-sm  text-slate-800 font-medium line-clamp-2 hover:underline"
         >
           {title}
         </Link>

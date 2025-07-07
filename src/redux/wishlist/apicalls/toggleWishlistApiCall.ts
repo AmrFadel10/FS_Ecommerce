@@ -19,7 +19,6 @@ export const toggleWishlistApiCall = createAsyncThunk(
       );
       return { ...data, id };
     } catch (error) {
-      console.log(error);
       if (isAxiosError(error)) {
         return rejectWithValue(error.response?.data.message || error.message);
       } else {

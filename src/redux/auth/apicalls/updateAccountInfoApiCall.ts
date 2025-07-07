@@ -14,7 +14,6 @@ export const updateAccountInfoApiCall = createAsyncThunk(
         },
         signal,
       });
-      console.log(data);
       return data;
     } catch (error) {
       if (isAxiosError(error)) {

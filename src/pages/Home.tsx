@@ -1,9 +1,13 @@
 import { lazy } from "react";
 
 //Components
-import NewProductsCollections from "@components/home/products/NewProductsCollections";
-import LazyWrapper from "@feedback/lazy/LazyWrapper";
-import EventProductCollections from "@components/home/events/EventProductCollections";
+const LazyWrapper = lazy(() => import("@feedback/lazy/LazyWrapper"));
+const PopularProductCollections = lazy(
+  () => import("@components/home/products/PopularProductsCollection")
+);
+const LatestPorductsCollection = lazy(
+  () => import("@components/home/products/LatestProductsCollection")
+);
 const Banner = lazy(() => import("@components/home/banner/Banner"));
 const BlogsCollection = lazy(
   () => import("@components/home/blogs/BlogsCollection")
@@ -20,7 +24,7 @@ const StoreInfoFeatures = lazy(
 
 export default function Home() {
   return (
-    <section className="flex flex-col gap-y-24 pb-18 pt-8">
+    <section className="flex flex-col gap-y-10 pb-18 pt-8">
       <LazyWrapper type="banner">
         <Banner />
       </LazyWrapper>
@@ -29,14 +33,24 @@ export default function Home() {
       <LazyWrapper type="info">
         <StoreInfoFeatures />
       </LazyWrapper>
-      {/* feature collections */}
+
+      {/* popular collections */}
       <LazyWrapper type="homeProducts">
-        <FeatureProductCollections where={"public"} limit={5} />
+        <PopularProductCollections where={"public"} limit={10} />
       </LazyWrapper>
 
-      {<NewProductsCollections />}
+      {/* feature collections */}
+      <LazyWrapper type="homeProducts">
+        <FeatureProductCollections where={"public"} limit={16} />
+      </LazyWrapper>
+
+      <LazyWrapper type="homeProducts">
+        <LatestPorductsCollection where={"public"} limit={10} />
+      </LazyWrapper>
+
+      {/* {<NewProductsCollections />} */}
       {/* Special products */}
-      <EventProductCollections />
+      {/* <EventProductCollections /> */}
       <LazyWrapper type="sponsored">
         <SponsoredFeatures />
       </LazyWrapper>

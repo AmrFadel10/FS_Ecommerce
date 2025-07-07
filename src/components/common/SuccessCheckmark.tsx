@@ -43,7 +43,7 @@ export const SuccessExplosion = () => {
         />
 
         {/* انفجار الدوائر الصغيرة */}
-        {particles.map((p, i) => (
+        {particles.map((_, i) => (
           <circle
             key={i}
             cx="50"

@@ -1,7 +1,12 @@
-import type { TToast } from "@customeTypes/toast";
+//React && Redux
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "@redux/hooks";
 import { removeToast } from "@redux/toast/slices/ToastSlice";
-import { useCallback, useEffect, useState } from "react";
+
+//Types
+import type { TToast } from "@customeTypes/toast";
+
+//Icons
 import { IoIosCloseCircle, IoIosInformationCircle } from "react-icons/io";
 import { IoCheckmarkCircle, IoCloseSharp } from "react-icons/io5";
 import { PiShieldWarningBold } from "react-icons/pi";

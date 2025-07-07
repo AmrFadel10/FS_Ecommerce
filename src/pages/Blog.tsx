@@ -17,7 +17,6 @@ const Blog = () => {
 
   useEffect(() => {
     const promise = dispatch(getABlog({ id: blogId! }));
-
     return () => {
       promise.abort();
       dispatch(cleanUpBlog());

@@ -58,7 +58,7 @@ export const ErrorExplosion = ({ size = 100 }: { size?: number }) => {
         />
 
         {/* انفجار الدوائر الصغيرة */}
-        {particles.map((p, i) => (
+        {particles.map((_, i) => (
           <circle
             key={i}
             cx="50"

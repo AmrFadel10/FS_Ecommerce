@@ -28,7 +28,6 @@ const ShippingPolicy = lazy(() => import("@pages/ShippingPolicy"));
 const TermsAndConditions = lazy(() => import("@pages/TermsAndConditions"));
 const FAQ = lazy(() => import("@pages/FAQ"));
 const Contact = lazy(() => import("@pages/Contact"));
-const CompareProducts = lazy(() => import("@pages/CompareProducts"));
 const Cart = lazy(() => import("@pages/Cart"));
 const OurStore = lazy(() => import("@pages/OurStore"));
 const Product = lazy(() => import("@pages/Product"));
@@ -65,14 +64,6 @@ const AppRoute = () => {
               }
             >
               <Home />
-            </Suspense>
-          ),
-        },
-        {
-          path: "compare",
-          element: (
-            <Suspense fallback="loading please wait...">
-              <CompareProducts />
             </Suspense>
           ),
         },

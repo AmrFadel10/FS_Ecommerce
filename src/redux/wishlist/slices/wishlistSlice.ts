@@ -37,7 +37,6 @@ const wishlistSlice = createSlice({
         }
       })
       .addCase(toggleWishlistApiCall.rejected, (state, action) => {
-        console.log(action.payload);
         state.error = action.payload as string;
       })
       //Get products for wishlist
