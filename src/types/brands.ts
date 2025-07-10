@@ -5,8 +5,8 @@ export type Tbrand = {
   _id: string;
 };
 
-export type TBrandsIntialState = {
+export type TBrandIntialState = {
   loading: TLoading;
   error: string | null;
-  brands: Tbrand[];
+  brand: Tbrand[] | null;
 };

@@ -36,16 +36,16 @@ export default function Home() {
 
       {/* popular collections */}
       <LazyWrapper type="homeProducts">
-        <PopularProductCollections where={"public"} limit={10} />
+        <PopularProductCollections where={"public"} limit={12} />
       </LazyWrapper>
 
       {/* feature collections */}
       <LazyWrapper type="homeProducts">
-        <FeatureProductCollections where={"public"} limit={16} />
+        <FeatureProductCollections where={"public"} limit={12} />
       </LazyWrapper>
 
       <LazyWrapper type="homeProducts">
-        <LatestPorductsCollection where={"public"} limit={10} />
+        <LatestPorductsCollection where={"public"} limit={12} />
       </LazyWrapper>
 
       {/* {<NewProductsCollections />} */}

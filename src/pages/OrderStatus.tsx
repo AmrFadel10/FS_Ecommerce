@@ -1,17 +1,22 @@
+//React && Redux
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { activationAccountApiCall } from "@redux/auth/apicalls/AtivationApiCall";
-import { Spinner } from "@components/common/Spinner";
+import { Link, Navigate } from "react-router-dom";
+import { cleanUpOrder } from "@redux/orders/slices/OrderSlice";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+
+//Components
 import { ErrorExplosion } from "@components/common/ErrorExplosion";
+import { Spinner } from "@components/common/Spinner";
 import { SuccessExplosion } from "@components/common/SuccessCheckmark";
-const Activation = () => {
-  const { activationToken } = useParams();
-  const { loading } = useAppSelector((state) => state.auth);
+
+const OrderStatus = () => {
   const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.orders);
 
   useEffect(() => {
-    dispatch(activationAccountApiCall(activationToken as string));
+    return () => {
+      dispatch(cleanUpOrder());
+    };
   }, [dispatch]);
 
   return (
@@ -24,12 +29,15 @@ const Activation = () => {
         ) : loading === "failed" ? (
           <div className="flex flex-col gap-y-8 items-center w-full h-40">
             <ErrorExplosion />
-            <span>The token expired!</span>
+            <span>Something went wrong!</span>
+          </div>
+        ) : loading === "succeeded" ? (
+          <div className="flex flex-col gap-y-8 items-center">
+            <SuccessExplosion />
+            <span>Your order has been placed successfully!</span>
           </div>
         ) : (
-          <div className="flex flex-col gap-y-8 items-center">
-            <SuccessExplosion /> <span>"Account created Successfully!"</span>
-          </div>
+          <Navigate to={"/"} />
         )}
       </div>
       <Link
@@ -43,4 +51,4 @@ const Activation = () => {
   );
 };
 
-export default Activation;
+export default OrderStatus;

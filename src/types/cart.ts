@@ -16,7 +16,6 @@ export type TProductCart = {
   brand: string;
   category: string;
   quantity: number;
-  count: number;
   sold: number;
   images: TImage[];
   color: string;

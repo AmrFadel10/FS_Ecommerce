@@ -58,7 +58,7 @@ const FeatureProductCollections = ({
           <span
             className="hover:cursor-pointer hover:text-slate-950 text-slate-500"
             onClick={() =>
-              productRef.current?.scrollTo({ behavior: "smooth", left: -1000 })
+              productRef.current?.scrollBy({ behavior: "smooth", left: -800 })
             }
           >
             <IoIosArrowBack size={23} />
@@ -66,7 +66,7 @@ const FeatureProductCollections = ({
           <span
             className="hover:cursor-pointer hover:text-slate-950 text-slate-500"
             onClick={() =>
-              productRef.current?.scrollTo({ behavior: "smooth", left: 1000 })
+              productRef.current?.scrollBy({ behavior: "smooth", left: 800 })
             }
           >
             <IoIosArrowForward size={23} />

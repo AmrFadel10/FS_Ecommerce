@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getProductsCartApiCall } from "../apicalls/cartApiCall";
 import type { RootState } from "@redux/store";
 import { productsCount } from "@redux/cart/selectors/cartSelector";
+import createOrderApiCall from "@redux/orders/apiCalls/addOrderApiCall";
 
 const initialState: TCartInitialState = {
   loading: "idle",
@@ -63,6 +64,10 @@ const cartSlice = createSlice({
         state.loading = "failed";
         state.error = action.payload as string;
       });
+    builder.addCase(createOrderApiCall.fulfilled, (state) => {
+      state.items = {};
+      state.getProductFullInfo = [];
+    });
   },
 });
 

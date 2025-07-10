@@ -9,11 +9,11 @@ const CartProduct = ({
   _id,
   title,
   color,
-  count,
+  quantity,
   brand,
   price,
 }: TProductCart) => {
-  const productPrice = count * price;
+  const productPrice = quantity * price;
 
   return (
     <tr className="flex ">
@@ -52,7 +52,7 @@ const CartProduct = ({
       <td className="text-lg font-semibold p-4 flex-1 flex items-center text-gray-600">
         ${price}
       </td>
-      <QuantityForm _id={_id} color={color} count={count} />
+      <QuantityForm _id={_id} color={color} count={quantity} />
       <td className="flex  items-center text-lg font-semibold p-4 flex-1 text-gray-600">
         {productPrice}$
       </td>

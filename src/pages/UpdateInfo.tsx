@@ -75,6 +75,8 @@ const AccountInfo = () => {
       className="flex-[5] px-6 flex flex-col gap-y-8 min-h-[500px]"
       onSubmit={handleSubmit}
     >
+      <h3 className="text-xl mb-2">Update info</h3>
+
       <div className="w-36 h-36 rounded-full bg-slate-50 shadow shadow-slate-500 p-2 mx-auto mb-8">
         <img
           src={user?.avatar?.url}

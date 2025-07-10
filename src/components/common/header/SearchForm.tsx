@@ -8,19 +8,23 @@ const SearchForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [search, setSearch] = useState<string>("");
+
+  const handleSearchForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!search.trim()) return;
+    navigate(`/products?sr=${search}`);
+  };
+
   useEffect(() => {
     if (location.pathname !== "/products") {
       setSearch("");
     }
   }, [location.pathname]);
+
   return (
     <form
       className="flex items-center order-4 lg:order-2 w-full lg:min-w-[500px] xl:min-w-[600px] relative lg:max-w-[400px]"
-      onSubmit={(e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!search.trim()) return;
-        navigate(`/products?sr=${search}`);
-      }}
+      onSubmit={handleSearchForm}
     >
       <input
         type="text"

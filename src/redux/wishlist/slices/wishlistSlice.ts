@@ -23,9 +23,6 @@ const wishlistSlice = createSlice({
   extraReducers(builder) {
     builder
       // Add or remove product from wishlist
-      .addCase(toggleWishlistApiCall.pending, (state) => {
-        state.error = null;
-      })
       .addCase(toggleWishlistApiCall.fulfilled, (state, action) => {
         if (action.payload.type == "added") {
           state.items.push(action.payload.id);
@@ -36,9 +33,7 @@ const wishlistSlice = createSlice({
           );
         }
       })
-      .addCase(toggleWishlistApiCall.rejected, (state, action) => {
-        state.error = action.payload as string;
-      })
+
       //Get products for wishlist
       .addCase(getWishlistProductsApiCall.pending, (state) => {
         state.loading = "pending";

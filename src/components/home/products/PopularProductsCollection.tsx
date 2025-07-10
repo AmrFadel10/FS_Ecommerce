@@ -28,7 +28,6 @@ const PopularProductCollections = ({
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState<TLoading>("idle");
   const [error, setError] = useState<null | string>(null);
-  const [scrolledToRight, setScrolledToRight] = useState(false);
   const [popularProducts, setpopularProducts] = useState<TProduct[]>([]);
 
   useEffect(() => {
@@ -84,7 +83,6 @@ const PopularProductCollections = ({
                 } popular-ctagory-liks uppercase  relative py-2 cursor-pointer `}
                 onClick={() => {
                   setActiveCategory(category.title);
-                  setScrolledToRight(false);
                 }}
               >
                 {category.title}
@@ -97,33 +95,28 @@ const PopularProductCollections = ({
         {homeProducts.length > 0 ? (
           <div className="overflow-x-scroll hide-scrollbar" ref={productRef}>
             <ProductsList products={homeProducts} where={where} />
-            {scrolledToRight ? (
-              <div
-                className="absolute -left-10 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
-                onClick={() => {
-                  productRef.current?.scrollTo({
-                    behavior: "smooth",
-                    left: -1000,
-                  });
-                  setScrolledToRight(false);
-                }}
-              >
-                <GrPrevious size={26} />
-              </div>
-            ) : (
-              <div
-                className="absolute -right-10 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
-                onClick={() => {
-                  productRef.current?.scrollTo({
-                    behavior: "smooth",
-                    left: 1000,
-                  });
-                  setScrolledToRight(true);
-                }}
-              >
-                <GrNext size={26} />
-              </div>
-            )}
+            <div
+              className="absolute -left-10 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
+              onClick={() => {
+                productRef.current?.scrollBy({
+                  behavior: "smooth",
+                  left: -800,
+                });
+              }}
+            >
+              <GrPrevious size={26} />
+            </div>
+            <div
+              className="absolute -right-10 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
+              onClick={() => {
+                productRef.current?.scrollBy({
+                  behavior: "smooth",
+                  left: 800,
+                });
+              }}
+            >
+              <GrNext size={26} />
+            </div>
           </div>
         ) : (
           <Empty size={150} />

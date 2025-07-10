@@ -11,11 +11,19 @@ import wishlist from "./wishlist/slices/wishlistSlice";
 import auth from "./auth/slices/AuthSlice";
 import toast from "./toast/slices/ToastSlice";
 import brands from "./brands/slices/BrandsSlice";
+import addresses from "./address/slices/AddressesSlice";
+import AnAddress from "./address/slices/AnAddressSlice";
+import coupon from "./coupon/slices/CouponSlice";
+import orders from "./orders/slices/OrderSlice";
 
 const store = configureStore({
   reducer: {
     auth,
     brands,
+    coupon,
+    orders,
+    addresses,
+    AnAddress,
     categories,
     blogs,
     ablog,

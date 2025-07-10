@@ -30,7 +30,7 @@ const BlogsCollection = () => {
         <div className="flex gap-x-2">
           <span
             onClick={() =>
-              blogsRef.current!.scrollTo({ behavior: "smooth", left: -1000 })
+              blogsRef.current!.scrollTo({ behavior: "smooth", left: -800 })
             }
             className="hover:cursor-pointer hover:text-slate-950 text-slate-500"
           >
@@ -38,7 +38,7 @@ const BlogsCollection = () => {
           </span>
           <span
             onClick={() =>
-              blogsRef.current!.scrollTo({ behavior: "smooth", left: 1000 })
+              blogsRef.current!.scrollTo({ behavior: "smooth", left: 800 })
             }
             className="hover:cursor-pointer hover:text-slate-950 text-slate-500"
           >

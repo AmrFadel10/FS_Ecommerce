@@ -1,80 +1,62 @@
+import { useEffect, useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import img1 from "@assets/images/banner/banner1.jpg";
 import img2 from "@assets/images/banner/banner2.jpg";
 // import img3 from "@assets/images/banner/banner3.webp";
 import img4 from "@assets/images/banner/banner4.webp";
 import style from "./banner.module.css";
+
 const { active, next, prev } = style;
-import { useEffect, useState } from "react";
+
+const images = [img4, img2, img1];
+
 const Banner = () => {
   const [activeImg, setActiveImg] = useState(0);
 
-  const images = [img4, img2, img1];
-
-  const handlebanner = (btn: string) => {
-    if (btn === "next") {
-      if (activeImg === images.length - 1) {
-        setActiveImg(0);
-      } else {
-        setActiveImg((ele) => ++ele);
-      }
-    } else if (btn === "prev") {
-      if (activeImg === 0) {
-        setActiveImg(images.length - 1);
-      } else {
-        setActiveImg((ele) => --ele);
-      }
-    }
+  const goNext = () => {
+    setActiveImg((prev) => (prev + 1) % images.length);
   };
+
+  const goPrev = () => {
+    setActiveImg((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   useEffect(() => {
-    const counter = setTimeout(() => {
-      handlebanner("next");
-    }, 3000);
-    return () => {
-      clearTimeout(counter);
-    };
+    const timer = setTimeout(goNext, 3000);
+    return () => clearTimeout(timer);
   }, [activeImg]);
+
+  const getClass = (idx: number) => {
+    if (idx === activeImg) return active;
+    if (idx === (activeImg + 1) % images.length) return next;
+    if (idx === (activeImg - 1 + images.length) % images.length) return prev;
+    return "";
+  };
+
   return (
-    <div className={`h-[480px] relative w-full overflow-hidden`}>
-      {images.map((img, idx) => {
-        return (
-          <div
-            className={`${activeImg === idx ? `${active} ` : ""}
-                 ${activeImg === idx + 1 ? `${next} ` : ""}
-                ${activeImg === idx - 1 ? `${prev} ` : ""}
-                ${
-                  !!(idx === 0) && activeImg === images.length - 1
-                    ? `${prev} `
-                    : ""
-                }
-                ${
-                  !!(idx === images.length - 1) && activeImg === 0
-                    ? `${next} `
-                    : ""
-                }
-             w-full bg-gray-200 rounded-lg`}
-            key={idx}
-          >
-            <img
-              src={img}
-              alt="banner"
-              className="h-full w-full  select-none pointer-events-none rounded-lg"
-            />
-          </div>
-        );
-      })}
-      <div
-        className="absolute right-2 top-1/2  z-10 cursor-pointer  hover:bg-gray-950/30 bg-slate-950/15 p-3 rounded-full"
-        onClick={() => handlebanner("next")}
-      >
-        <GrNext size={26} />
-      </div>
-      <div
-        className="absolute left-2 top-1/2  z-10 cursor-pointer hover:bg-gray-950/30 bg-slate-950/15 p-3 rounded-full"
-        onClick={() => handlebanner("prev")}
+    <div className="relative w-full h-[480px] overflow-hidden rounded-lg">
+      {images.map((img, idx) => (
+        <div key={idx} className={`${getClass(idx)} w-full h-full`}>
+          <img
+            src={img}
+            alt={`banner-${idx}`}
+            className="w-full h-full object-cover select-none pointer-events-none rounded-lg"
+          />
+        </div>
+      ))}
+
+      <button
+        onClick={goPrev}
+        className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full z-50 cursor-pointer"
       >
         <GrPrevious size={26} />
-      </div>
+      </button>
+      <button
+        onClick={goNext}
+        className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full z-50 cursor-pointer"
+      >
+        <GrNext size={26} />
+      </button>
     </div>
   );
 };

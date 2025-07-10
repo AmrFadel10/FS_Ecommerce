@@ -7,24 +7,16 @@ import CartList from "@components/cart/CartList";
 import TotalPrice from "@components/cart/TotalPrice";
 import Empty from "@components/common/Empty";
 import Loading from "@feedback/loading/Loading";
+import {
+  countSubtotalPrice,
+  editProductToshowInCheckout,
+} from "@redux/cart/selectors/cartSelector";
 
 export default function Cart() {
   const dispatch = useAppDispatch();
-  const { getProductFullInfo, items, loading, error } = useAppSelector(
-    (state) => state.cart
-  );
-  const products = getProductFullInfo
-    .map((ele) => {
-      if (items[ele._id]) {
-        const keysArr = Object.keys(items[ele._id]);
-        const valuesArr = Object.values(items[ele._id]);
-        return keysArr.map((col, ind) => {
-          return { ...ele, color: col, count: valuesArr[ind] };
-        });
-      }
-      return [];
-    })
-    .flat();
+  const { loading, error } = useAppSelector((state) => state.cart);
+  const products = useAppSelector(editProductToshowInCheckout);
+  const subtotalPrice = useAppSelector(countSubtotalPrice);
 
   useEffect(() => {
     const promise = dispatch(getProductsCartApiCall());
@@ -41,7 +33,7 @@ export default function Cart() {
         {products.length ? (
           <>
             <CartList products={products} />
-            <TotalPrice />
+            <TotalPrice subtotalPrice={subtotalPrice} />
           </>
         ) : (
           <Empty />

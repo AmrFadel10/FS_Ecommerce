@@ -43,8 +43,12 @@ body {
   font-weight: 200;
 }
 
-.change-color a.active {
+.change-color > a.active {
   @apply bg-slate-950 text-slate-50;
+}
+
+.user-icons > a.active {
+  @apply bg-slate-200 text-slate-950;
 }
 
 .hide-scrollbar {
@@ -75,4 +79,8 @@ body {
 .popular-ctagory-liks.active::after,
 .popular-ctagory-liks:hover::after {
   width: 100%;
+}
+
+.selected-address {
+  background-color: gray!;
 }

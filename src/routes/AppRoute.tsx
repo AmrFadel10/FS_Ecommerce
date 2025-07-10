@@ -35,9 +35,12 @@ const Blogs = lazy(() => import("@pages/Blogs"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
 const Signup = lazy(() => import("@pages/Signup"));
 const Login = lazy(() => import("@pages/Login"));
+const Checkout = lazy(() => import("@pages/Checkout"));
+const OrderStatus = lazy(() => import("@pages/OrderStatus"));
 import UpdateInfo from "@pages/UpdateInfo";
 import Orders from "@pages/Orders";
 import Blog from "@pages/Blog";
+import Addresses from "@pages/Addresses";
 
 const AppRoute = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -87,6 +90,16 @@ const AppRoute = () => {
             >
               <Cart />
             </Suspense>
+          ),
+        },
+        {
+          path: "checkout",
+          element: user ? (
+            <Suspense fallback={<RootLoading />}>
+              <Checkout />
+            </Suspense>
+          ) : (
+            <Navigate to={"/"} />
           ),
         },
         {
@@ -165,6 +178,16 @@ const AppRoute = () => {
           ),
         },
         {
+          path: "order-state",
+          element: user ? (
+            <Suspense fallback={<RootLoading />}>
+              <OrderStatus />
+            </Suspense>
+          ) : (
+            <Navigate to={"/"} />
+          ),
+        },
+        {
           path: "terms-condition",
           element: (
             <Suspense fallback={<RootLoading />}>
@@ -200,6 +223,7 @@ const AppRoute = () => {
           children: [
             { index: true, element: <UpdateInfo /> },
             { path: "orders", element: <Orders /> },
+            { path: "address", element: <Addresses /> },
           ],
         },
       ],

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { CgLogOut } from "react-icons/cg";
 import { CiUser } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa6";
+import { MdLocationOn } from "react-icons/md";
 import { TbListCheck } from "react-icons/tb";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -47,7 +48,7 @@ const UserIcon = () => {
           <ul
             className={`${
               open ? "max-h-60" : "max-h-0"
-            } transition-all  duration-500  absolute left-1 top-[calc(100%+10px)] w-[180px]  bg-slate-50 rounded-sm text-slate-800 flex  flex-col  overflow-hidden text-sm font-medium`}
+            } user-icons transition-all  duration-500   absolute left-1 top-[calc(100%+10px)] w-[180px]  bg-white rounded-sm text-slate-800 flex  flex-col  overflow-hidden text-sm font-medium`}
           >
             <NavLink
               to={"/profile"}
@@ -57,6 +58,14 @@ const UserIcon = () => {
             >
               <FaRegUser size={18} />
               Profile
+            </NavLink>
+            <NavLink
+              to={"/profile/address"}
+              end
+              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-1"
+              onClick={() => setOpen(false)}
+            >
+              <MdLocationOn size={18} /> Address
             </NavLink>
             <NavLink
               to={"/profile/orders"}
