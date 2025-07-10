@@ -75,15 +75,8 @@ const AccountInfo = () => {
       className="flex-[5] px-6 flex flex-col gap-y-8 min-h-[500px]"
       onSubmit={handleSubmit}
     >
-      <h3 className="text-xl mb-2">Update info</h3>
+      <h2 className="text-3xl font-bold text-blue-600">Account info</h2>
 
-      <div className="w-36 h-36 rounded-full bg-slate-50 shadow shadow-slate-500 p-2 mx-auto mb-8">
-        <img
-          src={user?.avatar?.url}
-          alt="avatar"
-          className="h-full w-full rounded-full"
-        />
-      </div>
       <div className="flex flex-col  max-w-[400px] w-full mx-auto">
         <label
           htmlFor="fullName"
@@ -182,7 +175,7 @@ const AccountInfo = () => {
       <button
         type="submit"
         disabled={loading === "pending"}
-        className={`  max-w-[400px] w-full mx-auto h-[40px] flex items-center justify-center gap-x-2 text-white font-semibold bg-gray-800  rounded-md  hover:bg-gray-950 ${
+        className={`  max-w-[400px] w-full mx-auto h-[40px] flex items-center justify-center gap-x-2 text-white font-semibold bg-blue-600  rounded-md  hover:bg-blue-700 ${
           loading === "pending"
             ? "pointer-events-none cursor-not-allowed"
             : "cursor-pointer"
@@ -190,7 +183,7 @@ const AccountInfo = () => {
       >
         {loading === "pending" ? (
           <>
-            <Spinner size={18} color="white" /> Loading...
+            <Spinner size={18} /> Loading...
           </>
         ) : (
           <span>Submit</span>

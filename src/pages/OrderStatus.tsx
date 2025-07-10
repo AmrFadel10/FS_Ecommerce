@@ -24,7 +24,7 @@ const OrderStatus = () => {
       <div className="text-gray-700 text-2xl font-bold">
         {loading === "pending" ? (
           <div className="w-full h-40">
-            <Spinner size={60} color="black" />
+            <Spinner size={60} color="#2563eb" />
           </div>
         ) : loading === "failed" ? (
           <div className="flex flex-col gap-y-8 items-center w-full h-40">
@@ -43,7 +43,7 @@ const OrderStatus = () => {
       <Link
         to={"/"}
         replace
-        className="bg-slate-900 hover:bg-slate-950 text-slate-50 rounded-md px-4 py-2 transition-all"
+        className="bg-blue-600 hover:bg-blue-700 text-blue-50 rounded-md px-4 py-2 transition-all"
       >
         Shopping now!
       </Link>

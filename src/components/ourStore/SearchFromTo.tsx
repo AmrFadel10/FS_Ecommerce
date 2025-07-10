@@ -14,10 +14,10 @@ const SearchFromTo = ({
       <h5 className="font-medium mb-4">Price</h5>
       <div className="flex gap-2 flex-wrap  text-xs">
         <div className="flex gap-2 items-center">
-          <span className="text-gray-400">$</span>
+          <span className="text-gray-500 w-7 block text-xs">From:</span>
           <input
             type="number"
-            className="bg-gray-200 focus:outline-none p-2 rounded-sm"
+            className="bg-blue-50 focus:outline-none p-2 rounded-sm "
             placeholder="From"
             name="gte"
             defaultValue={gte || 0}
@@ -26,10 +26,10 @@ const SearchFromTo = ({
           />
         </div>
         <div className="flex gap-2 items-center">
-          <span className="text-gray-400">$</span>
+          <span className="text-gray-500 flex-1 w-7 block text-xs">To:</span>
           <input
             type="number"
-            className="bg-gray-200 focus:outline-none p-2 rounded-sm"
+            className="bg-blue-50 focus:outline-none p-2 rounded-sm "
             placeholder="To"
             name="lte"
             defaultValue={lte || 0}

@@ -32,11 +32,12 @@ const CartIcon = () => {
       className="flex items-center  gap-1 hover:text-slate-50 group relative"
     >
       <GiShoppingCart
-        size={30}
-        className="text-orange-300 group-hover:rotate-y-360 transition-all duration-700"
+        color="#2563EB"
+        size={25}
+        className=" group-hover:rotate-y-360 transition-all duration-700"
       />
       <span
-        className={`w-5 h-5 flex justify-center items-center text-xs font-bold rounded-full bg-slate-50 text-slate-700 absolute -top-2 -right-1 ${
+        className={`w-5 h-5 flex justify-center items-center text-xs font-bold rounded-full bg-blue-600 text-gray-50 absolute -top-3 -right-2 ${
           !!animate && animate_cart
         }`}
       >

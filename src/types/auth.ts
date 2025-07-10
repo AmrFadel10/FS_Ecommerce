@@ -5,7 +5,7 @@ export type TSignup = {
   password: string;
   confirmPassword: string;
   email: string;
-  image: File | null;
+  mobile: string;
 };
 export type TLogin = {
   email: string;

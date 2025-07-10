@@ -23,18 +23,18 @@ export const loginValidation = z.object({
 
 export const SignupValidation = z
   .object({
-    image: z
-      .instanceof(File, { message: "Please upload a valid image file!" })
-      .refine((file) => file.size <= 2 * 1024 * 1024, {
-        message: "Image must be less than 2MB!",
-      })
-      .refine(
-        (file) =>
-          ["image/jpeg", "image/png", "image/webp", "image/jpg"].includes(
-            file.type
-          ),
-        { message: "Only images are allowed!" }
-      ),
+    // image: z
+    //   .instanceof(File, { message: "Please upload a valid image file!" })
+    //   .refine((file) => file.size <= 2 * 1024 * 1024, {
+    //     message: "Image must be less than 2MB!",
+    //   })
+    //   .refine(
+    //     (file) =>
+    //       ["image/jpeg", "image/png", "image/webp", "image/jpg"].includes(
+    //         file.type
+    //       ),
+    //     { message: "Only images are allowed!" }
+    //   ),
     fullName: z
       .string({
         required_error: "This field is required!",
@@ -42,7 +42,14 @@ export const SignupValidation = z
       })
       .trim()
       .min(2, { message: "This field must contain at least 2 characters!" }),
-
+    mobile: z
+      .string({
+        invalid_type_error: "This field must be string!",
+      })
+      .trim()
+      .regex(/^(\+?\d{1,3})?[-.\s]?\(?\d{2,4}\)?[-.\s]?\d{3,5}[-.\s]?\d{4}$/, {
+        message: "Mobile number is not valid",
+      }),
     email: z
       .string({
         required_error: "This field is required!",

@@ -77,7 +77,7 @@ const AddressForm = memo(
           className="flex flex-col   fixed left-1/2 top-1/2 -translate-1/2 w-96  bg-white max-w-[450px] p-8 rounded-lg"
           onSubmit={handleAddAddress}
         >
-          <h3 className="text-xl mb-2 font-medium">
+          <h3 className="text-xl mb-2 font-bold text-blue-600">
             {addressForUpdate ? "Update address" : "Add address"}
           </h3>
           <span
@@ -182,7 +182,7 @@ const AddressForm = memo(
                 loading === "pending" ||
                 !!Object.values(errors).filter((v) => !!v).length
               }
-              className={`h-[40px] flex items-center justify-center gap-x-2 text-slate-50 font-semibold bg-gray-800 w-full rounded-md  hover:bg-gray-950 ${
+              className={`h-[40px] flex items-center justify-center gap-x-2 text-blue-50 font-semibold bg-blue-600 w-full rounded-md  hover:bg-blue-700 ${
                 loading === "pending" ||
                 !!Object.values(errors).filter((v) => !!v).length
                   ? " cursor-no-drop"
@@ -191,7 +191,7 @@ const AddressForm = memo(
             >
               {loading === "pending" ? (
                 <>
-                  <Spinner size={18} color="white" /> Loading...
+                  <Spinner size={18} /> Loading...
                 </>
               ) : (
                 <span>{addressForUpdate ? "Update" : "Add"} address</span>

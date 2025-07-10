@@ -12,6 +12,7 @@ import Loading from "@feedback/loading/Loading";
 import type { TLoading } from "@customeTypes/common";
 import type { TProduct } from "@customeTypes/products";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Heading from "@components/common/Heading";
 
 const LatestPorductsCollection = ({
   where,
@@ -57,10 +58,10 @@ const LatestPorductsCollection = ({
   return (
     <section>
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold mb-4">Latest Collection:</h3>
+        <Heading title="Latest Collection" />
         <div className="flex gap-x-2">
           <span
-            className="hover:cursor-pointer hover:text-slate-950 text-slate-500"
+            className="hover:cursor-pointer hover:text-gray-800 text-gray-500"
             onClick={() =>
               productRef.current?.scrollBy({
                 behavior: "smooth",
@@ -71,7 +72,7 @@ const LatestPorductsCollection = ({
             <IoIosArrowBack size={23} />
           </span>
           <span
-            className="hover:cursor-pointer hover:text-slate-950 text-slate-500"
+            className="hover:cursor-pointer hover:text-gray-800 text-gray-500"
             onClick={() =>
               productRef.current?.scrollBy({ behavior: "smooth", left: 800 })
             }

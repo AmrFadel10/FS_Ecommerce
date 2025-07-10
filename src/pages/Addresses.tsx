@@ -34,13 +34,13 @@ const Addresses = () => {
   }, [dispatch]);
 
   return (
-    <section className="flex-[7] min-h-[600px] pl-8 py-6 bg-gray-50">
+    <section className="flex-[7] min-h-[600px] pl-8 py-6 ">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800">My Addresses</h2>
+        <h2 className="text-3xl font-bold text-blue-600">My Addresses</h2>
         <button
           onClick={() => setAddAddress(true)}
-          className="bg-slate-800 hover:bg-slate-950 text-white text-sm px-3 py-2 rounded-md flex items-center gap-2 shadow-md cursor-pointer"
+          className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-3 py-2 rounded-md flex items-center gap-2 shadow-md cursor-pointer"
         >
           <MdAdd size={22} />
           Add New Address

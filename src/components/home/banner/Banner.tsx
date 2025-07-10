@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import img1 from "@assets/images/banner/banner1.jpg";
 import img2 from "@assets/images/banner/banner2.jpg";
-// import img3 from "@assets/images/banner/banner3.webp";
-import img4 from "@assets/images/banner/banner4.webp";
 import style from "./banner.module.css";
 
 const { active, next, prev } = style;
 
-const images = [img4, img2, img1];
+const images = [img2, img1];
 
 const Banner = () => {
   const [activeImg, setActiveImg] = useState(0);
@@ -34,29 +32,32 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative w-full h-[480px] overflow-hidden rounded-lg">
+    <div className="relative w-full h-[400px] ">
       {images.map((img, idx) => (
         <div key={idx} className={`${getClass(idx)} w-full h-full`}>
           <img
             src={img}
             alt={`banner-${idx}`}
-            className="w-full h-full object-cover select-none pointer-events-none rounded-lg"
+            className="w-full h-full object-cover select-none pointer-events-none rounded-2xl overflow-hidden"
           />
         </div>
       ))}
-
-      <button
-        onClick={goPrev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full z-50 cursor-pointer"
-      >
-        <GrPrevious size={26} />
-      </button>
-      <button
-        onClick={goNext}
-        className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full z-50 cursor-pointer"
-      >
-        <GrNext size={26} />
-      </button>
+      <div className="bg-gray-50 p-2 absolute -left-8 top-1/2 -translate-y-1/2 z-50 rounded-full">
+        <button
+          onClick={goPrev}
+          className="  bg-blue-50 hover:bg-blue-100 text-white p-4 rounded-full  cursor-pointer"
+        >
+          <GrPrevious size={16} color="#2563EB" />
+        </button>
+      </div>
+      <div className="bg-gray-50 absolute -right-8 top-1/2 -translate-y-1/2 p-2 z-50 rounded-full">
+        <button
+          onClick={goNext}
+          className=" bg-blue-50 hover:bg-blue-100 text-white p-4 rounded-full z-50 cursor-pointer"
+        >
+          <GrNext size={16} color="#2563EB" />
+        </button>
+      </div>
     </div>
   );
 };

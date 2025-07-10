@@ -41,8 +41,8 @@ const AddressCard = ({
       key={address._id}
       className={`${
         selectAddress?._id === address._id
-          ? " border-slate-700 "
-          : " border-gray-200 "
+          ? " border-blue-700 "
+          : " border-blue-200 "
       } border bg-white rounded-xl p-5 shadow hover:shadow-md transition-all  relative cursor-pointer`}
       onClick={() => {
         if (!handleSelectAddress) return;
@@ -51,22 +51,22 @@ const AddressCard = ({
     >
       {location.pathname === "/profile/address" && handleOpenFormForUpdate && (
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2 text-slate-950">
+          <div className="flex items-center gap-2 text-blue-600">
             <MdLocationOn size={22} />
             <h4 className="text-lg font-semibold">Address</h4>
           </div>
           <div className=" flex items-center gap-2">
             <button
-              className="text-blue-600 hover:text-blue-800 cursor-pointer"
+              className="text-blue-600 hover:text-blue-700 cursor-pointer"
               onClick={() => handleOpenFormForUpdate(address)}
             >
-              <MdEdit size={22} />
+              <MdEdit size={20} />
             </button>
             <button
-              className="text-red-500 hover:text-red-700 cursor-pointer"
+              className="text-red-500 hover:text-red-600 cursor-pointer"
               onClick={handleDeleteAddress}
             >
-              {loading ? <Spinner size={15} /> : <MdDelete size={22} />}
+              {loading ? <Spinner size={15} /> : <MdDelete size={20} />}
             </button>
           </div>
         </div>

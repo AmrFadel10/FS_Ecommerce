@@ -1,6 +1,6 @@
 export const Spinner = ({
   size,
-  color = "#fb923c",
+  color = "#eff6ff",
   className,
 }: {
   size: number;

@@ -30,16 +30,18 @@ const CartProduct = ({
         <div className="flex-[2]">
           <Link
             to={`/product/${_id}`}
-            className={`text-sm font-medium text-gray-850 line-clamp-2 hover:underline`}
+            className={`text-sm font-medium text-gray-700 line-clamp-2 hover:underline`}
           >
             {title}
           </Link>
           <div className="flex gap-2 mt-3">
-            <span className="font-semibold text-sm text-gray-850">Brand :</span>{" "}
-            <span className="text-sm font-semibold text-gray-700">{brand}</span>
+            <span className="font-semibold text-sm text-gray-700">Brand :</span>{" "}
+            <span className="text-sm font-semibold text-gray-700 capitalize">
+              {brand}
+            </span>
           </div>
           <div className="flex gap-2 mt-3">
-            <span className="font-semibold text-base text-gray-850">
+            <span className="font-semibold text-base text-gray-700">
               Color :
             </span>{" "}
             <span
@@ -49,11 +51,11 @@ const CartProduct = ({
           </div>
         </div>
       </td>
-      <td className="text-lg font-semibold p-4 flex-1 flex items-center text-gray-600">
+      <td className="text-lg font-medium p-4 flex-1 flex items-center text-gray-600">
         ${price}
       </td>
       <QuantityForm _id={_id} color={color} count={quantity} />
-      <td className="flex  items-center text-lg font-semibold p-4 flex-1 text-gray-600">
+      <td className="flex  items-center text-lg font-medium p-4 flex-1 text-gray-600">
         {productPrice}$
       </td>
     </tr>

@@ -75,8 +75,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-3">
-      <h2 className="text-3xl font-extrabold text-gray-800 font-Roboto">
+    <div className="min-h-screen bg-blue-50 flex flex-col items-center justify-center px-3">
+      <h2 className="text-3xl font-extrabold text-blue-600 font-Roboto">
         Login to your account
       </h2>
       <div className="bg-white w-full max-w-sm shadow rounded-xl py-16 md:px-8 px-6 mt-8">
@@ -148,13 +148,13 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading === "pending"}
-            className={`h-[40px] flex items-center justify-center gap-x-2 text-slate-50 font-semibold bg-gray-800 w-full rounded-md  hover:bg-gray-950 ${
+            className={`h-[40px] flex items-center justify-center gap-x-2 text-blue-50 font-semibold bg-blue-600 w-full rounded-md  hover:bg-blue-700 ${
               loading === "pending" ? " cursor-no-drop" : "cursor-pointer"
             }`}
           >
             {loading === "pending" ? (
               <>
-                <Spinner size={18} color="white" /> Loading...
+                <Spinner size={18} /> Loading...
               </>
             ) : (
               <span>Submit</span>
@@ -164,7 +164,7 @@ const Login = () => {
             <h4 className="text-gray-400">Don't have an account?</h4>
             <Link
               to={"/signup"}
-              className="text-gray-800 hover:underline hover:text-gray-950 font-medium"
+              className="text-blue-600 hover:underline hover:text-blue-700 font-medium"
             >
               Signup
             </Link>

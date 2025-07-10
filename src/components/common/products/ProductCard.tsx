@@ -76,15 +76,14 @@ const ProductCard = ({
           />
         </div>
         <div
-          className=" transition-all duration-300  rounded-full p-1 absolute top-[2%] right-0 hover:bg-orange-300 flex justify-center items-center w-7 h-7"
+          className=" transition-all duration-300  rounded-full p-1 absolute top-[2%] right-0 flex justify-center items-center w-7 h-7"
           onClick={handleToggleWishlist}
         >
           {loading ? (
             <Spinner
               size={15}
-              color="black"
               className={`w-full h-full ${
-                loading && "bg-orange-300"
+                loading && "bg-blue-500"
               } rounded-full`}
             />
           ) : isLiked ? (
@@ -105,23 +104,18 @@ const ProductCard = ({
         </div>
 
         <div className="absolute top-[14%] -right-12 flex gap-2 flex-col group-hover:right-0 transition-all  text-lg">
-          <div className=" transition-all  rounded-full flex justify-center items-center hover:bg-orange-300 duration-300 w-7 h-7">
-            <MdZoomOutMap
-              // onClick={() => navigate("/product" + product?._id.toString())}
-              size={20}
-              color="#333"
-              title="Quick view"
-            />
+          <div className=" transition-all  rounded-full flex justify-center items-center duration-300 w-7 h-7">
+            <MdZoomOutMap size={20} color="#333" title="Quick view" />
           </div>
         </div>
       </div>
       <div className="px-4 py-2">
-        <h3 className="hover:text-orange-800 text-xs capitalize text-orange-700 hover:cursor-default">
+        <h3 className="font-medium text-xs capitalize text-blue-600 cursor-default">
           {brand}
         </h3>
         <Link
           to={`/product/${_id}`}
-          className="my-2 md:text-base text-sm  text-slate-800 font-medium line-clamp-2 hover:underline"
+          className="my-2 text-sm  text-gray-600 font-medium line-clamp-2 hover:underline min-h-8"
         >
           {title}
         </Link>
@@ -129,7 +123,7 @@ const ProductCard = ({
           <div className="flex gap-4">
             <div className="font-semibold md:text-base text-sm">{price}$</div>
           </div>
-          <div className="text-orange-700 font-medium md:text-sm text-xs">
+          <div className="text-blue-500 font-medium md:text-sm text-xs">
             {sold} Sold
           </div>
         </div>

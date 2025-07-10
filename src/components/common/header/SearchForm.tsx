@@ -30,11 +30,11 @@ const SearchForm = () => {
         type="text"
         placeholder="Search Product Here ..."
         value={search}
-        className="py-2 px-4 rounded-md rounded-r-none text-slate-800 bg-gray-50 ml-12 focus:outline-none w-full text-sm font-semibold h-9"
+        className="py-2 px-4 rounded-md rounded-r-none text-gray-500 bg-blue-50 ml-12 focus:outline-none w-full text-sm h-9"
         onChange={(e) => setSearch(e.target.value)}
       />
-      <button className="bg-orange-400 h-9 w-14 flex justify-center items-center rounded-r-md hover:bg-orange-300 cursor-pointer">
-        <CiSearch className="!text-slate-800 text-lg" />
+      <button className="bg-blue-50 !text-blue-500 hover:text-blue-600 h-9 w-14 flex justify-center items-center rounded-r-md  cursor-pointer">
+        <CiSearch className="" size={23} />
       </button>
     </form>
   );

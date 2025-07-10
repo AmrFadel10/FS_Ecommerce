@@ -6,7 +6,7 @@ const CartList = ({ products }: { products: TProductCart[] }) => {
     <>
       <table className=" text-left my-12 w-full select-none">
         <thead className="text-xl border-b">
-          <tr className="text-gray-500 flex">
+          <tr className="text-blue-600 flex">
             <th className="p-4  flex-[3]">PRODUCT</th>
             <th className="p-4 flex-1">PRICE</th>
             <th className="p-4 flex-1">QUANTITY</th>

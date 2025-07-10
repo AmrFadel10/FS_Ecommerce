@@ -1,12 +1,16 @@
-import { logout } from "@redux/auth/slices/AuthSlice";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
+//React & Redux
 import { useEffect, useState } from "react";
-import { CgLogOut } from "react-icons/cg";
-import { CiUser } from "react-icons/ci";
-import { FaRegUser } from "react-icons/fa6";
-import { MdLocationOn } from "react-icons/md";
-import { TbListCheck } from "react-icons/tb";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { logout } from "@redux/auth/slices/AuthSlice";
+
+//Icons
+import { BiUser } from "react-icons/bi";
+import { CgLogOut } from "react-icons/cg";
+import { FaRegUser } from "react-icons/fa6";
+import { LuUserRound } from "react-icons/lu";
+import { TbListCheck } from "react-icons/tb";
+import { IoLocationOutline } from "react-icons/io5";
 
 const UserIcon = () => {
   const dispatch = useAppDispatch();
@@ -24,25 +28,21 @@ const UserIcon = () => {
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
-
   return (
     <>
       {user ? (
         <div
-          className="flex items-center  gap-1 hover:text-slate-200 text-slate-50 group cursor-pointer relative"
+          className="flex items-center  gap-1 group cursor-pointer relative"
           onClick={() => setOpen((pre) => !pre)}
         >
-          <div className="w-8 h-8 rounded-md">
-            <img
-              src={user.avatar?.url}
-              className="group-hover:opacity-90 transition-all  rounded-md h-full w-full object-cover"
-            />
-          </div>
-          <div className="font-normal text-sm lg:block hidden">
-            <span className="capitalize">{user.fullName}</span>
-            <br />
-            <span className="text-xs px-2 py-3 border-b border-b-slate-800 font-medium text-slate-300">
-              {user.email}
+          <div
+            className={` rounded-md flex justify-center items-center gap-x-2`}
+          >
+            <span className="group-hover:opacity-90 transition-all text-blue-600">
+              <BiUser size={25} />
+            </span>
+            <span className="capitalize text-gray-600 text-sm font-medium">
+              {user.fullName}
             </span>
           </div>
           <ul
@@ -53,34 +53,34 @@ const UserIcon = () => {
             <NavLink
               to={"/profile"}
               end
-              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-1"
+              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-2"
               onClick={() => setOpen(false)}
             >
-              <FaRegUser size={18} />
+              <FaRegUser size={18} color="#2563EB" />
               Profile
             </NavLink>
             <NavLink
               to={"/profile/address"}
               end
-              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-1"
+              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-2"
               onClick={() => setOpen(false)}
             >
-              <MdLocationOn size={18} /> Address
+              <IoLocationOutline size={18} color="#2563EB" /> Address
             </NavLink>
             <NavLink
               to={"/profile/orders"}
               end
-              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-1"
+              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-2"
               onClick={() => setOpen(false)}
             >
-              <TbListCheck size={18} />
+              <TbListCheck size={18} color="#2563EB" />
               Orders
             </NavLink>
             <button
               onClick={handleLogout}
-              className=" px-3 py-2  hover:pl-4  transition-all text-left border-t-slate-300 cursor-pointer border-t flex gap-x-1"
+              className=" px-3 py-2  hover:pl-4  transition-all text-left border-t-slate-300 cursor-pointer border-t flex gap-x-2"
             >
-              <CgLogOut size={18} />
+              <CgLogOut size={18} color="#2563EB" />
               Logout
             </button>
           </ul>
@@ -88,17 +88,14 @@ const UserIcon = () => {
       ) : (
         <Link
           to="/login"
-          className="flex items-center  gap-1 hover:text-slate-50 group"
+          className="flex items-center  gap-x-2  group text-gray-700 font-medium justify-center"
         >
-          <CiUser
-            size={32}
+          <LuUserRound
+            size={25}
             className="group-hover:rotate-y-360 transition-all duration-700"
+            color="#2563EB"
           />
-          <div className="font-normal text-xs lg:block hidden">
-            Login
-            <br />
-            Account
-          </div>
+          <div className=" text-xs lg:block hidden">Sign In / Sign Up</div>
         </Link>
       )}
     </>

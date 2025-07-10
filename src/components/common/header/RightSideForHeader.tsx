@@ -1,10 +1,15 @@
-import { addToast } from "@redux/toast/slices/ToastSlice";
+//React & Redux
 import type { MouseEvent } from "react";
-import UserIcon from "./UserIcon";
 import { Link } from "react-router-dom";
+import { addToast } from "@redux/toast/slices/ToastSlice";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { PiHeartStraightLight } from "react-icons/pi";
+
+//Components
+import UserIcon from "./UserIcon";
 import CartIcon from "./cartIcon/CartIcon";
+
+//Icons
+import { FiHeart } from "react-icons/fi";
 
 const RightSideForHeader = () => {
   const dispatch = useAppDispatch();
@@ -27,8 +32,9 @@ const RightSideForHeader = () => {
           }
         }}
       >
-        <PiHeartStraightLight
-          size={32}
+        <FiHeart
+          color="#2563EB"
+          size={23}
           className="group-hover:rotate-y-360 transition-all duration-700"
         />
       </Link>

@@ -33,7 +33,7 @@ const PriceInfo = () => {
   const handleCouponDiscount = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDiscount(0);
-    if (loading === "pending") return;
+    if (loading === "pending" || couponInput.length === 0) return;
     const schema = couponValidation.safeParse({ name: couponInput });
     if (!schema.success) {
       setErrorInput(schema.error.errors[0].message);
@@ -66,7 +66,7 @@ const PriceInfo = () => {
               key={index}
             >
               <div className="relative border border-gray-300 rounded-md flex-1">
-                <div className="w-5 h-5 flex items-center justify-center bg-orange-400 rounded-full absolute top-0 text-gray-900 -translate-y-1/2 translate-x-1/2 right-0 text-xs font-bold">
+                <div className="w-5 h-5 flex items-center justify-center bg-blue-600 rounded-full absolute top-0 text-gray-50 -translate-y-1/2 translate-x-1/2 right-0 text-xs font-bold">
                   {item.quantity}
                 </div>
                 <div className="rounded-md w-14 h-14 object-contain">
@@ -147,11 +147,11 @@ const PriceInfo = () => {
         )}
         <button
           disabled={loading === "pending"}
-          className="bg-orange-400 w-fit py-2 px-4 text-gray-50 rounded-md hover:bg-orange-500 flex cursor-pointer"
+          className="bg-blue-600 w-fit py-2 px-4 text-gray-50 rounded-md hover:bg-blue-700 flex cursor-pointer"
         >
           {loading === "pending" ? (
             <>
-              <Spinner size={15} color="black" />
+              <Spinner size={15} />
               Loading...
             </>
           ) : (

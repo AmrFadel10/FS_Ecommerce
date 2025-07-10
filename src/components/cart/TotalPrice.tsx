@@ -10,23 +10,21 @@ const TotalPrice = ({ subtotalPrice }: { subtotalPrice: number }) => {
       <div className="flex flex-col gap-y-4 flex-1">
         <Link
           className={
-            "bg-slate-800 text-slate-100 py-2 px-8 block w-fit rounded-full hover:bg-slate-950 "
+            "bg-blue-600 text-sm font-medium text-blue-50 py-2 px-4 block w-fit rounded-full hover:bg-blue-700 "
           }
           to={"/products"}
         >
           Continue shopping
         </Link>
-        <p className="text-sm font-medium text-gray-500">
+        <p className="text-sm font-medium text-gray-600">
           Order special instructor
         </p>
       </div>
       <div className="flex flex-col gap-y-2 py-5 flex-1">
         <div className="flex justify-between gap-y-4">
           <div className="flex gap-2 items-center ml-auto">
-            <span className="text-2xl text-gray-500 font-semibold">
-              Subtotal:
-            </span>
-            <span className="font-semibold text-xl text-gray-600">
+            <span className="text-lg text-gray-600 font-medium">Subtotal:</span>
+            <span className="font-medium text-lg text-gray-600">
               $ {subtotalPrice}
             </span>
           </div>
@@ -46,7 +44,7 @@ const TotalPrice = ({ subtotalPrice }: { subtotalPrice: number }) => {
             }
           }}
           className={
-            "bg-slate-800 text-slate-100 py-2 px-6 block text-center rounded-full hover:bg-slate-950 ml-auto my-6 "
+            "font-medium text-sm bg-blue-600 text-blue-50 py-2 px-4 block text-center rounded-full hover:bg-blue-700 ml-auto my-6 "
           }
         >
           Check out

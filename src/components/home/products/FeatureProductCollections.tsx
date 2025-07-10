@@ -11,6 +11,7 @@ import ProductsList from "./ProductsList";
 import Empty from "@components/common/Empty";
 import Loading from "@feedback/loading/Loading";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Heading from "@components/common/Heading";
 
 const FeatureProductCollections = ({
   where,
@@ -32,7 +33,7 @@ const FeatureProductCollections = ({
 
   useEffect(() => {
     const productsApi = dispatch(
-      getproductsApiCall({ limit: limit!, page: 1 })
+      getproductsApiCall({ limit: limit!, page: "1" })
     );
     return () => {
       productsApi.abort();
@@ -51,9 +52,8 @@ const FeatureProductCollections = ({
   return (
     <section>
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold mb-8">
-          {where === "private" ? "You may also like" : "Featured Collection:"}
-        </h3>
+        <Heading title="Featured Collection" />
+
         <div className="flex gap-x-2">
           <span
             className="hover:cursor-pointer hover:text-slate-950 text-slate-500"

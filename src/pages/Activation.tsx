@@ -19,7 +19,7 @@ const Activation = () => {
       <div className="text-gray-700 text-2xl font-bold">
         {loading === "pending" ? (
           <div className="w-full h-40">
-            <Spinner size={60} color="black" />
+            <Spinner size={60} color="#2563eb" />
           </div>
         ) : loading === "failed" ? (
           <div className="flex flex-col gap-y-8 items-center w-full h-40">

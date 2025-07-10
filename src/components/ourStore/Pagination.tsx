@@ -14,8 +14,8 @@ const Pagination = () => {
         className={`${
           page == 1
             ? "cursor-no-drop opacity-65"
-            : "hover:bg-slate-950 hover:text-slate-50 cursor-pointer"
-        } border border-slate-400 rounded-md py-[2px] px-3  bg-white transition`}
+            : "hover:bg-blue-700 hover:text-gray-50 cursor-pointer"
+        } border border-gray-400 rounded-md py-[2px] px-3  bg-white transition`}
         onClick={() => {
           if (page && !isNaN(+page)) {
             if (+page <= 1) {
@@ -35,9 +35,9 @@ const Pagination = () => {
             key={index}
             className={`${
               page == index + 1
-                ? "bg-slate-950 text-slate-50"
-                : "hover:bg-slate-950 hover:text-slate-50 bg-white"
-            } border border-slate-400 rounded-md py-[2px] px-3   transition hover:cursor-pointer`}
+                ? "bg-blue-600 text-gray-50"
+                : "hover:bg-blue-700 hover:text-gray-50 bg-white"
+            } border border-gray-400 rounded-md py-[2px] px-3   transition hover:cursor-pointer`}
             onClick={() => {
               query.set("page", `${index + 1}`);
               setQuery(query);
@@ -52,8 +52,8 @@ const Pagination = () => {
         className={`${
           +page == lastPage
             ? "cursor-no-drop opacity-65"
-            : "hover:bg-slate-950 hover:text-slate-50 cursor-pointer"
-        } border border-slate-400 rounded-md py-[2px] px-3  bg-white transition `}
+            : "hover:bg-blue-700 hover:text-gray-50 cursor-pointer"
+        } border border-gray-400 rounded-md py-[2px] px-3  bg-white transition `}
         onClick={() => {
           if (page && !isNaN(+page)) {
             if (+page >= lastPage) {

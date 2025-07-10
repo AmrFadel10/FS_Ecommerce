@@ -37,7 +37,7 @@ const Signup = lazy(() => import("@pages/Signup"));
 const Login = lazy(() => import("@pages/Login"));
 const Checkout = lazy(() => import("@pages/Checkout"));
 const OrderStatus = lazy(() => import("@pages/OrderStatus"));
-import UpdateInfo from "@pages/UpdateInfo";
+import AccountInfo from "@pages/AccountInfo";
 import Orders from "@pages/Orders";
 import Blog from "@pages/Blog";
 import Addresses from "@pages/Addresses";
@@ -221,7 +221,7 @@ const AppRoute = () => {
             <Navigate to={"/"} />
           ),
           children: [
-            { index: true, element: <UpdateInfo /> },
+            { index: true, element: <AccountInfo /> },
             { path: "orders", element: <Orders /> },
             { path: "address", element: <Addresses /> },
           ],

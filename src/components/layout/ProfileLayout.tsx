@@ -5,12 +5,12 @@ import { NavLink, Outlet } from "react-router-dom";
 const ProfileLayout = () => {
   return (
     <section className="flex py-12 ">
-      <div className="flex-1 flex flex-col border-r border-slate-300  p-2  font-medium text-sm change-color ">
+      <div className="flex-1 min-w-60 flex flex-col border-r border-blue-200  p-2  font-medium text-sm change-color ">
         <NavLink
           to={"/profile"}
           end
           className={
-            "flex gap-x-2 px-4 py-2 rounded-md hover:bg-slate-800 hover:text-slate-50 transition-all"
+            "flex gap-x-2 px-4 py-2 rounded-md hover:text-blue-600 transition-all"
           }
         >
           <FaRegUser size={18} />
@@ -20,7 +20,7 @@ const ProfileLayout = () => {
           to={"/profile/address"}
           end
           className={
-            "flex gap-x-2 px-4 py-2 rounded-md hover:bg-slate-800 hover:text-slate-50 transition-all"
+            "flex gap-x-2 px-4 py-2 rounded-md hover:text-blue-600 transition-all"
           }
         >
           <TbListCheck size={18} />
@@ -30,7 +30,7 @@ const ProfileLayout = () => {
           to={"/profile/orders"}
           end
           className={
-            "flex gap-x-2 px-4 py-2 rounded-md hover:bg-slate-800 hover:text-slate-50 transition-all"
+            "flex gap-x-2 px-4 py-2 rounded-md hover:text-blue-600 transition-all"
           }
         >
           <TbListCheck size={18} />

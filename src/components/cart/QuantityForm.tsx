@@ -53,7 +53,7 @@ const QuantityForm = ({ count, _id, color }: TQuantityForm) => {
             size={4}
             className={`w-3 h-3 text-center border-gray-400 border ${
               count >= 10 || isClicked
-                ? " bg-gray-50"
+                ? " bg-blue-50"
                 : "cursor-pointer hover:bg-gray-300 bg-gray-200"
             } `}
             onClick={increaseQuantity}
@@ -62,7 +62,7 @@ const QuantityForm = ({ count, _id, color }: TQuantityForm) => {
             size={4}
             className={`w-3 h-3 text-center   border-gray-400 border ${
               count <= 0 || isClicked
-                ? " bg-gray-50"
+                ? " bg-blue-50"
                 : "cursor-pointer hover:bg-gray-300 bg-gray-200"
             }`}
             onClick={decreaseQuantity}

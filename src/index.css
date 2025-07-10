@@ -44,11 +44,11 @@ body {
 }
 
 .change-color > a.active {
-  @apply bg-slate-950 text-slate-50;
+  @apply bg-blue-600 text-slate-50;
 }
 
 .user-icons > a.active {
-  @apply bg-slate-200 text-slate-950;
+  @apply bg-blue-50 text-slate-950;
 }
 
 .hide-scrollbar {
@@ -66,14 +66,14 @@ body {
   left: 50%;
   transform: translateX(-50%);
   height: 4px;
-  background-color: orange;
+  background-color: #2563eb;
   width: 0%;
   transition: all 300ms ease-in-out;
 }
 
 .popular-ctagory-liks:hover,
 .popular-ctagory-liks.active {
-  color: orange;
+  color: #2563eb;
 }
 
 .popular-ctagory-liks.active::after,

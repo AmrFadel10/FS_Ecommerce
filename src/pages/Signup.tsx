@@ -10,8 +10,6 @@ import { Link } from "react-router-dom";
 
 //icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { IoCameraOutline } from "react-icons/io5";
-import { LuUserRound } from "react-icons/lu";
 
 // Redux && APIS
 import { SignupValidation } from "@utils/validations/authValidation";
@@ -32,13 +30,12 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
-  const [, setRender] = useState(true);
   const dataRef = useRef<TSignup>({
     fullName: "",
+    mobile: "",
     password: "",
     confirmPassword: "",
     email: "",
-    image: null as File | null,
   });
 
   useEffect(() => {
@@ -48,13 +45,9 @@ const Signup = () => {
   }, [dispatch]);
 
   const handleInputData = (e: ChangeEvent<HTMLInputElement>) => {
-    const { files, name, value } = e.target;
-    if (files?.[0]) {
-      dataRef.current.image = files[0];
-      setRender((pre) => !pre);
-    } else {
-      dataRef.current[name as keyof Omit<TSignup, "image">] = value;
-    }
+    const { name, value } = e.target;
+
+    dataRef.current[name as keyof TSignup] = value;
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -73,15 +66,11 @@ const Signup = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.set("fullName", dataRef.current.fullName);
-    formData.set("password", dataRef.current.password);
-    formData.set("email", dataRef.current.email);
-    formData.set("image", dataRef.current.image as File);
-
-    dispatch(SignupApiCall(formData))
+    dispatch(SignupApiCall(dataRef.current))
       .unwrap()
-      .then((res) => dispatch(addToast({ type: "info", comment: res.message })))
+      .then((res) => {
+        dispatch(addToast({ type: "info", comment: res.message }));
+      })
       .catch((error) => dispatch(addToast({ type: "error", comment: error })));
   };
 
@@ -94,43 +83,11 @@ const Signup = () => {
   };
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-3">
-      <h2 className="text-3xl font-extrabold text-gray-800 font-Roboto">
+      <h2 className="text-3xl font-extrabold text-blue-600 font-Roboto">
         Register as a new user
       </h2>
       <div className="bg-white w-full max-w-md shadow rounded-xl py-6 md:px-8 px-6 mt-8">
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <div className="text-center mb-8">
-            <label
-              htmlFor="image"
-              className=" relative rounded-full  cursor-pointer w-24 h-24 bg-gray-100 flex  items-center justify-center  mx-auto"
-            >
-              {dataRef.current.image ? (
-                <img
-                  alt="avatar"
-                  src={URL.createObjectURL(dataRef.current.image)}
-                  className="w-full h-full rounded-full"
-                />
-              ) : (
-                <LuUserRound size={60} color="gray" />
-              )}
-              <span className="absolute right-0 top-[75%] hover:bg-gray-950 bg-gray-800 rounded-full w-8 h-8 flex justify-center items-center">
-                <IoCameraOutline size={18} color="white" />
-              </span>
-              <input
-                type="file"
-                id="image"
-                accept="image/png, image/jpeg, image/jpg, image/webp"
-                className="sr-only"
-                onFocus={() => handleClearError("image")}
-                onChange={handleInputData}
-              />
-            </label>
-            {formErrors["image"] && (
-              <p className="text-[11px] font-medium text-red-600 mt-2">
-                {formErrors["image"]}
-              </p>
-            )}
-          </div>
           <div className="flex flex-col ">
             <label
               htmlFor="fullName"
@@ -180,6 +137,32 @@ const Signup = () => {
             {formErrors["email"] && (
               <p className="text-[11px] font-medium text-red-600 mt-2">
                 {formErrors["email"]}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col ">
+            <label
+              htmlFor="mobile"
+              className="text-gray-600 text-sm font-semibold "
+            >
+              Mobile:
+            </label>
+            <input
+              type="text"
+              id="mobile"
+              name="mobile"
+              onChange={handleInputData}
+              onFocus={() => handleClearError("mobile")}
+              className={`${
+                formErrors["mobile"]
+                  ? "ring-1 ring-red-400 border-red-400"
+                  : "focus:ring-1 ring-blue-400 focus:border-blue-400"
+              } focus:outline-none focus:border-blue-300 shadow-sm border border-gray-400 rounded-md py-2 px-3 text-sm w-full placeholder-gray-500 appearance-none `}
+              autoComplete="mobile"
+            />
+            {formErrors["mobile"] && (
+              <p className="text-[11px] font-medium text-red-600 mt-2">
+                {formErrors["mobile"]}
               </p>
             )}
           </div>
@@ -264,7 +247,7 @@ const Signup = () => {
           <button
             type="submit"
             disabled={loading === "pending"}
-            className={`h-[40px] flex items-center justify-center gap-x-2 text-white font-semibold bg-gray-800 w-full rounded-md  hover:bg-gray-950 ${
+            className={`h-[40px] flex items-center justify-center gap-x-2 text-white font-semibold bg-blue-600 w-full rounded-md  hover:bg-blue-700 ${
               loading === "pending"
                 ? "pointer-events-none cursor-not-allowed"
                 : "cursor-pointer"
@@ -272,7 +255,7 @@ const Signup = () => {
           >
             {loading === "pending" ? (
               <>
-                <Spinner size={18} color="white" /> Loading...
+                <Spinner size={18} /> Loading...
               </>
             ) : (
               <span>Submit</span>
@@ -282,7 +265,7 @@ const Signup = () => {
             <h4 className="text-gray-400">Already have an account?</h4>
             <Link
               to={"/login"}
-              className="text-gray-800 hover:underline hover:text-gray-950 font-medium"
+              className="text-blue-600 hover:underline hover:text-blue-700 font-medium"
             >
               Login
             </Link>

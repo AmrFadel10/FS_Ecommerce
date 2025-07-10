@@ -26,7 +26,7 @@ export default function Contact() {
             <div className="w-full">
               <input
                 type="text"
-                className={`p-3 bg-gray-100 text-gray-700 focus:outline-none w-full `}
+                className={`p-3 bg-blue-50 text-gray-700 focus:outline-none w-full `}
                 placeholder="Enter your Name..."
                 name="name"
               />
@@ -34,7 +34,7 @@ export default function Contact() {
             <div className="w-full">
               <input
                 type="text"
-                className={`p-3 bg-gray-100 text-gray-700 focus:outline-none w-full `}
+                className={`p-3 bg-blue-50 text-gray-700 focus:outline-none w-full `}
                 placeholder="Enter your Email..."
                 name="email"
               />
@@ -42,7 +42,7 @@ export default function Contact() {
             <div className="w-full">
               <input
                 type="text"
-                className={`p-3 bg-gray-100 text-gray-700 focus:outline-none w-full `}
+                className={`p-3 bg-blue-50 text-gray-700 focus:outline-none w-full `}
                 placeholder="Enter your Mobile..."
                 name="mobile"
               />
@@ -50,12 +50,12 @@ export default function Contact() {
             <div className="">
               <textarea
                 name="comment"
-                className={`p-3 bg-gray-100 text-gray-700 focus:outline-none resize-none h-32 w-full `}
+                className={`p-3 bg-blue-50 text-gray-700 focus:outline-none resize-none h-32 w-full `}
                 placeholder="Enter your comment..."
               ></textarea>
             </div>
 
-            <button className="hover:bg-orange-300 hover:text-slate-800 bg-slate-800 text-slate-200 px-8 py-3 mt-5 rounded-full w-fit transition-all">
+            <button className="hover:bg-blue-700 bg-blue-600   bg-gray-10 text-gray-50 px-8 py-3 mt-5 rounded-full w-fit transition-all cursor-pointer">
               Send
             </button>
           </form>

@@ -12,6 +12,7 @@ import Loading from "@feedback/loading/Loading";
 import type { TLoading } from "@customeTypes/common";
 import type { TProduct } from "@customeTypes/products";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import Heading from "@components/common/Heading";
 
 const PopularProductCollections = ({
   where,
@@ -66,7 +67,7 @@ const PopularProductCollections = ({
       <div className="flex justify-between items-center ">
         <div>
           <div>
-            <h3 className="text-xl font-semibold mb-4">Popular Collection:</h3>
+            <Heading title="Popular Collection" />
             <p className="text-gray-400 text-sm">{`Do not miss the current offers until the end of ${new Date().toLocaleString(
               "en-us",
               { month: "long" }
@@ -80,7 +81,7 @@ const PopularProductCollections = ({
                 key={category._id}
                 className={`${
                   activeCategory === category.title ? "active" : ""
-                } popular-ctagory-liks uppercase  relative py-2 cursor-pointer `}
+                } popular-ctagory-liks uppercase  relative py-2 cursor-pointer text-sm`}
                 onClick={() => {
                   setActiveCategory(category.title);
                 }}
@@ -96,7 +97,7 @@ const PopularProductCollections = ({
           <div className="overflow-x-scroll hide-scrollbar" ref={productRef}>
             <ProductsList products={homeProducts} where={where} />
             <div
-              className="absolute -left-10 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
+              className="absolute -left-6 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
               onClick={() => {
                 productRef.current?.scrollBy({
                   behavior: "smooth",
@@ -107,7 +108,7 @@ const PopularProductCollections = ({
               <GrPrevious size={26} />
             </div>
             <div
-              className="absolute -right-10 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
+              className="absolute -right-6 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
               onClick={() => {
                 productRef.current?.scrollBy({
                   behavior: "smooth",

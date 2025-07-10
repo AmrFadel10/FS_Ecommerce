@@ -53,7 +53,7 @@ const ProductForm = ({ color, _id }: { color: TColor[]; _id: string }) => {
             className={`${
               !selectedColor || !(+quantity > 0)
                 ? "cursor-no-drop bg-gray-300"
-                : "hover:bg-orange-300 hover:text-slate-800 cursor-pointer bg-slate-800 text-slate-200"
+                : "hover:bg-blue-600  cursor-pointer bg-blue-600 text-gray-50"
             }  px-4 py-2  rounded-full w-fit transition-all text-sm`}
             onClick={handleSubmit}
             disabled={!selectedColor || !(+quantity > 0)}

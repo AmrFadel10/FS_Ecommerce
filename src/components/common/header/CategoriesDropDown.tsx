@@ -18,13 +18,13 @@ const CategoriesDropDown = ({
     <ul
       className={`${
         showDropDown ? "max-h-[500px]" : "max-h-0"
-      } absolute top-full left-0 lg:w-60 w-36 divide-y transition-all duration-500 divide-[#3b4149] bg-[#131921]  rounded-b-lg overflow-hidden select-none`}
+      } absolute top-full left-0 lg:w-60 w-36 divide-y transition-all duration-500 divide-gray-200 bg-gray-50  rounded-b-lg overflow-hidden shadow-lg`}
     >
       {categories?.map((category, index) => {
         return (
           <div
             key={index}
-            className="pl-3 py-4 text-sm block font-normal capitalize text-slate-200  hover:pl-[18px] transition-all hover:text-orange-300 cursor-pointer"
+            className="pl-3 py-3 text-sm block font-medium capitalize text-gray-600  hover:pl-[18px] transition-all hover:text-blue-500 cursor-pointer"
             onClick={() => {
               setShowDropDown(false);
               navigate(`/products?category=${category.title}`);

@@ -22,7 +22,7 @@ const getproductsApiCall = createAsyncThunk(
       gte?: string | null;
       lte?: string | null;
       sr?: string | null;
-      page?: number | null;
+      page?: string | null;
     },
     thunkApi
   ) => {

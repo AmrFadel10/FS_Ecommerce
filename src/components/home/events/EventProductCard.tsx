@@ -10,10 +10,10 @@ export default function EventProductCard({ product }: { product: TProduct }) {
   return (
     <div className="rounded-3xl group shadow-sm bg-white flex overflow-hidden flex-col lg:flex-row ">
       <div className="relative overflow-hidden flex-1">
-        <div className=" transition-all duration-300 hover:bg-orange-300 rounded-full p-1 absolute top-[2%] right-3">
+        <div className=" transition-all duration-300 hover:text-blue-500 text-gray-50 rounded-full p-1 absolute top-[2%] right-3">
           {clickHeart ? (
             <AiFillHeart
-              className="transition-all hover:bg-orange-300 rounded-full cursor-pointer"
+              className="transition-all hover:text-blue-500 text-gray-50 rounded-full cursor-pointer"
               size={20}
               onClick={() => setClickHeart(!clickHeart)}
               color="black"
@@ -21,7 +21,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
             />
           ) : (
             <AiOutlineHeart
-              className="transition-all hover:bg-orange-300 rounded-full cursor-pointer"
+              className="transition-all hover:text-blue-500 text-gray-50 rounded-full cursor-pointer"
               size={20}
               onClick={() => setClickHeart(!clickHeart)}
               color="#333"
@@ -48,7 +48,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
           )}
         </div>
         <div className="absolute top-[12%] -right-6 flex gap-2 flex-col group-hover:right-3 transition-all  text-lg">
-          <div className=" transition-all hover:bg-orange-300 rounded-full p-1">
+          <div className=" transition-all hover:text-blue-500 text-gray-50 rounded-full p-1">
             <IoIosShuffle
               size={20}
               className="cursor-pointer"
@@ -56,7 +56,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
               title="Compare between"
             />
           </div>
-          <div className=" transition-all hover:bg-orange-300 rounded-full p-1 flex justify-center items-center">
+          <div className=" transition-all hover:text-blue-500 text-gray-50 rounded-full p-1 flex justify-center items-center">
             <AiOutlineEye
               className="cursor-pointer"
               size={20}
@@ -68,7 +68,7 @@ export default function EventProductCard({ product }: { product: TProduct }) {
         </div>
       </div>
       <div className="px-4 py-8 flex-1">
-        <div className="text-orange-700 font-medium text-xs my-4 ">brand</div>
+        <div className="text-blue-500 font-medium text-xs my-4 ">brand</div>
         <div className="my-2  text-md text-slate-900 font-medium line-clamp-2">
           {product.title}
         </div>

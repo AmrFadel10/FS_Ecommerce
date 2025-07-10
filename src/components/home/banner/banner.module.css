@@ -10,15 +10,12 @@
   opacity: 0;
 }
 .active {
-  transform: translateX(0%);
   z-index: 2;
   opacity: 1;
 }
 .next {
-  transform: translateX(100%);
   z-index: 1;
 }
 .prev {
-  transform: translateX(-100%);
   z-index: 1;
 }

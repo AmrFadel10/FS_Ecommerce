@@ -23,7 +23,7 @@ const ProductControlsPanel = memo(
           <p>Sort By:</p>
           <select
             name="sort"
-            className="bg-gray-50 md:p-2 p-1 rounded-lg focus:outline-none text-gray-400"
+            className="bg-blue-50 md:p-2 p-1 rounded-lg focus:outline-none text-gray-400"
             id="SortBy"
             onChange={handleSort}
           >
@@ -48,16 +48,16 @@ const ProductControlsPanel = memo(
         </div>
         <div className="flex items-center gap-3">
           <div className="md:flex gap-2 items-center hidden">
-            <div className=" text-xl p-2 rounded-md bg-gray-100 cursor-pointer font-bold">
+            <div className=" text-xl p-2 rounded-md bg-blue-50 cursor-pointer font-bold">
               <RxColumns />
             </div>
-            <div className="rotate-90 text-xl p-2 rounded-md bg-gray-100 cursor-pointer font-bold">
+            <div className="rotate-90 text-xl p-2 rounded-md bg-blue-50 cursor-pointer font-bold">
               <BsList />
             </div>
-            <div className="rotate-90 text-xl p-2 rounded-md bg-gray-100 cursor-pointer font-bold">
+            <div className="rotate-90 text-xl p-2 rounded-md bg-blue-50 cursor-pointer font-bold">
               <LuEqual />
             </div>
-            <div className=" text-xl p-2 rounded-md bg-gray-100 cursor-pointer font-bold">
+            <div className=" text-xl p-2 rounded-md bg-blue-50 cursor-pointer font-bold">
               <IoMdMenu />
             </div>
           </div>
