@@ -34,7 +34,7 @@ const Addresses = () => {
   }, [dispatch]);
 
   return (
-    <section className="flex-[7] min-h-[600px] pl-8 py-6 ">
+    <section className="flex-[7] min-h-[600px] pl-8  ">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-3xl font-bold text-blue-600">My Addresses</h2>

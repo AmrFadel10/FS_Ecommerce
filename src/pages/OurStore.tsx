@@ -134,7 +134,7 @@ export default function OurStore() {
           {ourStoreProducts.length && productLoading === "succeeded" ? (
             <>
               <ProductsList products={ourStoreProducts} />
-              <Pagination />
+              {products.length > 0 && <Pagination variable="products" />}
             </>
           ) : (
             <Empty />

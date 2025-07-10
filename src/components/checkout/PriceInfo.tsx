@@ -24,7 +24,7 @@ const PriceInfo = () => {
   const [errorInput, setErrorInput] = useState("");
   const products = useAppSelector(editProductToshowInCheckout);
   const { loading } = useAppSelector((state) => state.coupon);
-  const { shipping } = useAppSelector((state) => state.orders);
+  const { shipping } = useAppSelector((state) => state.order);
   const subtotalPrice = useAppSelector(countSubtotalPrice);
 
   // calculate total price

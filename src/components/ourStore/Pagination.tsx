@@ -1,8 +1,8 @@
 import { useAppSelector } from "@redux/hooks";
 import { useSearchParams } from "react-router-dom";
 
-const Pagination = () => {
-  const { count } = useAppSelector((state) => state.products);
+const Pagination = ({ variable }: { variable: "products" | "orders" }) => {
+  const { count } = useAppSelector((state) => state[variable]);
   const lastPage = Math.ceil(count! / 8);
   const [query, setQuery] = useSearchParams();
   const page = query.get("page") || 1;

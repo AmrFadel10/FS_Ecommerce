@@ -11,7 +11,7 @@ import { SuccessExplosion } from "@components/common/SuccessCheckmark";
 
 const OrderStatus = () => {
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.orders);
+  const { loading } = useAppSelector((state) => state.order);
 
   useEffect(() => {
     return () => {

@@ -1,79 +1,24 @@
 //React
-import { Link, useNavigate } from "react-router-dom";
-import {
-  useEffect,
-  useRef,
-  useState,
-  type ChangeEvent,
-  type FormEvent,
-} from "react";
-
-//APIS
-import { LoginApiCall } from "@redux/auth/apicalls/LoginApiCall";
-import { resetAuth } from "@redux/auth/slices/AuthSlice";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-
-//Validations
-import { loginValidation } from "@utils/validations/authValidation";
+import { Link } from "react-router-dom";
 
 //Icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 //components
 import { Spinner } from "@components/common/Spinner";
-import { addToast } from "@redux/toast/slices/ToastSlice";
+
+import useLogin from "./useLogin";
 
 const Login = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const { loading } = useAppSelector((state) => state.auth);
-  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
-  const [showPassword, setShowPassword] = useState(true);
-  const dataRef = useRef({ email: "", password: "" });
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetAuth());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (loading === "succeeded") {
-      navigate("/");
-    }
-  }, [loading, navigate]);
-
-  const handleInputData = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    dataRef.current[name as keyof { email: string }] = value;
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (loading === "pending") return;
-    setFormErrors({});
-
-    const schema = loginValidation.safeParse(dataRef.current);
-
-    if (!schema.success) {
-      const errors: { [key: string]: string } = {};
-      schema.error.errors.forEach((ele) => {
-        errors[ele.path[0]] = ele.message;
-      });
-      setFormErrors(errors);
-      return;
-    }
-    dispatch(LoginApiCall(dataRef.current))
-      .unwrap()
-      .catch((error) => dispatch(addToast({ type: "error", comment: error })));
-  };
-
-  const handleClearError = (error: string) => {
-    if (formErrors[error]) {
-      setFormErrors((pre) => ({ ...pre, [error]: "" }));
-    }
-  };
-
+  const {
+    handleSubmit,
+    handleInputData,
+    handleClearError,
+    formErrors,
+    showPassword,
+    setShowPassword,
+    loading,
+  } = useLogin();
   return (
     <div className="min-h-screen bg-blue-50 flex flex-col items-center justify-center px-3">
       <h2 className="text-3xl font-extrabold text-blue-600 font-Roboto">

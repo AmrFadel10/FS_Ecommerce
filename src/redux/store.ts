@@ -14,13 +14,15 @@ import brands from "./brands/slices/BrandsSlice";
 import addresses from "./address/slices/AddressesSlice";
 import AnAddress from "./address/slices/AnAddressSlice";
 import coupon from "./coupon/slices/CouponSlice";
-import orders from "./orders/slices/OrderSlice";
+import order from "./orders/slices/OrderSlice";
+import orders from "./orders/slices/OrdersSlice";
 
 const store = configureStore({
   reducer: {
     auth,
     brands,
     coupon,
+    order,
     orders,
     addresses,
     AnAddress,

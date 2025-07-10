@@ -25,7 +25,7 @@ const CashOnDeliveryBtn = ({
     loading: orderLoading,
     totalPrice,
     shipping,
-  } = useAppSelector((state) => state.orders);
+  } = useAppSelector((state) => state.order);
 
   const handleCashOnDelivery = () => {
     if (!selectAddress) {

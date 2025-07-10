@@ -4,6 +4,7 @@ import type { TLoading } from "./common";
 import type { TProduct } from "./products";
 
 export type TOrder = {
+  _id: string;
   user: TUser;
   address: TAddress;
   orderItems: {
@@ -31,11 +32,18 @@ export type TInputsOrder = {
   totalPrice: number;
   totalPriceAfterDiscount: number;
 };
-
+//intial state for order
 export type TOrderIntialState = {
   loading: TLoading;
   error: string | null;
   totalPrice: number;
   shipping: number;
   order: TOrder | null;
+};
+//Initial state for orders
+export type TOrderSIntialState = {
+  loading: TLoading;
+  error: string | null;
+  orders: TOrder[];
+  count: number | null;
 };
