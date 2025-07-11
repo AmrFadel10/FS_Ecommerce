@@ -56,7 +56,7 @@ const LatestPorductsCollection = ({
     };
   });
   return (
-    <section>
+    <section className="">
       <div className="flex justify-between items-center">
         <Heading title="Latest Collection" />
         <div className="flex gap-x-2">

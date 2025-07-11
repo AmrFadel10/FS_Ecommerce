@@ -1,7 +1,7 @@
 const SponsoredFeatures = () => {
   return (
-    <section className={`bg-white py-6 px-4  rounded-xl  shadow-sm`}>
-      <div className="justify-between items-center w-full  flex gap-8">
+    <section className={`bg-white py-6  rounded-xl  shadow-sm `}>
+      <div className="justify-between items-center w-full  flex gap-8  overflow-x-auto hide-scrollbar">
         <img
           loading="lazy"
           src="/assets/images/sponsored/canon.webp"

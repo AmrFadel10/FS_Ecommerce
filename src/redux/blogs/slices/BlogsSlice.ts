@@ -12,7 +12,7 @@ const blogsSlice = createSlice({
   name: "blogs",
   initialState,
   reducers: {
-    cleanUpBlog: (state) => {
+    cleanUpBlogs: (state) => {
       state.loading = "idle";
       state.error = null;
       state.blogs = [];
@@ -35,5 +35,5 @@ const blogsSlice = createSlice({
   },
 });
 
-export const { cleanUpBlog } = blogsSlice.actions;
+export const { cleanUpBlogs } = blogsSlice.actions;
 export default blogsSlice.reducer;

@@ -17,7 +17,7 @@ const ToastItem = ({ title, type, comment, id, color }: TToast) => {
   const [pauseWhenHover, setPauseWhenHover] = useState(false);
 
   const width = 300;
-  const duration = 8000;
+  const duration = 10000;
   const pixelPerUnite = duration / width;
 
   const handleRemoveToast = useCallback(() => {

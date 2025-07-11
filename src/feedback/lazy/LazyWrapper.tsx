@@ -36,14 +36,17 @@ const LazyWrapper = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "250px 0px" }
+      { threshold: 0.1, rootMargin: "200px 0px" }
     );
     observer.observe(ref.current);
   }, [isVisible]);
-  const Skelton = loadingComponents[type];
+  const Skeleton = loadingComponents[type];
   return (
-    <div ref={ref}>
-      {!!isVisible && <Suspense fallback={Skelton}>{children}</Suspense>}
+    <div
+      ref={ref}
+      className={`${isVisible ? "" : "xl:min-h-36 min-h-[1080px] "}`}
+    >
+      <Suspense fallback={Skeleton}>{isVisible ? children : null}</Suspense>
     </div>
   );
 };

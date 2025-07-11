@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 //Components
-const LazyWrapper = lazy(() => import("@feedback/lazy/LazyWrapper"));
+import LazyWrapper from "@feedback/lazy/LazyWrapper";
 const PopularProductCollections = lazy(
   () => import("@components/home/products/PopularProductsCollection")
 );

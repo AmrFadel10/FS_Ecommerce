@@ -2,12 +2,10 @@ import ImageIcon from "@assets/svg/ImageIcon";
 
 const ProductSkeletonIcon = () => {
   return (
-    <div
-      className={`rounded-2xl overflow-hidden group shadow-lg bg-white py-2`}
-    >
+    <div className={`  rounded-2xl  group shadow-md bg-white p-2 `}>
       <div className=" relative overflow-hidden">
-        <div className="overflow-auto w-full md:h-64 h-36  bg-gray-300  rounded-lg flex justify-center items-center">
-          <ImageIcon size={20} />
+        <div className="overflow-auto w-full md:h-52 h-36  bg-gray-300  rounded-lg flex justify-center items-center min-w-56">
+          <ImageIcon size={28} />
         </div>
       </div>
       <div className="p-4">

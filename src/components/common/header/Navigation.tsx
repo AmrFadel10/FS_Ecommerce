@@ -23,8 +23,8 @@ const Navigation = () => {
   }, [dispatch]);
 
   return (
-    <nav className="bg-gray-50  sticky left-0 top-0 z-[21] transition-all border-y border-blue-200 py-3">
-      <ul className="flex lg:gap-6 md:gap-3 gap-x-1  items-center justify-center w-fit mx-auto container text-sm">
+    <nav className="bg-gray-50  lg:sticky lg:left-0 lg:top-0 z-[21] transition-all border-y border-blue-200 py-3 overflow-x-auto hide-scrollbar ">
+      <ul className="flex lg:gap-x-6 md:gap-x-3 gap-x-1  lg:items-center lg:justify-center w-full lg:mx-auto container text-sm ">
         {navigationData.map((nav, index) => {
           return (
             <Link
@@ -41,7 +41,7 @@ const Navigation = () => {
             <Link
               to={`/products?category=${category.title}`}
               key={index}
-              className="px-5 py-2 font-medium hover:text-gray-50 text-gray-600 bg-blue-50 rounded-full hover:bg-blue-600 text-s transition-all capitalize block"
+              className="px-5 py-2 font-medium hover:text-gray-50 text-gray-600 bg-blue-50 rounded-full hover:bg-blue-600 md:text-sm text-xs transition-all capitalize block"
             >
               {category.title}
             </Link>

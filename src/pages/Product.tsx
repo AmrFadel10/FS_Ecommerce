@@ -33,7 +33,7 @@ export default function Product() {
   if (aproduct) {
     return (
       <Loading error={error} status={loading} type="productPage">
-        <section className="mb-36 min-h-screen">
+        <section className="mb-36 min-h-screen ">
           <div className="flex my-8 gap-x-8 flex-col md:flex-row ">
             <ImageProductPage images={aproduct.images} />
             <RightSideProductPage {...aproduct} />

@@ -1,12 +1,22 @@
+//React && Redux
 import { useCallback, useEffect, useState } from "react";
-import { MdAdd } from "react-icons/md";
-import { useAppDispatch } from "@redux/hooks";
-import { getAddressesApiCall } from "@redux/address/apiCalls/getAddressesApiCall";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { cleanUpAddresses } from "@redux/address/slices/AddressesSlice";
-import AddressForm from "@components/address/AddressForm";
-import type { TAddress } from "@customeTypes/address";
 import { cleanUpAddress } from "@redux/address/slices/AnAddressSlice";
+
+//Types
+import type { TAddress } from "@customeTypes/address";
+
+//APIS
+import { getAddressesApiCall } from "@redux/address/apiCalls/getAddressesApiCall";
+
+//Icons
+import { MdAdd } from "react-icons/md";
+
+//Components
+import AddressForm from "@components/address/AddressForm";
 import AddressList from "@components/address/AddressList";
+import Loading from "@feedback/loading/Loading";
 
 const Addresses = () => {
   const [addAddress, setAddAddress] = useState(false);
@@ -14,7 +24,7 @@ const Addresses = () => {
   const [addressForUpdate, setAddressForUpdate] = useState<TAddress | null>(
     null
   );
-
+  const { error, loading } = useAppSelector((state) => state.addresses);
   const handleCloseForm = useCallback(() => {
     setAddressForUpdate(null);
     setAddAddress(false);
@@ -34,33 +44,37 @@ const Addresses = () => {
   }, [dispatch]);
 
   return (
-    <section className="flex-[7] min-h-[600px] pl-8  ">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-blue-600">My Addresses</h2>
-        <button
-          onClick={() => setAddAddress(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-3 py-2 rounded-md flex items-center gap-2 shadow-md cursor-pointer"
-        >
-          <MdAdd size={22} />
-          Add New Address
-        </button>
-      </div>
-
-      {/* Address List */}
-
-      <AddressList handleOpenFormForUpdate={handleOpenFormForUpdate} />
-
-      {/* Address Form */}
-      {addAddress ? (
-        <div className="mt-10">
-          <AddressForm
-            handleCloseForm={handleCloseForm}
-            addressForUpdate={addressForUpdate}
-          />
+    <Loading status={loading} error={error} type="address">
+      <section className="flex-[7] min-h-[600px] lg:pl-8  px-4">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="lg:text-3xl text-xl font-bold text-blue-600">
+            My Addresses
+          </h2>
+          <button
+            onClick={() => setAddAddress(true)}
+            className="bg-blue-600 hover:bg-blue-700 text-white text-sm lg:px-3 lg:py-2 p-1 rounded-md flex items-center gap-2 shadow-md cursor-pointer"
+          >
+            <MdAdd size={20} />
+            <span className="lg:inline-block hidden">Add New Address</span>
+          </button>
         </div>
-      ) : null}
-    </section>
+
+        {/* Address List */}
+
+        <AddressList handleOpenFormForUpdate={handleOpenFormForUpdate} />
+
+        {/* Address Form */}
+        {addAddress ? (
+          <div className="mt-10">
+            <AddressForm
+              handleCloseForm={handleCloseForm}
+              addressForUpdate={addressForUpdate}
+            />
+          </div>
+        ) : null}
+      </section>
+    </Loading>
   );
 };
 

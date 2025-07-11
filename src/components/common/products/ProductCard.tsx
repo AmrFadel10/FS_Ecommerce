@@ -115,7 +115,7 @@ const ProductCard = ({
         </h3>
         <Link
           to={`/product/${_id}`}
-          className="my-2 text-sm  text-gray-600 font-medium line-clamp-2 hover:underline min-h-8"
+          className="my-2 text-sm  text-gray-600 font-medium line-clamp-2 hover:underline min-h-8 max-w-52"
         >
           {title}
         </Link>

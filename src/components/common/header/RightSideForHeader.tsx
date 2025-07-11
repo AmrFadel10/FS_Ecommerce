@@ -15,7 +15,7 @@ const RightSideForHeader = () => {
   const dispatch = useAppDispatch();
   const { accessToken } = useAppSelector((state) => state.auth);
   return (
-    <div className="flex lg:gap-4  gap-1 order-2 lg:order-3 ">
+    <div className="flex lg:gap-x-4  gap-x-4 order-2 lg:order-3 ">
       <UserIcon />
       <Link
         to="/wishlist"

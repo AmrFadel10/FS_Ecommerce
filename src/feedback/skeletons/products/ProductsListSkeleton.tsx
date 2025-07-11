@@ -8,11 +8,17 @@ const ProductsListSkeleton = ({
   where?: "public" | "private";
 }) => {
   return (
-    <>
+    <div
+      className={`${
+        where === "public" && "w-full overflow-x-auto hide-scrollbar"
+      }`}
+    >
       <div
         className={`${
-          where === "public" ? "xl:grid-cols-5" : ""
-        } grid md:grid-cols-3 grid-cols-1 sm:grid-cols-2  lg:grid-cols-4  gap-8 my-8 animate-pulse`}
+          where === "public"
+            ? "flex flex-nowrap"
+            : "grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 grid-cols-2 sm:grid-cols-3 min-h-[650px] items-start"
+        }   gap-4 my-6`}
       >
         {Array(count)
           .fill(1)
@@ -20,7 +26,7 @@ const ProductsListSkeleton = ({
             return <ProductSkeletonIcon key={index} />;
           })}
       </div>
-    </>
+    </div>
   );
 };
 

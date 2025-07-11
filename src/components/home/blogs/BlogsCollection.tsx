@@ -1,7 +1,7 @@
 //React && Redux
 import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { cleanUpBlog } from "@redux/blogs/slices/BlogsSlice";
+import { cleanUpBlogs } from "@redux/blogs/slices/BlogsSlice";
 //APIS
 import { getBlogsApiCall } from "@redux/blogs/apiCalls/blogsApiCall";
 
@@ -19,13 +19,13 @@ const BlogsCollection = () => {
     const blogsApi = dispatch(getBlogsApiCall({ limit: 8 }));
     return () => {
       blogsApi.abort();
-      dispatch(cleanUpBlog());
+      dispatch(cleanUpBlogs());
     };
   }, [dispatch]);
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center ">
         <h3 className="text-xl font-semibold mb-8">Our Latest News</h3>
         <div className="flex gap-x-2">
           <span
@@ -46,7 +46,7 @@ const BlogsCollection = () => {
           </span>
         </div>
       </div>
-      <Loading status={loading} error={error} size={150}>
+      <Loading status={loading} error={error} size={150} type="homeBlogs">
         {blogs.length ? (
           <div
             className="overflow-x-scroll scroll-smooth hide-scrollbar relative"

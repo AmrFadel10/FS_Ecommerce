@@ -64,40 +64,40 @@ const PopularProductCollections = ({
   });
   return (
     <section className="relative ">
-      <div className="flex justify-between items-center ">
-        <div>
-          <div>
-            <Heading title="Popular Collection" />
-            <p className="text-gray-400 text-sm">{`Do not miss the current offers until the end of ${new Date().toLocaleString(
-              "en-us",
-              { month: "long" }
-            )}.`}</p>
-          </div>
+      <div className="flex justify-between md:items-center md:flex-row flex-col w-full">
+        <div className="">
+          <Heading title="Popular Collection" />
+          <p className="hidden lg:block text-gray-400 text-sm">{`Do not miss the current offers until the end of ${new Date().toLocaleString(
+            "en-us",
+            { month: "long" }
+          )}.`}</p>
         </div>
-        <ul className="flex gap-x-8">
-          {categories.map((category) => {
-            return (
-              <li
-                key={category._id}
-                className={`${
-                  activeCategory === category.title ? "active" : ""
-                } popular-ctagory-liks uppercase  relative py-2 cursor-pointer text-sm`}
-                onClick={() => {
-                  setActiveCategory(category.title);
-                }}
-              >
-                {category.title}
-              </li>
-            );
-          })}
-        </ul>
+        {categories.length > 0 && (
+          <ul className="flex xl:gap-x-8 md:gap-x-5 gap-x-2 w-fit  md:justify-end ">
+            {categories.map((category) => {
+              return (
+                <li
+                  key={category._id}
+                  className={`${
+                    activeCategory === category.title ? "active" : ""
+                  } popular-category-liks lg:uppercase capitalize relative md:py-2 py-1 font-medium cursor-pointer md:text-sm text-xs`}
+                  onClick={() => {
+                    setActiveCategory(category.title);
+                  }}
+                >
+                  {category.title}
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
       <Loading status={loading} error={error} size={150} type="homeProducts">
         {homeProducts.length > 0 ? (
           <div className="overflow-x-scroll hide-scrollbar" ref={productRef}>
             <ProductsList products={homeProducts} where={where} />
             <div
-              className="absolute -left-6 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
+              className="absolute hidden lg:block xl:-left-6 lg:left-2 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
               onClick={() => {
                 productRef.current?.scrollBy({
                   behavior: "smooth",
@@ -108,7 +108,7 @@ const PopularProductCollections = ({
               <GrPrevious size={26} />
             </div>
             <div
-              className="absolute -right-6 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
+              className="absolute hidden lg:block xl:-right-6 lg:right-2 top-1/2 -translate-y-1/2 shadow-lg z-10 cursor-pointer hover:bg-gray-200 bg-white p-3 rounded-full"
               onClick={() => {
                 productRef.current?.scrollBy({
                   behavior: "smooth",

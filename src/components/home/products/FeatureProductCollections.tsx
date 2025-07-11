@@ -51,7 +51,7 @@ const FeatureProductCollections = ({
 
   return (
     <section>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center ">
         <Heading title="Featured Collection" />
 
         <div className="flex gap-x-2">

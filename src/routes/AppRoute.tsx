@@ -5,18 +5,21 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { useAppSelector } from "@redux/hooks";
 
 //Pages
 import Error from "@pages/Error";
 import ProductsListSkeleton from "@feedback/skeletons/products/ProductsListSkeleton";
 import RootLoading from "@feedback/loading/RootLoading";
-import LayoutSkeleton from "@feedback/skeletons/home/LayoutSkeleton";
-import StoreInfoFeaturesSkeleton from "@feedback/skeletons/home/StoreInfoFeaturesSkeleton";
 import BlogsPageSkeleton from "@feedback/skeletons/blogs/BlogsPageSkeleton";
 import OurStoreSkeleton from "@feedback/skeletons/ourStore/OurStoreSkeleton";
 import AProductPageSkeleton from "@feedback/skeletons/aProduct/AProductPageSkeleton";
 import Activation from "@pages/Activation";
-import { useAppSelector } from "@redux/hooks";
+import ProfileLayoutSkeleton from "@feedback/skeletons/profileInfomation/ProfileLayoutSkeleton";
+import AccountInfoSkeleton from "@feedback/skeletons/profileInfomation/AccountInfoSkeleton";
+import InlineLoading from "@feedback/loading/InlineLoading";
+import AddressesSkeleton from "@feedback/skeletons/profileInfomation/AddressSkeleton";
+import HomeSkeleton from "@feedback/skeletons/home/HomeSkeleton";
 
 //Lazy pages
 const RootLayout = lazy(() => import("@components/layout/RootLayout"));
@@ -37,10 +40,10 @@ const Signup = lazy(() => import("@pages/signup/Signup"));
 const Login = lazy(() => import("@pages/login/Login"));
 const Checkout = lazy(() => import("@pages/Checkout"));
 const OrderStatus = lazy(() => import("@pages/OrderStatus"));
-import AccountInfo from "@pages/AccountInfo";
-import Orders from "@pages/Orders";
-import Blog from "@pages/Blog";
-import Addresses from "@pages/Addresses";
+const AccountInfo = lazy(() => import("@pages/accountInfo/AccountInfo"));
+const Orders = lazy(() => import("@pages/Orders"));
+const Blog = lazy(() => import("@pages/Blog"));
+const Addresses = lazy(() => import("@pages/Addresses"));
 
 const AppRoute = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -58,14 +61,7 @@ const AppRoute = () => {
         {
           index: true,
           element: (
-            <Suspense
-              fallback={
-                <section className="flex flex-col gap-y-24 pb-18 pt-8">
-                  <LayoutSkeleton />
-                  <StoreInfoFeaturesSkeleton />
-                </section>
-              }
-            >
+            <Suspense fallback={<HomeSkeleton />}>
               <Home />
             </Suspense>
           ),
@@ -95,7 +91,7 @@ const AppRoute = () => {
         {
           path: "checkout",
           element: user ? (
-            <Suspense fallback={<RootLoading />}>
+            <Suspense fallback={<InlineLoading />}>
               <Checkout />
             </Suspense>
           ) : (
@@ -122,7 +118,7 @@ const AppRoute = () => {
             return true;
           },
           element: (
-            <Suspense fallback={<RootLoading />}>
+            <Suspense fallback={<InlineLoading />}>
               <Blog />
             </Suspense>
           ),
@@ -214,16 +210,37 @@ const AppRoute = () => {
         {
           path: "profile",
           element: user ? (
-            <Suspense fallback={<RootLoading />}>
+            <Suspense fallback={<ProfileLayoutSkeleton />}>
               <ProfileLayout />
             </Suspense>
           ) : (
             <Navigate to={"/"} />
           ),
           children: [
-            { index: true, element: <AccountInfo /> },
-            { path: "orders", element: <Orders /> },
-            { path: "address", element: <Addresses /> },
+            {
+              index: true,
+              element: (
+                <Suspense fallback={<AccountInfoSkeleton />}>
+                  <AccountInfo />
+                </Suspense>
+              ),
+            },
+            {
+              path: "orders",
+              element: (
+                <Suspense fallback={<InlineLoading />}>
+                  <Orders />
+                </Suspense>
+              ),
+            },
+            {
+              path: "address",
+              element: (
+                <Suspense fallback={<AddressesSkeleton />}>
+                  <Addresses />
+                </Suspense>
+              ),
+            },
           ],
         },
       ],

@@ -1,5 +1,4 @@
 import { useAppSelector } from "@redux/hooks";
-import { IoIosHeart } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -87,8 +86,6 @@ export default function Footer() {
       </div>
       <div className="border-t border-blue-500 py-4 mt-8 text-center flex items-center justify-center font-light text-sm">
         © {new Date().getFullYear()} All rights reserved.
-        <IoIosHeart size={20} color="red" />
-        (Amr)
       </div>
     </footer>
   );

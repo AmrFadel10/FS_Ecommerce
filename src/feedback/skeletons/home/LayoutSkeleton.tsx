@@ -6,7 +6,7 @@ const LayoutSkeleton = () => {
       <div
         className={`w-full h-full bg-gray-300 flex justify-center items-center rounded-lg animate-pulse`}
       >
-        <ImageIcon size={32} />
+        <ImageIcon size={20} />
       </div>
     </div>
   );

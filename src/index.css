@@ -59,7 +59,7 @@ body {
   display: none;
 }
 
-.popular-ctagory-liks::after {
+.popular-category-liks::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -71,13 +71,13 @@ body {
   transition: all 300ms ease-in-out;
 }
 
-.popular-ctagory-liks:hover,
-.popular-ctagory-liks.active {
+.popular-category-liks:hover,
+.popular-category-liks.active {
   color: #2563eb;
 }
 
-.popular-ctagory-liks.active::after,
-.popular-ctagory-liks:hover::after {
+.popular-category-liks.active::after,
+.popular-category-liks:hover::after {
   width: 100%;
 }
 

@@ -1,6 +1,6 @@
 const DescriptionProductPage = ({ description }: { description: string }) => {
   return (
-    <div className="mt-24">
+    <div className="mt-24 g:px-">
       <h3 className="font-semibold mb-4 text-2xl text-slate-700">
         Description
       </h3>

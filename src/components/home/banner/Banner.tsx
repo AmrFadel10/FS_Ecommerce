@@ -32,17 +32,17 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative w-full h-[400px] ">
+    <div className="relative w-full lg:h-[400px] h-72">
       {images.map((img, idx) => (
         <div key={idx} className={`${getClass(idx)} w-full h-full`}>
           <img
             src={img}
             alt={`banner-${idx}`}
-            className="w-full h-full object-cover select-none pointer-events-none rounded-2xl overflow-hidden"
+            className="w-full h-full object-fill select-none pointer-events-none rounded-2xl overflow-hidden"
           />
         </div>
       ))}
-      <div className="bg-gray-50 p-2 absolute -left-8 top-1/2 -translate-y-1/2 z-50 rounded-full">
+      <div className="bg-gray-50 p-2 absolute -left-8 top-1/2 -translate-y-1/2 z-50 rounded-full lg:block hidden">
         <button
           onClick={goPrev}
           className="  bg-blue-50 hover:bg-blue-100 text-white p-4 rounded-full  cursor-pointer"
@@ -50,7 +50,7 @@ const Banner = () => {
           <GrPrevious size={16} color="#2563EB" />
         </button>
       </div>
-      <div className="bg-gray-50 absolute -right-8 top-1/2 -translate-y-1/2 p-2 z-50 rounded-full">
+      <div className="bg-gray-50 absolute -right-8 top-1/2 -translate-y-1/2 p-2 z-50 rounded-full lg:block hidden">
         <button
           onClick={goNext}
           className=" bg-blue-50 hover:bg-blue-100 text-white p-4 rounded-full z-50 cursor-pointer"

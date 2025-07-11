@@ -18,7 +18,7 @@ const CategoriesDropDown = ({
     <ul
       className={`${
         showDropDown ? "max-h-[500px]" : "max-h-0"
-      } absolute top-full left-0 lg:w-60 w-36 divide-y transition-all duration-500 divide-gray-200 bg-gray-50  rounded-b-lg overflow-hidden shadow-lg`}
+      } absolute top-full left-0 lg:w-60 w-36 divide-y transition-all duration-500 divide-gray-200 bg-gray-50  rounded-b-lg overflow-hidden shadow-lg z-50`}
     >
       {categories?.map((category, index) => {
         return (

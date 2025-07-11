@@ -1,4 +1,4 @@
-const ImageIcon = ({ size }: { size: number }) => {
+const ImageIcon = ({ size }: { size?: number }) => {
   return (
     <svg
       className={`w-${size} h-${size} text-gray-400 `}

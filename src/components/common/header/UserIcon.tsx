@@ -68,7 +68,7 @@ const UserIcon = () => {
               <IoLocationOutline size={18} color="#2563EB" /> Address
             </NavLink>
             <NavLink
-              to={"/profile/orders"}
+              to={"/profile/orders?page=1"}
               end
               className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-2"
               onClick={() => setOpen(false)}

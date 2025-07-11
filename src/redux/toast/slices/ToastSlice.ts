@@ -1,4 +1,5 @@
 import type { TColorObj, TToast, TToastState } from "@customeTypes/toast";
+import { addToCart } from "@redux/cart/slices/cartSlice";
 import { type PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState: TToastState = {
@@ -30,6 +31,14 @@ const toastSlice = createSlice({
         return toast.id !== action.payload;
       });
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(addToCart, (state) => {
+      state.items.push({
+        type: "success",
+        comment: "Product has been added to the cart",
+      });
+    });
   },
 });
 
