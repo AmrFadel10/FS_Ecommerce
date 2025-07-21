@@ -4,7 +4,7 @@ import type { TBlogsIntialState } from "@customeTypes/blogs";
 
 const initialState: TBlogsIntialState = {
   loading: "idle",
-  blogs: [],
+  data: [],
   error: null,
 };
 
@@ -15,7 +15,7 @@ const blogsSlice = createSlice({
     cleanUpBlogs: (state) => {
       state.loading = "idle";
       state.error = null;
-      state.blogs = [];
+      state.data = [];
     },
   },
   extraReducers(builder) {
@@ -26,7 +26,7 @@ const blogsSlice = createSlice({
       })
       .addCase(getBlogsApiCall.fulfilled, (state, action) => {
         state.loading = "succeeded";
-        state.blogs = action.payload;
+        state.data = action.payload;
       })
       .addCase(getBlogsApiCall.rejected, (state, action) => {
         state.loading = "failed";

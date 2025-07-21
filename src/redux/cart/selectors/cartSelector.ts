@@ -2,7 +2,7 @@ import type { RootState } from "@redux/store";
 import { createSelector } from "@reduxjs/toolkit";
 
 export const productsCount = createSelector(
-  (state: RootState) => state.cart.items,
+  (state: RootState) => state.cart.data,
   (item) => {
     const productsCounter = Object.values(item)
       .flatMap(Object.values)
@@ -15,9 +15,9 @@ export const productsCount = createSelector(
 
 export const countSubtotalPrice = createSelector(
   (state: RootState) => state.cart,
-  ({ items, getProductFullInfo }) => {
+  ({ data, getProductFullInfo }) => {
     const ids = getProductFullInfo.map((item) => item._id);
-    const result = Object.entries(items)
+    const result = Object.entries(data)
       .map(([key, value]) => {
         const ind = ids.indexOf(key);
         return Object.values(value).map((value2) => {
@@ -39,9 +39,9 @@ export const countSubtotalPrice = createSelector(
 
 export const editProductToshowInCheckout = createSelector(
   (state: RootState) => state.cart,
-  ({ items, getProductFullInfo }) => {
+  ({ data, getProductFullInfo }) => {
     const ids = getProductFullInfo.map((item) => item._id);
-    const result = Object.entries(items)
+    const result = Object.entries(data)
       .map(([key, value]) => {
         const ind = ids.indexOf(key);
         if (ind === -1) return [];

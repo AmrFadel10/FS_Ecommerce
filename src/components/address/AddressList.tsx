@@ -17,7 +17,9 @@ const AddressList = ({
   return (
     <section className="overflow-y-auto max-h-[400px]">
       {addresses.length > 0 ? (
-        <div className={`flex flex-col gap-4 lg:min-h-[450px] min-h-[300px]`}>
+        <div
+          className={`flex flex-col gap-4 lg:min-h-[450px] min-h-[300px] p-2`}
+        >
           {addresses.map((address) => (
             <AddressCard
               key={address._id}

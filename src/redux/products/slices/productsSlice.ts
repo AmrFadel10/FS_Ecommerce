@@ -5,7 +5,7 @@ import getproductsApiCall from "../apiCalls/productsApiCall";
 const initialState: TProductsInitialState = {
   loading: "idle",
   error: null,
-  products: [],
+  data: [],
   count: null,
 };
 
@@ -14,7 +14,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     cleanUpProducts: (state) => {
-      state.products = [];
+      state.data = [];
       state.loading = "idle";
       state.error = null;
     },
@@ -28,7 +28,7 @@ const productsSlice = createSlice({
       })
       .addCase(getproductsApiCall.fulfilled, (state, action) => {
         state.loading = "succeeded";
-        state.products = action.payload.products;
+        state.data = action.payload.products;
         state.count = action.payload.count;
       })
       .addCase(getproductsApiCall.rejected, (state, action) => {

@@ -59,7 +59,7 @@ const CashOnDeliveryBtn = ({
     <div className="flex items-center justify-between mt-4 ">
       <Link
         to={"/cart"}
-        className="text-lg text-slate-600 hover:text-slate-950 flex items-center gap-1 font-normal group"
+        className="lg:text-base text-sm text-slate-600 hover:text-slate-950 flex items-center gap-1 font-normal group"
       >
         <span className="text-2xl font-semibold relative group-hover:right-1 right-0 transition-all duration-300">
           <BsArrowLeft />
@@ -69,7 +69,7 @@ const CashOnDeliveryBtn = ({
       <button
         className={`${
           orderLoading === "pending" ? "cursor-not-allowed" : "cursor-pointer"
-        } py-2 px-3 mt-4 hover:bg-blue-700 bg-blue-600 text-blue-50 rounded-lg `}
+        } py-2 px-3  hover:bg-blue-700 bg-blue-600 text-blue-50 rounded-lg lg:text-base text-sm`}
         disabled={orderLoading === "pending"}
         onClick={handleCashOnDelivery}
       >

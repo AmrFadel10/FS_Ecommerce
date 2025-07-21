@@ -7,10 +7,9 @@ import { logout } from "@redux/auth/slices/AuthSlice";
 //Icons
 import { BiUser } from "react-icons/bi";
 import { CgLogOut } from "react-icons/cg";
-import { FaRegUser } from "react-icons/fa6";
 import { LuUserRound } from "react-icons/lu";
 import { TbListCheck } from "react-icons/tb";
-import { IoLocationOutline } from "react-icons/io5";
+import { IoLocationOutline, IoSettingsOutline } from "react-icons/io5";
 
 const UserIcon = () => {
   const dispatch = useAppDispatch();
@@ -48,21 +47,21 @@ const UserIcon = () => {
           <ul
             className={`${
               open ? "max-h-60" : "max-h-0"
-            } user-icons transition-all  duration-500   absolute left-1 top-[calc(100%+10px)] w-[180px]  bg-white rounded-sm text-slate-800 flex  flex-col  overflow-hidden text-sm font-medium`}
+            } user-icons transition-all  duration-500 z-[500]  absolute left-1 top-[calc(100%+10px)] w-[180px]  bg-white rounded-sm text-slate-800 flex  flex-col  overflow-hidden text-sm font-medium`}
           >
             <NavLink
               to={"/profile"}
               end
-              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-2"
+              className=" px-3 py-2  hover:pl-4  transition-all duration-300 w-full text-left cursor-pointer flex gap-x-2"
               onClick={() => setOpen(false)}
             >
-              <FaRegUser size={18} color="#2563EB" />
-              Profile
+              <IoSettingsOutline size={18} color="#2563EB" />
+              Setting
             </NavLink>
             <NavLink
               to={"/profile/address"}
               end
-              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-2"
+              className="px-3 py-2  hover:pl-4  transition-all duration-300 w-full text-left cursor-pointer flex gap-x-2"
               onClick={() => setOpen(false)}
             >
               <IoLocationOutline size={18} color="#2563EB" /> Address
@@ -70,7 +69,7 @@ const UserIcon = () => {
             <NavLink
               to={"/profile/orders?page=1"}
               end
-              className=" px-3 py-2  hover:pl-4  transition-all w-full text-left cursor-pointer flex gap-x-2"
+              className=" px-3 py-2  hover:pl-4  transition-all duration-300 w-full text-left cursor-pointer flex gap-x-2"
               onClick={() => setOpen(false)}
             >
               <TbListCheck size={18} color="#2563EB" />
@@ -78,7 +77,7 @@ const UserIcon = () => {
             </NavLink>
             <button
               onClick={handleLogout}
-              className=" px-3 py-2  hover:pl-4  transition-all text-left border-t-slate-300 cursor-pointer border-t flex gap-x-2"
+              className=" px-3 py-2  hover:pl-4  transition-all duration-300 text-left border-t-slate-300 cursor-pointer border-t flex gap-x-2"
             >
               <CgLogOut size={18} color="#2563EB" />
               Logout

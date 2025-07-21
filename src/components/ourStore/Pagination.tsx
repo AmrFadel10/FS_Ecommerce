@@ -9,7 +9,7 @@ const Pagination = ({ variable }: { variable: "products" | "orders" }) => {
   const nums = Array(lastPage).fill(1);
 
   return (
-    <section className="w-full flex gap-x-2 justify-center my-8 text-sm font-medium">
+    <section className="w-full flex gap-x-2 justify-center my-8 text-sm font-medium ">
       <button
         className={`${
           page == 1

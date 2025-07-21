@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-
 //icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+//Hooks
+import useSignUp from "@hooks/useSignUp";
 //Components
 import { Spinner } from "@components/common/Spinner";
-import useSignUp from "./useSignUp";
+import MetaTags from "@components/common/MetaTags";
 
 const Signup = () => {
   const {
@@ -22,6 +22,8 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-3">
+      <MetaTags title="Signup" />
+
       <h2 className="text-3xl font-extrabold text-blue-600 font-Roboto">
         Register as a new user
       </h2>

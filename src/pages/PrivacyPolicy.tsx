@@ -1,8 +1,12 @@
+import MetaTags from "@components/common/MetaTags";
+
 export default function PrivacyPolicy() {
   return (
     <section className="shadow-md rounded-xl bg-white px-4 py-6 mt-8 mb-20 flex gap-6 flex-col ">
+      <MetaTags title="Privacy Policy" />
+
       <div>
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-xl font-semibold mb-4 text-blue-700">
           The Standard Lorem Ipsum Passage
         </h2>
         <p className="text-sm text-gray-500">
@@ -14,7 +18,7 @@ export default function PrivacyPolicy() {
         </p>
       </div>
       <div>
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-xl font-semibold mb-4 text-blue-700">
           At Vero Eos Et Accusamus Et Iusto Odio Dignissimos
         </h2>
         <p className="text-sm text-gray-500">
@@ -26,7 +30,7 @@ export default function PrivacyPolicy() {
         </p>
       </div>
       <div>
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-xl font-semibold mb-4 text-blue-700">
           Certain Circumstances And Owing To The Claims Of Duty Or The
           Obligations
         </h2>
@@ -39,7 +43,7 @@ export default function PrivacyPolicy() {
         </p>
       </div>
       <div>
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-xl font-semibold mb-4 text-blue-700">
           Integer Ultrices Laoreet Nunc In Gravida
         </h2>
         <p className="text-sm text-gray-500">

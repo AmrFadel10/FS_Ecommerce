@@ -2,13 +2,10 @@
 import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { addToast } from "@redux/toast/slices/ToastSlice";
-
 //Types
 import type { TUpdateAccountInfo } from "@customeTypes/auth";
-
 //APIS
 import { updateAccountInfoApiCall } from "@redux/auth/apicalls/updateAccountInfoApiCall";
-
 //Validation
 import { updateAccountInfoValidation } from "@utils/validations/authValidation";
 

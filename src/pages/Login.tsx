@@ -1,13 +1,13 @@
 //React
 import { Link } from "react-router-dom";
-
 //Icons
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+//Hooks
+import useLogin from "@hooks/useLogin";
 //components
 import { Spinner } from "@components/common/Spinner";
-
-import useLogin from "./useLogin";
+import HeadTags from "@components/common/MetaTags";
+import MetaTags from "@components/common/MetaTags";
 
 const Login = () => {
   const {
@@ -20,7 +20,10 @@ const Login = () => {
     loading,
   } = useLogin();
   return (
-    <div className="min-h-screen bg-blue-50 flex flex-col items-center justify-center px-3">
+    <section className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-3">
+      <MetaTags title="Login" />
+
+      <HeadTags title="Login" />
       <h2 className="text-3xl font-extrabold text-blue-600 font-Roboto">
         Login to your account
       </h2>
@@ -116,7 +119,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

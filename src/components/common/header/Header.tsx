@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
+import { createPortal } from "react-dom";
 
 //APIS
 import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlistProductsApiCall";
@@ -29,10 +30,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="relative z-[23] change-color ">
+      <header className="relative z-[10] change-color container mx-auto ">
         <div className="bg-gray-50 text-slate-100">
-          <TopOfHeader />
-          <div className="mx-auto container text-slate-300 xl:px-0 px-2">
+          {createPortal(<TopOfHeader />, document.getElementById("root")!)}
+          <div className="mx-auto  text-slate-300 xl:px-0 px-2">
             <div className="flex justify-between items-center py-4 lg:flex-nowrap flex-wrap gap-4">
               <div className="flex items-center gap-x-2">
                 <Link to="/" className="  rounded-full overflow-hidden block">

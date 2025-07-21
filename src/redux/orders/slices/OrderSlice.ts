@@ -16,7 +16,7 @@ const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    calculateTotslPrice(state, action: PayloadAction<TPayload>) {
+    calculateTotalPrice(state, action: PayloadAction<TPayload>) {
       state.totalPrice = action.payload.totalPrice;
     },
     cleanUpOrder(state) {
@@ -42,5 +42,5 @@ const orderSlice = createSlice({
       });
   },
 });
-export const { cleanUpOrder, calculateTotslPrice } = orderSlice.actions;
+export const { cleanUpOrder, calculateTotalPrice } = orderSlice.actions;
 export default orderSlice.reducer;

@@ -6,12 +6,12 @@ import { NavLink, Outlet } from "react-router-dom";
 const ProfileLayout = () => {
   return (
     <section className="flex py-12 ">
-      <div className="flex-1 lg:min-w-60 flex flex-col border-r border-blue-200  p-2  font-medium text-sm change-color max-w-16">
+      <div className="lg:flex-1 lg:min-w-60 flex flex-col border-r border-blue-200  p-1  font-medium text-sm change-color max-w-16">
         <NavLink
           to={"/profile"}
           end
           className={
-            "flex gap-x-2 px-4 py-2 rounded-md hover:text-blue-600 transition-all"
+            "flex gap-x-2 lg:px-4 px-2 py-2 rounded-md hover:text-blue-600 transition-all"
           }
         >
           <FaRegUser size={18} />
@@ -21,7 +21,7 @@ const ProfileLayout = () => {
           to={"/profile/address"}
           end
           className={
-            "flex gap-x-2 px-4 py-2 rounded-md hover:text-blue-600 transition-all"
+            "flex gap-x-2 lg:px-4 px-2 py-2 rounded-md hover:text-blue-600 transition-all"
           }
         >
           <IoLocationOutline size={18} />
@@ -31,7 +31,7 @@ const ProfileLayout = () => {
           to={"/profile/orders?page=1"}
           end
           className={
-            "flex gap-x-2 px-4 py-2 rounded-md hover:text-blue-600 transition-all"
+            "flex gap-x-2 lg:px-4 px-2 py-2 rounded-md hover:text-blue-600 transition-all"
           }
         >
           <TbListCheck size={18} />

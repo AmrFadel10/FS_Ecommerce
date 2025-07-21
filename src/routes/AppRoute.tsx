@@ -36,11 +36,11 @@ const OurStore = lazy(() => import("@pages/OurStore"));
 const Product = lazy(() => import("@pages/Product"));
 const Blogs = lazy(() => import("@pages/Blogs"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
-const Signup = lazy(() => import("@pages/signup/Signup"));
-const Login = lazy(() => import("@pages/login/Login"));
+const Signup = lazy(() => import("@pages/Signup"));
+const Login = lazy(() => import("@pages/Login"));
 const Checkout = lazy(() => import("@pages/Checkout"));
 const OrderStatus = lazy(() => import("@pages/OrderStatus"));
-const AccountInfo = lazy(() => import("@pages/accountInfo/AccountInfo"));
+const AccountInfo = lazy(() => import("@pages/AccountInfo"));
 const Orders = lazy(() => import("@pages/Orders"));
 const Blog = lazy(() => import("@pages/Blog"));
 const Addresses = lazy(() => import("@pages/Addresses"));
@@ -107,9 +107,9 @@ const AppRoute = () => {
           ),
         },
         {
-          path: "blogs/:blogId",
+          path: "blogs/:id",
           loader: ({ params }) => {
-            if (!/^[a-fA-F-0-9]{24}$/.test(params.blogId as string)) {
+            if (!/^[a-fA-F-0-9]{24}$/.test(params.id as string)) {
               throw new Response("Invalid id", {
                 status: 400,
                 statusText: "Blog not found",

@@ -21,12 +21,12 @@ export type TBlog = {
 export type TAblogStateType = {
   loading: TLoading;
   error: null | string;
-  ablog: TBlog | null;
+  data: TBlog | null;
 };
 
 //blogs
 export type TBlogsIntialState = {
   loading: TLoading;
   error: null | string;
-  blogs: TBlog[];
+  data: TBlog[];
 };

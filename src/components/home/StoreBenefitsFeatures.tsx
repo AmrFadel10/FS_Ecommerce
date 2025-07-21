@@ -1,13 +1,14 @@
+//Icons
 import { LuBadgePercent, LuHeadphones } from "react-icons/lu";
-import { GoGift } from "react-icons/go";
 import { BsTruck } from "react-icons/bs";
 import { CiCreditCard1 } from "react-icons/ci";
+import { GoGift } from "react-icons/go";
 
 const StoreInfoFeatures = () => {
   return (
     <section className="overflow-x-auto lg:overflow-x-visible hide-scrollbar">
-      <div className="py-2 flex flex-nowrap lg:flex-wrap flex-row  gap-4 mx-auto xl:grid-cols-5  ">
-        <div className="flex  cats-center gap-6  rounded-xl shadow-sm bg-gray-50 p-4 mx-auto w-fit">
+      <div className="py-2 flex flex-nowrap justify-center flex-row  gap-4 mx-auto w-fit items-start">
+        <div className="flex  cats-center gap-6  rounded-xl shadow-sm bg-gray-50 p-4 mx-auto ">
           <BsTruck size={33} color="#2563EB" />
           <div>
             <h6 className="text-sm font-semibold whitespace-nowrap">
@@ -18,18 +19,8 @@ const StoreInfoFeatures = () => {
             </p>
           </div>
         </div>
-        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto w-fit">
-          <GoGift size={33} color="#2563EB" />
-          <div>
-            <h6 className="text-sm font-semibold whitespace-nowrap">
-              Daily Surprise Offers
-            </h6>
-            <p className="text-gray-500 text-xs whitespace-nowrap">
-              Save up to 25% off
-            </p>
-          </div>
-        </div>
-        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto w-fit">
+
+        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto ">
           <LuHeadphones size={33} color="#2563EB" />
           <div>
             <h6 className="text-sm font-semibold whitespace-nowrap">
@@ -40,7 +31,7 @@ const StoreInfoFeatures = () => {
             </p>
           </div>
         </div>
-        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto w-fit">
+        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto ">
           <LuBadgePercent size={33} color="#2563EB" />
           <div>
             <h6 className="text-sm font-semibold whitespace-nowrap">
@@ -51,7 +42,18 @@ const StoreInfoFeatures = () => {
             </p>
           </div>
         </div>
-        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto w-fit">
+        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto ">
+          <GoGift size={35} color="#2563EB" />
+          <div>
+            <h6 className="text-sm font-semibold whitespace-nowrap">
+              Daily Surprise Offers
+            </h6>
+            <p className="text-gray-500 text-xs whitespace-nowrap">
+              Save up to 25% off
+            </p>
+          </div>
+        </div>
+        <div className="flex cats-center gap-6 rounded-xl shadow-sm bg-gray-50 p-4 mx-auto ">
           <CiCreditCard1 size={35} color="#2563EB" />
           <div>
             <h6 className="text-sm font-semibold whitespace-nowrap">

@@ -72,7 +72,7 @@ const AddressForm = memo(
       }
     };
     return (
-      <section className="flex-[5] pl-3  bg-black/20 fixed w-screen h-screen left-0 top-0">
+      <section className="flex-[5] pl-3  bg-black/20 fixed w-screen h-screen left-0 top-0 z-[100000]">
         <form
           className="flex flex-col   fixed left-1/2 top-1/2 -translate-1/2 w-96  bg-white max-w-[450px] p-8 rounded-lg"
           onSubmit={handleAddAddress}

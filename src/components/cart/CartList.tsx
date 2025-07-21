@@ -3,14 +3,14 @@ import type { TProductCart } from "@customeTypes/cart";
 
 const CartList = ({ products }: { products: TProductCart[] }) => {
   return (
-    <>
-      <table className=" text-left my-12 w-full select-none">
+    <section className="overflow-x-auto">
+      <table className=" text-left my-12 min-w-fit  select-none  ">
         <thead className="text-xl border-b">
           <tr className="text-blue-600 flex">
-            <th className="p-4  flex-[3]">PRODUCT</th>
-            <th className="p-4 flex-1">PRICE</th>
-            <th className="p-4 flex-1">QUANTITY</th>
-            <th className="p-4 flex-1">TOTAL</th>
+            <th className="p-4  flex-[3] min-w-96">PRODUCT</th>
+            <th className="p-4 flex-1 min-w-36">PRICE</th>
+            <th className="p-4 flex-1 min-w-36">QUANTITY</th>
+            <th className="p-4 flex-1 min-w-36">TOTAL</th>
           </tr>
         </thead>
         <tbody className=" p-4 text-xl  divide-y">
@@ -19,7 +19,7 @@ const CartList = ({ products }: { products: TProductCart[] }) => {
           })}
         </tbody>
       </table>
-    </>
+    </section>
   );
 };
 

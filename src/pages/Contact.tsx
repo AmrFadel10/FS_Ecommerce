@@ -21,7 +21,7 @@ export default function Contact() {
       ></iframe>
       <div className="flex gap-16 bg-white rounded-xl shadow-md p-6 flex-col md:flex-row">
         <div className="flex-1 flex flex-col gap-8 order-2 md:order-1">
-          <h2 className="text-3xl font-medium">Conatct</h2>
+          <h2 className="text-3xl font-medium text-blue-600">Conatct</h2>
           <form className="flex flex-col gap-4">
             <div className="w-full">
               <input
@@ -61,25 +61,27 @@ export default function Contact() {
           </form>
         </div>
         <div className="flex-1 flex flex-col gap-8 order-1 md:order-2">
-          <h2 className="text-3xl font-medium">Get In Touch With Us</h2>
-          <p className="flex gap-3 text-gray-600 content-center font-light">
-            <FaHome className="text-lg" />
-            <span className="text-sm font-medium">Menouf, Menofia, Egypt</span>
+          <h2 className="text-3xl font-medium text-blue-600">
+            Get In Touch With Us
+          </h2>
+          <p className="flex gap-3 text-gray-600 items-center font-light">
+            <FaHome size={22} color="#2563eb" />
+            <span className="text-sm font-medium"> Egypt</span>
           </p>
-          <p className="flex gap-3 text-gray-600 content-center font-light">
-            <MdOutlineLocalPhone className="text-lg" />
+          <p className="flex gap-3 text-gray-600 content-center font-items">
+            <MdOutlineLocalPhone size={22} color="#2563eb" />
             <Link to={"+201012345678"} className="text-sm font-medium">
               +201012345678
             </Link>
           </p>
-          <p className="flex gap-3 text-gray-600 content-center font-light">
-            <MdEmail className="text-lg" />
+          <p className="flex gap-3 text-gray-600 items-center font-light">
+            <MdEmail size={22} color="#2563eb" />
             <Link to={"demo@company.com"} className="text-sm font-medium">
               demo@company.com
             </Link>
           </p>
-          <p className="flex gap-3 text-gray-600 content-center font-light">
-            <FaInfo className="text-lg" />
+          <p className="flex gap-3 text-gray-600 items-center font-light">
+            <FaInfo size={22} color="#2563eb" />
             <span className="text-sm font-medium">
               Monday – Friday 10 AM – 8 PM
             </span>

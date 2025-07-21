@@ -1,17 +1,17 @@
-//React && Redux
-import { Spinner } from "@components/common/Spinner";
-
+//hooks
+import useAccountInfo from "../hooks/useAccountInfo";
 //Components
 import Loading from "@feedback/loading/Loading";
-
-//customeHook
-import useAccountInfo from "./useAccountInfo";
+import MetaTags from "@components/common/MetaTags";
+import { Spinner } from "@components/common/Spinner";
 
 const AccountInfo = () => {
   const { error, loading, handleSubmit, handleInputChange, formErrors, user } =
     useAccountInfo();
   return (
-    <Loading error={error} status={loading} type="accountInfo">
+    <Loading error={error} status={"succeeded"} type="accountInfo">
+      <MetaTags title="Setting" />
+
       <form
         className="flex-[5] px-6 flex flex-col gap-y-8 min-h-[500px]"
         onSubmit={handleSubmit}

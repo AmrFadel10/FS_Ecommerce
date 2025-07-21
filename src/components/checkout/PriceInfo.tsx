@@ -1,7 +1,7 @@
 //React && Redux
 import { useEffect, useState, type FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { calculateTotslPrice } from "@redux/orders/slices/OrderSlice";
+import { calculateTotalPrice } from "@redux/orders/slices/OrderSlice";
 import { addToast } from "@redux/toast/slices/ToastSlice";
 import {
   countSubtotalPrice,
@@ -26,7 +26,7 @@ const PriceInfo = () => {
   const products = useAppSelector(editProductToshowInCheckout);
   const { loading: couponLoading } = useAppSelector((state) => state.coupon);
   const { loading: productLoading, error: productsError } = useAppSelector(
-    (state) => state.products
+    (state) => state.cart
   );
   const { shipping } = useAppSelector((state) => state.order);
   const subtotalPrice = useAppSelector(countSubtotalPrice);
@@ -57,13 +57,13 @@ const PriceInfo = () => {
   };
 
   useEffect(() => {
-    dispatch(calculateTotslPrice({ totalPrice }));
+    dispatch(calculateTotalPrice({ totalPrice }));
   }, [totalPrice, dispatch]);
 
   return (
     <Loading error={productsError} type="commonLoading" status={productLoading}>
-      <div className="flex-[2.5] py-12 px-8 divide-y divide-gray-200 bg-white rounded-xl shadow min-h-[650px]">
-        <div className="max-h-72 overflow-y-scroll">
+      <div className="flex-[2.5] py-12 px-8 divide-y divide-gray-200 bg-white rounded-xl shadow min-h-[650px] order-1 lg:order-2">
+        <div className="max-h-72 overflow-y-auto">
           {products.map((item, index) => {
             return (
               <div

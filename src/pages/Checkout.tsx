@@ -44,7 +44,7 @@ export default function Checkout() {
   return (
     <>
       <section className=" mx-auto my-6 ">
-        <div className="flex container  gap-8 ">
+        <div className="flex container  lg:gap-8 gap-4 flex-col lg:flex-row">
           <CheckoutInfo handleOpenForm={handleOpenForm} />
           <PriceInfo />
         </div>

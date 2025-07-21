@@ -8,7 +8,7 @@ import createOrderApiCall from "@redux/orders/apiCalls/addOrderApiCall";
 const initialState: TCartInitialState = {
   loading: "idle",
   error: null,
-  items: localStorage.getItem("cart_items")
+  data: localStorage.getItem("cart_items")
     ? JSON.parse(localStorage.getItem("cart_items") ?? "")
     : {},
   getProductFullInfo: [],
@@ -19,28 +19,28 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      if (state.items[action.payload.id]) {
-        state.items[action.payload.id][action.payload.color] =
+      if (state.data[action.payload.id]) {
+        state.data[action.payload.id][action.payload.color] =
           action.payload.count;
       } else {
-        state.items[action.payload.id] = {};
-        state.items[action.payload.id][action.payload.color] =
+        state.data[action.payload.id] = {};
+        state.data[action.payload.id][action.payload.color] =
           action.payload.count;
       }
-      localStorage.setItem("cart_items", JSON.stringify(state.items));
+      localStorage.setItem("cart_items", JSON.stringify(state.data));
     },
 
     deleteFromCart(state, action) {
-      if (state.items[action.payload.id]) {
-        if (state.items[action.payload.id][action.payload.color]) {
-          delete state.items[action.payload.id][action.payload.color];
+      if (state.data[action.payload.id]) {
+        if (state.data[action.payload.id][action.payload.color]) {
+          delete state.data[action.payload.id][action.payload.color];
 
-          if (Object.keys(state.items[action.payload.id]).length == 0) {
-            delete state.items[action.payload.id];
+          if (Object.keys(state.data[action.payload.id]).length == 0) {
+            delete state.data[action.payload.id];
           }
-          localStorage.setItem("cart_items", JSON.stringify(state.items));
-          if (Object.keys(state.items).length == 0) {
-            state.items = {};
+          localStorage.setItem("cart_items", JSON.stringify(state.data));
+          if (Object.keys(state.data).length == 0) {
+            state.data = {};
             localStorage.removeItem("cart_items");
           }
         }
@@ -65,14 +65,14 @@ const cartSlice = createSlice({
         state.error = action.payload as string;
       });
     builder.addCase(createOrderApiCall.fulfilled, (state) => {
-      state.items = {};
+      state.data = {};
       state.getProductFullInfo = [];
     });
   },
 });
 
 export const countProductCart = (state: RootState) => {
-  const count = Object.values(state.cart.items)
+  const count = Object.values(state.cart.data)
     .flatMap(Object.values)
     .reduce((acc, cur) => {
       return acc + cur;

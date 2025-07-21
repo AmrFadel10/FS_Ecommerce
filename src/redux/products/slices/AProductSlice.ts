@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { TAProductsInitialState, TProduct } from "@customeTypes/products";
 import { getAProductApiCall } from "../apiCalls/AProductApiCall";
+import { AddRatingForAProductApiCall } from "../apiCalls/AddRatingApiCall";
 
 const initialState: TAProductsInitialState = {
-  aproduct: null,
+  data: null,
   loading: "idle",
   error: null,
 };
@@ -13,7 +14,7 @@ const aProductsSlice = createSlice({
   initialState,
   reducers: {
     cleanUpAProduct(state) {
-      state.aproduct = null;
+      state.data = null;
       state.loading = "idle";
       state.error = null;
     },
@@ -25,11 +26,14 @@ const aProductsSlice = createSlice({
     });
     builder.addCase(getAProductApiCall.fulfilled, (state, action) => {
       state.loading = "succeeded";
-      state.aproduct = action.payload as TProduct;
+      state.data = action.payload as TProduct;
     });
     builder.addCase(getAProductApiCall.rejected, (state, action) => {
       state.loading = "failed";
       state.error = action.payload as string;
+    });
+    builder.addCase(AddRatingForAProductApiCall.fulfilled, (state, action) => {
+      state.data = action.payload as TProduct;
     });
   },
 });

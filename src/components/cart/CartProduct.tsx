@@ -17,8 +17,8 @@ const CartProduct = ({
 
   return (
     <tr className="flex ">
-      <td className=" flex flex-[3] items-center p-4 gap-4 ">
-        <div className="flex-[1] h-36">
+      <td className=" flex flex-[3] items-center p-4 gap-4 min-w-96">
+        <div className="flex-[1] h-36 ">
           <img
             // src={"assets/images/24_150x.avif"}
             src={images[0].url}
@@ -27,7 +27,7 @@ const CartProduct = ({
             className="h-full w-full object-contain"
           />
         </div>
-        <div className="flex-[2]">
+        <div className="flex-[2] min-w-fit text-nowrap">
           <Link
             to={`/product/${_id}`}
             className={`text-sm font-medium text-gray-700 line-clamp-2 hover:underline`}
@@ -51,11 +51,11 @@ const CartProduct = ({
           </div>
         </div>
       </td>
-      <td className="text-lg font-medium p-4 flex-1 flex items-center text-gray-600">
+      <td className="text-lg font-medium p-4 flex-1 flex items-center text-gray-600 min-w-36">
         ${price}
       </td>
       <QuantityForm _id={_id} color={color} count={quantity} />
-      <td className="flex  items-center text-lg font-medium p-4 flex-1 text-gray-600">
+      <td className="flex  items-center text-lg font-medium p-4 flex-1 text-gray-600 min-w-36">
         {productPrice}$
       </td>
     </tr>

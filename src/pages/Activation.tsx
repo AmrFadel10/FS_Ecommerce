@@ -1,10 +1,15 @@
+//React && Redux
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { activationAccountApiCall } from "@redux/auth/apicalls/AtivationApiCall";
+
+//Components
 import { Spinner } from "@components/common/Spinner";
 import { ErrorExplosion } from "@components/common/ErrorExplosion";
 import { SuccessExplosion } from "@components/common/SuccessCheckmark";
+import HeadTags from "@components/common/MetaTags";
+
 const Activation = () => {
   const { activationToken } = useParams();
   const { loading } = useAppSelector((state) => state.auth);
@@ -16,6 +21,8 @@ const Activation = () => {
 
   return (
     <div className="w-full min-h-screen flex gap-y-10 flex-col items-center justify-center">
+      <HeadTags title="Activation" />
+
       <div className="text-gray-700 text-2xl font-bold">
         {loading === "pending" ? (
           <div className="w-full h-40">

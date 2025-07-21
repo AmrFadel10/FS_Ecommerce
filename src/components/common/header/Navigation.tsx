@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 //React
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -23,8 +24,8 @@ const Navigation = () => {
   }, [dispatch]);
 
   return (
-    <nav className="bg-gray-50  lg:sticky lg:left-0 lg:top-0 z-[21] transition-all border-y border-blue-200 py-3 overflow-x-auto hide-scrollbar ">
-      <ul className="flex lg:gap-x-6 md:gap-x-3 gap-x-1  lg:items-center lg:justify-center w-full lg:mx-auto container text-sm ">
+    <nav className="bg-gray-50 transition-all border-y border-blue-200 py-3 overflow-x-auto hide-scrollbar ">
+      <ul className="flex lg:gap-x-6 md:gap-x-3 gap-x-1  items-center justify-start w-full   text-sm ">
         {navigationData.map((nav, index) => {
           return (
             <Link

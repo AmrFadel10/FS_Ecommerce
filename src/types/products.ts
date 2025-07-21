@@ -13,16 +13,22 @@ export type TProduct = {
   sold: number;
   images: TImage[];
   color: TColor[];
+  ratings: {
+    star: number;
+    comment: string;
+    postedby: string;
+  }[];
+  totalrating: number;
 };
 
 export type TProductsInitialState = {
   loading: TLoading;
   error: string | null;
-  products: TProduct[];
+  data: TProduct[];
   count: number | null;
 };
 export type TAProductsInitialState = {
   loading: TLoading;
   error: string | null;
-  aproduct: TProduct | null;
+  data: TProduct | null;
 };

@@ -4,7 +4,7 @@ import type { TAblogStateType } from "@customeTypes/blogs";
 
 const initialState: TAblogStateType = {
   loading: "idle",
-  ablog: null,
+  data: null,
   error: null,
 };
 
@@ -13,7 +13,7 @@ const AblogSlice = createSlice({
   initialState,
   reducers: {
     cleanUpBlog: (state) => {
-      state.ablog = null;
+      state.data = null;
       state.loading = "idle";
       state.error = null;
     },
@@ -26,7 +26,7 @@ const AblogSlice = createSlice({
       })
       .addCase(getABlog.fulfilled, (state, action) => {
         state.loading = "succeeded";
-        state.ablog = action.payload;
+        state.data = action.payload;
       })
       .addCase(getABlog.rejected, (state, action) => {
         state.loading = "failed";

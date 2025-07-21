@@ -16,7 +16,7 @@ const ProductsListSkeleton = ({
       <div
         className={`${
           where === "public"
-            ? "flex flex-nowrap"
+            ? "flex flex-nowrap min-h-[350px]"
             : "grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 grid-cols-2 sm:grid-cols-3 min-h-[650px] items-start"
         }   gap-4 my-6`}
       >

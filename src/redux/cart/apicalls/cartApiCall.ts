@@ -6,7 +6,7 @@ export const getProductsCartApiCall = createAsyncThunk(
   "cart/getProductsCart",
   async (_, { rejectWithValue, getState, fulfillWithValue, signal }) => {
     try {
-      const ids = Object.keys((getState() as RootState).cart.items);
+      const ids = Object.keys((getState() as RootState).cart.data);
       if (!ids.length) {
         return fulfillWithValue([]);
       }

@@ -5,7 +5,7 @@ export type TCartInitialState = {
   loading: TLoading;
   error: string | null;
   getProductFullInfo: TProduct[];
-  items: { [id: string]: { [color: string]: number } };
+  data: { [id: string]: { [color: string]: number } };
 };
 
 export type TProductCart = {

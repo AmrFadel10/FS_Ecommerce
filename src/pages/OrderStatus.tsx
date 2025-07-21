@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { ErrorExplosion } from "@components/common/ErrorExplosion";
 import { Spinner } from "@components/common/Spinner";
 import { SuccessExplosion } from "@components/common/SuccessCheckmark";
+import MetaTags from "@components/common/MetaTags";
 
 const OrderStatus = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const OrderStatus = () => {
 
   return (
     <div className="w-full min-h-screen flex gap-y-10 flex-col items-center justify-center">
+      <MetaTags title="Order status" />
       <div className="text-gray-700 text-2xl font-bold">
         {loading === "pending" ? (
           <div className="w-full h-40">
@@ -34,7 +36,9 @@ const OrderStatus = () => {
         ) : loading === "succeeded" ? (
           <div className="flex flex-col gap-y-8 items-center">
             <SuccessExplosion />
-            <span>Your order has been placed successfully!</span>
+            <span className="lg:text-base text-sm">
+              Your order has been placed successfully!
+            </span>
           </div>
         ) : (
           <Navigate to={"/"} />

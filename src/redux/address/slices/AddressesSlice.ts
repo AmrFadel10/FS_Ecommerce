@@ -38,7 +38,7 @@ const addressesSlice = createSlice({
       });
     //add address
     builder.addCase(addAddressApiCall.fulfilled, (state, action) => {
-      state.addresses.push(action.payload);
+      state.addresses.unshift(action.payload);
     });
 
     //update address

@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 //Icons
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import type { TProduct } from "@customeTypes/products";
 import { useState } from "react";
 import { useAppDispatch } from "@redux/hooks";
 import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistApiCall";
 import { Spinner } from "../Spinner";
 import { addToast } from "@redux/toast/slices/ToastSlice";
 import { MdZoomOutMap } from "react-icons/md";
+import type { TProduct } from "@customeTypes/products";
 
 const ProductCard = ({
   images,
@@ -90,7 +90,7 @@ const ProductCard = ({
             <AiFillHeart
               className="transition-all  rounded-full "
               size={20}
-              color="#000"
+              color="red"
               title="Remove from wishlist"
             />
           ) : (

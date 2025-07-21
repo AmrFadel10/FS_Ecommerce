@@ -5,9 +5,10 @@ import { getWishlistProductsApiCall } from "@redux/wishlist/apicalls/getWishlist
 import { cleanUpWishlist } from "@redux/wishlist/slices/wishlistSlice";
 
 //Compontents
-import ProductsList from "@components/home/products/ProductsList";
-import Empty from "@components/common/Empty";
 import Loading from "@feedback/loading/Loading";
+import MetaTags from "@components/common/MetaTags";
+import GridList from "@components/common/GridList";
+import ProductCard from "@components/common/products/ProductCard";
 
 export default function Wishlist() {
   const dispatch = useAppDispatch();
@@ -30,12 +31,15 @@ export default function Wishlist() {
 
   return (
     <Loading error={error} status={loading} type="wishlist">
+      <MetaTags title="Wishlist" />
+
       <section>
-        {wishlistProducts.length ? (
-          <ProductsList products={wishlistProducts} />
-        ) : (
-          <Empty />
-        )}
+        <GridList
+          Component={ProductCard}
+          items={wishlistProducts}
+          loading={loading}
+          where="wishlist"
+        />
       </section>
     </Loading>
   );

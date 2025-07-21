@@ -1,20 +1,18 @@
 import { lazy } from "react";
-
 //Components
 import LazyWrapper from "@feedback/lazy/LazyWrapper";
+import MetaTags from "@components/common/MetaTags";
 const PopularProductCollections = lazy(
-  () => import("@components/home/products/PopularProductsCollection")
+  () => import("@components/home/products/popular/PopularProductsCollection")
 );
-const LatestPorductsCollection = lazy(
-  () => import("@components/home/products/LatestProductsCollection")
+const ProductsCollection = lazy(
+  () => import("@components/home/products/featureAndLatest/ProductsCollection")
 );
 const Banner = lazy(() => import("@components/home/banner/Banner"));
 const BlogsCollection = lazy(
   () => import("@components/home/blogs/BlogsCollection")
 );
-const FeatureProductCollections = lazy(
-  () => import("@components/home/products/FeatureProductCollections")
-);
+
 const SponsoredFeatures = lazy(
   () => import("@components/home/SponsoredFeatures")
 );
@@ -25,27 +23,36 @@ const StoreInfoFeatures = lazy(
 export default function Home() {
   return (
     <section className="flex flex-col gap-y-10 pb-18 pt-8">
+      <MetaTags title="Home" />
       <LazyWrapper type="banner">
         <Banner />
       </LazyWrapper>
-
+      {/* <ProductRaing /> */}
       {/* Info */}
       <LazyWrapper type="info">
         <StoreInfoFeatures />
       </LazyWrapper>
-
       {/* popular collections */}
       <LazyWrapper type="homeProducts">
         <PopularProductCollections where={"public"} limit={12} />
       </LazyWrapper>
-
       {/* feature collections */}
       <LazyWrapper type="homeProducts">
-        <FeatureProductCollections where={"public"} limit={12} />
+        <ProductsCollection
+          where={"public"}
+          limit={12}
+          sort="-sold"
+          type="feature"
+        />
       </LazyWrapper>
-
+      {/* Latest collections */}
       <LazyWrapper type="homeProducts">
-        <LatestPorductsCollection where={"public"} limit={12} />
+        <ProductsCollection
+          where={"public"}
+          limit={12}
+          sort="-createdAt"
+          type="latest"
+        />
       </LazyWrapper>
 
       {/* {<NewProductsCollections />} */}

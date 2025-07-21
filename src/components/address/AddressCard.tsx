@@ -41,9 +41,9 @@ const AddressCard = ({
       key={address._id}
       className={`${
         selectAddress?._id === address._id
-          ? " border-blue-700 "
-          : " border-blue-200 "
-      } border bg-white rounded-xl p-5 shadow hover:shadow-md transition-all  relative cursor-pointer`}
+          ? "ring-2 ring-blue-600"
+          : "ring ring-blue-200"
+      }  bg-white rounded-xl p-5 shadow hover:shadow-md transition-all  relative cursor-pointer`}
       onClick={() => {
         if (!handleSelectAddress) return;
         handleSelectAddress(address);

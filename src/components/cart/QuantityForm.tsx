@@ -43,7 +43,7 @@ const QuantityForm = ({ count, _id, color }: TQuantityForm) => {
   }, [isClicked]);
 
   return (
-    <td className="gap-4 flex  items-center  p-4 flex-1">
+    <td className="gap-4 flex  items-center  p-4 flex-1 min-w-36">
       <div className="flex gap-2 items-center">
         <span className="w-10 h-8   border-gray-300 border  text-sm font-bold  flex  items-center justify-center">
           {count}

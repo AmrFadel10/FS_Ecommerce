@@ -12,7 +12,7 @@ const RootLayout = () => {
   return (
     <>
       <Header />
-      <main className="container mx-auto min-h-[calc(100vh-437.5px)] px-2 md:px-4 xl:px-0">
+      <main className="container mx-auto  px-2 md:px-4 xl:px-0">
         <Outlet />
       </main>
       <Footer />

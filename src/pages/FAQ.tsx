@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+//Components
+import MetaTags from "@components/common/MetaTags";
 //icons
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -15,7 +16,9 @@ const FAQ = () => {
 
   return (
     <section className="my-8 min-h-[calc(100vh-260px)]">
-      <h2 className="text-3xl font-bold text-gray-900 mb-4">FAQ</h2>
+      <MetaTags title="FAQ" />
+
+      <h2 className="text-3xl font-bold text-blue-600 mb-4">FAQ</h2>
       <div className="border-b-2 border-gray-300 py-3 text-gray-500 my-4">
         <button
           className="w-full flex justify-between py-1 font-semibold"

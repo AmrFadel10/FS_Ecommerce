@@ -1,25 +1,26 @@
 //React & Redux
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-
 //APIS
 import { getPopularProductsApiCall } from "@redux/products/apiCalls/productsApiCall";
-
 //Components
-import ProductsList from "./ProductsList";
-import Empty from "@components/common/Empty";
 import Loading from "@feedback/loading/Loading";
 import type { TLoading } from "@customeTypes/common";
 import type { TProduct } from "@customeTypes/products";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Heading from "@components/common/Heading";
+import AboveArrowsToRightAndLeft from "./AboveArrowsToRightAndLeft";
+import GridList from "@components/common/GridList";
+import ProductCard from "@components/common/products/ProductCard";
 
-const LatestPorductsCollection = ({
-  where,
+const ProductsCollection = ({
   limit,
+  sort,
+  type,
 }: {
   where?: "public" | "private";
   limit?: number;
+  sort: "-createdAt" | "-sold";
+  type: "feature" | "latest";
 }) => {
   const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.wishlist);
@@ -33,8 +34,8 @@ const LatestPorductsCollection = ({
     setLoading("pending");
     dispatch(
       getPopularProductsApiCall({
-        limit: limit!,
-        sort: "createdAt",
+        limit: limit || 10,
+        sort,
       })
     )
       .unwrap()
@@ -46,7 +47,7 @@ const LatestPorductsCollection = ({
         setLoading("failed");
         setError(error);
       });
-  }, [dispatch, limit]);
+  }, [dispatch, limit, sort]);
 
   const homeProducts = latestPorducts.map((product) => {
     return {
@@ -58,40 +59,28 @@ const LatestPorductsCollection = ({
   return (
     <section className="">
       <div className="flex justify-between items-center">
-        <Heading title="Latest Collection" />
-        <div className="flex gap-x-2">
-          <span
-            className="hover:cursor-pointer hover:text-gray-800 text-gray-500"
-            onClick={() =>
-              productRef.current?.scrollBy({
-                behavior: "smooth",
-                left: -800,
-              })
-            }
-          >
-            <IoIosArrowBack size={23} />
-          </span>
-          <span
-            className="hover:cursor-pointer hover:text-gray-800 text-gray-500"
-            onClick={() =>
-              productRef.current?.scrollBy({ behavior: "smooth", left: 800 })
-            }
-          >
-            <IoIosArrowForward size={23} />
-          </span>
-        </div>
+        <Heading
+          title={
+            type === "feature" ? "Feature Collection" : "Latest Collection"
+          }
+        />
+        <AboveArrowsToRightAndLeft
+          refItem={productRef}
+          length={homeProducts.length}
+        />
       </div>
       <Loading status={loading} error={error} size={150} type="homeProducts">
-        {homeProducts.length > 0 ? (
-          <div className="overflow-x-scroll hide-scrollbar" ref={productRef}>
-            <ProductsList products={homeProducts} where={where} />
-          </div>
-        ) : (
-          <Empty size={150} />
-        )}
+        <div className="overflow-x-scroll hide-scrollbar" ref={productRef}>
+          <GridList
+            items={homeProducts}
+            where="public"
+            Component={ProductCard}
+            loading={loading}
+          />
+        </div>
       </Loading>
     </section>
   );
 };
 
-export default LatestPorductsCollection;
+export default ProductsCollection;

@@ -17,6 +17,7 @@ import { MdAdd } from "react-icons/md";
 import AddressForm from "@components/address/AddressForm";
 import AddressList from "@components/address/AddressList";
 import Loading from "@feedback/loading/Loading";
+import HeadTags from "@components/common/MetaTags";
 
 const Addresses = () => {
   const [addAddress, setAddAddress] = useState(false);
@@ -45,6 +46,8 @@ const Addresses = () => {
 
   return (
     <Loading status={loading} error={error} type="address">
+      <HeadTags title="Address" />
+
       <section className="flex-[7] min-h-[600px] lg:pl-8  px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
@@ -66,12 +69,10 @@ const Addresses = () => {
 
         {/* Address Form */}
         {addAddress ? (
-          <div className="mt-10">
-            <AddressForm
-              handleCloseForm={handleCloseForm}
-              addressForUpdate={addressForUpdate}
-            />
-          </div>
+          <AddressForm
+            handleCloseForm={handleCloseForm}
+            addressForUpdate={addressForUpdate}
+          />
         ) : null}
       </section>
     </Loading>

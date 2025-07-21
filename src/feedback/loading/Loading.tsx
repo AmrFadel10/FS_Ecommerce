@@ -45,7 +45,7 @@ const Loading = ({
   type?: Ttype;
 }) => {
   const Skeleton = loadingComponents[type];
-  if (status === "pending") {
+  if (status === "pending" || status === "idle") {
     return Skeleton();
   }
 

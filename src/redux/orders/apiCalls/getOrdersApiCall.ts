@@ -18,7 +18,6 @@ const getAllOrdersApiCall = createAsyncThunk(
           },
         }
       );
-      console.log(data);
       return data;
     } catch (error) {
       if (isAxiosError(error)) {
