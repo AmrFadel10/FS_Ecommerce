@@ -22,13 +22,13 @@ const loadingComponents = {
   blogsPage: () => <BlogsPageSkeleton limit={8} />,
   commonLoading: () => <InlineLoading />,
   homeProducts: () => <HomeProductsSkeleton />,
+  homeBlogs: () => <BlogsSkeleton where="home" limit={4} />,
   outStore: () => <OurStoreSkeleton />,
   productPage: () => <AProductPageSkeleton />,
   sidebarProductPage: () => <SideBarStoreSkeleton />,
   address: () => <AddressesSkeleton />,
   accountInfo: () => <AccountInfoSkeleton />,
   productsListPage: () => <ProductsListSkeleton count={8} />,
-  homeBlogs: () => <BlogsSkeleton where="home" limit={4} />,
 };
 type Ttype = keyof typeof loadingComponents;
 const Loading = ({

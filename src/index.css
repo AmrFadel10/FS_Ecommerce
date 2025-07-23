@@ -6,16 +6,7 @@ body {
 }
 
 /* Font Family*/
-@font-face {
-  font-family: Rubik;
-  src: url("/assets/fonts/Rubik-Black.ttf");
-  font-weight: 900;
-}
-@font-face {
-  font-family: Rubik;
-  src: url("/assets/fonts/Rubik-ExtraBold.ttf");
-  font-weight: 800;
-}
+
 @font-face {
   font-family: Rubik;
   src: url("/assets/fonts/Rubik-Bold.ttf");

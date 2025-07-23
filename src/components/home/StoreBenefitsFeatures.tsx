@@ -6,8 +6,8 @@ import { GoGift } from "react-icons/go";
 
 const StoreInfoFeatures = () => {
   return (
-    <section className="overflow-x-auto lg:overflow-x-visible hide-scrollbar">
-      <div className="py-2 flex flex-nowrap justify-center flex-row  gap-4 mx-auto w-fit items-start">
+    <section className="overflow-x-auto  hide-scrollbar ">
+      <div className="py-2 flex flex-nowrap justify-start flex-row  gap-4 mx-auto w-full items-start ">
         <div className="flex  cats-center gap-6  rounded-xl shadow-sm bg-gray-50 p-4 mx-auto ">
           <BsTruck size={33} color="#2563EB" />
           <div>

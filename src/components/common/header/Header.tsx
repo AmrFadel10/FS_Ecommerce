@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="relative z-[10] change-color container mx-auto ">
+      <header className="relative z-[10] change-color container mx-auto p-4">
         <div className="bg-gray-50 text-slate-100">
           {createPortal(<TopOfHeader />, document.getElementById("root")!)}
           <div className="mx-auto  text-slate-300 xl:px-0 px-2">
