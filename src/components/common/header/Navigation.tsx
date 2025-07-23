@@ -24,7 +24,7 @@ const Navigation = () => {
   }, [dispatch]);
 
   return (
-    <nav className="bg-gray-50 transition-all border-y border-blue-200 py-3 overflow-x-auto hide-scrollbar w-full">
+    <nav className="bg-gray-50 transition-all border-y border-blue-200 py-3 px-4 overflow-x-auto hide-scrollbar w-full ">
       <ul className="container  mx-auto flex lg:gap-x-6 md:gap-x-3 gap-x-1  items-center justify-start w-full text-sm ">
         {navigationData.map((nav, index) => {
           return (

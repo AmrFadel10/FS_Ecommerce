@@ -12,7 +12,7 @@ const RootLayout = () => {
   return (
     <>
       <Header />
-      <main className="container mx-auto  px-2 md:px-4 lg:px-6">
+      <main className="container mx-auto  px-3 md:px-4 lg:px-6">
         <Outlet />
       </main>
       <Footer />
