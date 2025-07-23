@@ -28,11 +28,13 @@ const AddressCard = ({
       .unwrap()
       .then(() => {
         setLoading(false);
-        addToast({ type: "success", comment: "Address was deleted!" });
+        dispatch(
+          addToast({ type: "success", comment: "Address was deleted!" })
+        );
       })
       .catch((err) => {
         setLoading(false);
-        addToast({ type: "error", comment: err });
+        dispatch(addToast({ type: "error", comment: err }));
       });
   };
 
@@ -66,7 +68,11 @@ const AddressCard = ({
               className="text-red-500 hover:text-red-600 cursor-pointer"
               onClick={handleDeleteAddress}
             >
-              {loading ? <Spinner size={15} /> : <MdDelete size={20} />}
+              {loading ? (
+                <Spinner size={18} color="#1D4ED8" />
+              ) : (
+                <MdDelete size={20} />
+              )}
             </button>
           </div>
         </div>

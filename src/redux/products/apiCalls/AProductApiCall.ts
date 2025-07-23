@@ -4,10 +4,14 @@ import axios, { isAxiosError } from "axios";
 
 export const getAProductApiCall = createAsyncThunk(
   "aproduct/get-one",
-  async ({ id }: { id: string }, thunkApi) => {
+  async ({ id, userId }: { id: string; userId?: string }, thunkApi) => {
     const { rejectWithValue, signal } = thunkApi;
     try {
-      const { data } = await axios.get<TProduct>("/product/" + id, { signal });
+      const { data } = await axios.post<{
+        product: TProduct;
+        AddingReview: boolean;
+      }>("/product/" + id, { userId }, { signal });
+
       return data;
     } catch (error) {
       if (isAxiosError(error)) {

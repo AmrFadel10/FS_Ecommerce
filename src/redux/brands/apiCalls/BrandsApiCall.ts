@@ -1,3 +1,4 @@
+import type { Tbrand } from "@customeTypes/brands";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { isAxiosError } from "axios";
 
@@ -5,7 +6,7 @@ const getBrandsApiCall = createAsyncThunk(
   "brands/get-brands",
   async (_, { rejectWithValue, signal }) => {
     try {
-      const { data } = await axios.get("/brand", { signal });
+      const { data } = await axios.get<Tbrand[]>("/brand", { signal });
       return data;
     } catch (error) {
       if (isAxiosError(error)) {

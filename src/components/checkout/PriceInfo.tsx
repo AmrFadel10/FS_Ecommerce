@@ -158,7 +158,7 @@ const PriceInfo = () => {
           >
             {couponLoading === "pending" ? (
               <>
-                <Spinner size={15} />
+                <Spinner size={18} />
                 Loading...
               </>
             ) : (

@@ -1,6 +1,6 @@
-import type { TBrandsIntialState } from "@customeTypes/brands";
 import { createSlice } from "@reduxjs/toolkit";
 import getBrandsApiCall from "../apiCalls/BrandsApiCall";
+import type { TBrandsIntialState } from "@customeTypes/brands";
 
 const initialState: TBrandsIntialState = {
   loading: "idle",

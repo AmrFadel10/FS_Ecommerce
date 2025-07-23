@@ -28,9 +28,11 @@ const useAccountInfo = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      dataRef.current.fullName !== "" &&
-      dataRef.current.mobile !== "" &&
-      dataRef.current.password !== ""
+      !(
+        dataRef.current.fullName?.trim() === "" &&
+        dataRef.current.mobile?.trim() === "" &&
+        dataRef.current.password?.trim() === ""
+      )
     ) {
       if (loading === "pending") return;
 
@@ -44,7 +46,6 @@ const useAccountInfo = () => {
         setFormErrors(errors);
         return;
       }
-
       dispatch(
         updateAccountInfoApiCall({
           ...dataRef.current,
@@ -59,6 +60,10 @@ const useAccountInfo = () => {
               comment: "Your account information was updated successfully",
             })
           );
+          dataRef.current.confirmPassword = "";
+          dataRef.current.fullName = "";
+          dataRef.current.mobile = "";
+          dataRef.current.password = "";
         })
         .catch((error) => {
           dispatch(addToast({ type: "error", comment: `${error}` }));

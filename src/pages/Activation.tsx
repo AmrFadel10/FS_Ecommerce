@@ -8,7 +8,7 @@ import { activationAccountApiCall } from "@redux/auth/apicalls/AtivationApiCall"
 import { Spinner } from "@components/common/Spinner";
 import { ErrorExplosion } from "@components/common/ErrorExplosion";
 import { SuccessExplosion } from "@components/common/SuccessCheckmark";
-import HeadTags from "@components/common/MetaTags";
+import MetaTags from "@components/common/MetaTags";
 
 const Activation = () => {
   const { activationToken } = useParams();
@@ -21,7 +21,7 @@ const Activation = () => {
 
   return (
     <div className="w-full min-h-screen flex gap-y-10 flex-col items-center justify-center">
-      <HeadTags title="Activation" />
+      <MetaTags title="Activation" />
 
       <div className="text-gray-700 text-2xl font-bold">
         {loading === "pending" ? (

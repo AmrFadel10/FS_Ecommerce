@@ -1,10 +1,10 @@
+import type { TUser } from "./auth";
 import type { TColor, TImage, TLoading } from "./common";
 
 export type TProduct = {
   _id: string;
   title: string;
-  slug: string;
-  description: string;
+  description?: string;
   price: number;
   discountPrice?: number;
   brand: string;
@@ -16,7 +16,7 @@ export type TProduct = {
   ratings: {
     star: number;
     comment: string;
-    postedby: string;
+    postedby: TUser;
   }[];
   totalrating: number;
 };
@@ -29,6 +29,13 @@ export type TProductsInitialState = {
 };
 export type TAProductsInitialState = {
   loading: TLoading;
+  AddingReview: boolean;
   error: string | null;
   data: TProduct | null;
+};
+
+export type TRatings = {
+  star: number;
+  comment: string;
+  postedby: TUser;
 };

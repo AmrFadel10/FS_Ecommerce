@@ -7,7 +7,11 @@ import { getPopularProductsApiCall } from "@redux/products/apiCalls/productsApiC
 import type { TLoading } from "@customeTypes/common";
 import type { TProduct } from "@customeTypes/products";
 
-const usePopularProductCollection = (limit?: number, category?: string) => {
+const usePopularProductCollection = (
+  where: "public" | "private",
+  limit?: number,
+  category?: string
+) => {
   const dispatch = useAppDispatch();
   const productRef = useRef<HTMLDivElement>(null);
   const { items } = useAppSelector((state) => state.wishlist);
@@ -35,7 +39,7 @@ const usePopularProductCollection = (limit?: number, category?: string) => {
     dispatch(
       getPopularProductsApiCall({
         limit: limit || 10,
-        category: category || activeCategory,
+        category: where === "private" ? category : activeCategory,
         sort: "-sold",
       })
     )
@@ -48,11 +52,12 @@ const usePopularProductCollection = (limit?: number, category?: string) => {
         setLoading("failed");
         setError(error);
       });
-  }, [dispatch, limit, activeCategory, category]);
+  }, [dispatch, limit, activeCategory, category, where]);
 
   useEffect(() => {
+    if (where === "private") return;
     setActiveCategory(categories?.[0]?.title);
-  }, [categories]);
+  }, [categories, where]);
 
   return {
     productRef,

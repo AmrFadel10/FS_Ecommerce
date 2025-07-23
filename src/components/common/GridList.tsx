@@ -20,7 +20,11 @@ const GridList = <T,>({
           ? "flex flex-nowrap min-h-[350px] items-start"
           : where === "blog"
           ? "grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 min-h-[650px] items-start"
-          : "grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 grid-cols-2 sm:grid-cols-3 min-h-[650px] items-start"
+          : where === "wishlist"
+          ? "grid  xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 min-h-[650px] items-start"
+          : items.length
+          ? "grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 grid-cols-2 sm:grid-cols-3 min-h-[650px] items-start"
+          : ""
       } gap-4 my-6`}
     >
       {items?.length > 0 && loading === "succeeded" ? (

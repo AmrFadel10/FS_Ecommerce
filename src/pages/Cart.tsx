@@ -13,7 +13,7 @@ import CartList from "@components/cart/CartList";
 import TotalPrice from "@components/cart/TotalPrice";
 import Empty from "@components/common/Empty";
 import Loading from "@feedback/loading/Loading";
-import HeadTags from "@components/common/MetaTags";
+import MetaTags from "@components/common/MetaTags";
 
 export default function Cart() {
   const products = useAppSelector(editProductToshowInCheckout);
@@ -24,11 +24,11 @@ export default function Cart() {
     cleanUpAction: cleanUpCart,
     stateName: "cart",
   });
+  ("cart");
   return (
-    <Loading status={loading} error={error}>
-      <HeadTags title="Cart" />
-
-      <section className="flex flex-col ">
+    <Loading status={loading} error={error} type="commonLoading">
+      <MetaTags title="Cart" />
+      <section className="flex flex-col">
         {products.length ? (
           <>
             <CartList products={products} />

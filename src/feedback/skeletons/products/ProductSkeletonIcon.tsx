@@ -4,7 +4,7 @@ const ProductSkeletonIcon = () => {
   return (
     <div className={`  rounded-2xl  group shadow-md bg-white p-2 `}>
       <div className=" relative overflow-hidden">
-        <div className="overflow-auto w-full md:h-52 h-36  bg-gray-300  rounded-lg flex justify-center items-center min-w-56">
+        <div className="overflow-auto w-full lg:h-52 h-36  bg-gray-300  rounded-lg flex justify-center items-center lg:min-w-56 w-full">
           <ImageIcon size={28} />
         </div>
       </div>

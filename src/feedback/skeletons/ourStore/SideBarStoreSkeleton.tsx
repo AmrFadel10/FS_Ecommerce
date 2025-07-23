@@ -1,6 +1,6 @@
 const SideBarStoreSkeleton = () => {
   return (
-    <div className="flex-1 flex gap-4 flex-col animate-pulse">
+    <div className="flex-1 lg:flex hidden gap-4 flex-col animate-pulse">
       <div className="shadow-md rounded-xl bg-white p-4 w-full ">
         <div className=" bg-white p-4 w-full">
           <h4 className="mb-4 p-2 w-3/4 bg-gray-300 rounded-lg"></h4>

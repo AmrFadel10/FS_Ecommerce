@@ -50,18 +50,37 @@ const AddressForm = memo(
         dispatch(updateAddressApiCall({ ...info, _id: addressForUpdate._id }))
           .unwrap()
           .then(() =>
-            addToast({
-              type: "success",
-              comment: "Address was updated successfully!",
-            })
+            dispatch(
+              addToast({
+                type: "success",
+                comment: "Address was updated successfully!",
+              })
+            )
           )
           .catch((error) => {
-            addToast({ type: "error", comment: error });
+            dispatch(addToast({ type: "error", comment: error }));
+          })
+          .finally(() => {
+            handleCloseForm();
           });
       } else {
-        dispatch(addAddressApiCall(info));
+        dispatch(addAddressApiCall(info))
+          .unwrap()
+          .then(() => {
+            dispatch(
+              addToast({
+                type: "success",
+                comment: "Address was added successfully!",
+              })
+            );
+          })
+          .catch((error) => {
+            dispatch(addToast({ type: "error", comment: error }));
+          })
+          .finally(() => {
+            handleCloseForm();
+          });
       }
-      handleCloseForm();
     };
 
     const clearError = (key: string) => {

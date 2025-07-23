@@ -27,7 +27,6 @@ export default function Home() {
       <LazyWrapper type="banner">
         <Banner />
       </LazyWrapper>
-      {/* <ProductRaing /> */}
       {/* Info */}
       <LazyWrapper type="info">
         <StoreInfoFeatures />

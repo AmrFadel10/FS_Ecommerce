@@ -75,7 +75,7 @@ const CashOnDeliveryBtn = ({
       >
         {orderLoading === "pending" ? (
           <>
-            <Spinner size={15} /> Loading...
+            <Spinner size={18} /> Loading...
           </>
         ) : (
           "Cash on delivery"

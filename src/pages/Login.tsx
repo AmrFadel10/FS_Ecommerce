@@ -6,7 +6,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import useLogin from "@hooks/useLogin";
 //components
 import { Spinner } from "@components/common/Spinner";
-import HeadTags from "@components/common/MetaTags";
 import MetaTags from "@components/common/MetaTags";
 
 const Login = () => {
@@ -23,7 +22,7 @@ const Login = () => {
     <section className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-3">
       <MetaTags title="Login" />
 
-      <HeadTags title="Login" />
+      <MetaTags title="Login" />
       <h2 className="text-3xl font-extrabold text-blue-600 font-Roboto">
         Login to your account
       </h2>

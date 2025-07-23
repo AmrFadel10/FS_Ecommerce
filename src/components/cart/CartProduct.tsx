@@ -14,23 +14,21 @@ const CartProduct = ({
   price,
 }: TProductCart) => {
   const productPrice = quantity * price;
-
   return (
-    <tr className="flex ">
+    <tr className="flex">
       <td className=" flex flex-[3] items-center p-4 gap-4 min-w-96">
-        <div className="flex-[1] h-36 ">
+        <div className="flex-1 h-36 min-w-28">
           <img
-            // src={"assets/images/24_150x.avif"}
             src={images[0].url}
             loading="lazy"
             alt="music"
             className="h-full w-full object-contain"
           />
         </div>
-        <div className="flex-[2] min-w-fit text-nowrap">
+        <div className="flex-[2] ">
           <Link
             to={`/product/${_id}`}
-            className={`text-sm font-medium text-gray-700 line-clamp-2 hover:underline`}
+            className={`text-sm font-medium text-gray-700 line-clamp-2 hover:underline text-wrap`}
           >
             {title}
           </Link>

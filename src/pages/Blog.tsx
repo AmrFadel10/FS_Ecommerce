@@ -10,7 +10,7 @@ import { getABlog } from "@redux/blogs/apiCalls/AblogApiCall";
 import Loading from "@feedback/loading/Loading";
 
 //Components
-import HeadTags from "@components/common/MetaTags";
+import MetaTags from "@components/common/MetaTags";
 
 //Hooks
 import useLoadDataWithCleanup from "@hooks/useLoadDataWithCleanup";
@@ -27,7 +27,7 @@ const Blog = () => {
   if (!data) return null;
   return (
     <Loading status={loading} error={error} type="commonLoading">
-      <HeadTags title="Blog" />
+      <MetaTags title="Blog" />
       <section className="container py-8 mx-auto bg-zinc-50  text-center lg:text-left">
         <div className=" mx-auto w-full">
           <Link

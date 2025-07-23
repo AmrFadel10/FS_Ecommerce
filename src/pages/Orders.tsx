@@ -36,7 +36,6 @@ const Orders = () => {
               <thead className="border-y-2 border-blue-300 text-blue-600">
                 <tr>
                   <th className="py-2 min-w-52">OrderID</th>
-                  <th className="py-2 min-w-52">Address</th>
                   <th className="py-2 min-w-40">Date</th>
                   <th className="py-2 min-w-28">Price</th>
                   <th className="py-2 min-w-28">status</th>
@@ -54,7 +53,6 @@ const Orders = () => {
                       <td className="text-center py-4 min-w-52">
                         {order._id}{" "}
                       </td>
-                      <td className="text-center py-4 capitalize min-w-52">{`${order.address.addressLine}, ${order.address.state}, ${order.address.city}`}</td>
                       <td className="text-center py-4 min-w-40">{`${new Date(
                         order.paidAt
                       ).toLocaleDateString()}`}</td>

@@ -17,7 +17,7 @@ import { MdAdd } from "react-icons/md";
 import AddressForm from "@components/address/AddressForm";
 import AddressList from "@components/address/AddressList";
 import Loading from "@feedback/loading/Loading";
-import HeadTags from "@components/common/MetaTags";
+import MetaTags from "@components/common/MetaTags";
 
 const Addresses = () => {
   const [addAddress, setAddAddress] = useState(false);
@@ -46,7 +46,7 @@ const Addresses = () => {
 
   return (
     <Loading status={loading} error={error} type="address">
-      <HeadTags title="Address" />
+      <MetaTags title="Address" />
 
       <section className="flex-[7] min-h-[600px] lg:pl-8  px-4">
         {/* Header */}

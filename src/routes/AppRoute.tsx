@@ -81,9 +81,7 @@ const AppRoute = () => {
         {
           path: "cart",
           element: (
-            <Suspense
-              fallback={<ProductsListSkeleton count={5} where="public" />}
-            >
+            <Suspense fallback={<InlineLoading />}>
               <Cart />
             </Suspense>
           ),

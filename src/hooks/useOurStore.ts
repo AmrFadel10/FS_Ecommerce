@@ -47,7 +47,7 @@ const useOurStore = () => {
   const handleQueryInInputs = useCallback(
     (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
       const { value, name } = e.target;
-      if (isNaN(value) || +value < 0) return;
+      if (typeof parseInt(value) !== "number" || +value < 0) return;
       if (ref.current) clearTimeout(ref.current);
       ref.current = setTimeout(() => {
         query.set(name, value);

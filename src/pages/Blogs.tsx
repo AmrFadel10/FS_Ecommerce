@@ -7,7 +7,6 @@ import useLoadDataWithCleanup from "@hooks/useLoadDataWithCleanup";
 // Components
 import BlogCard from "@components/common/blogs/BlogCard";
 import Loading from "@feedback/loading/Loading";
-import HeadTags from "@components/common/MetaTags";
 import GridList from "@components/common/GridList";
 import MetaTags from "@components/common/MetaTags";
 
@@ -19,11 +18,11 @@ export default function Blogs() {
   });
   return (
     <Loading status={loading} error={error} type="blogsPage">
-      <HeadTags title="Blogs" />
+      <MetaTags title="Blogs" />
 
       <section className="container mx-auto py-8">
         <MetaTags title="Blogs" />
-
+        <h2 className="text-lg font-semibold w-fit border-b pb-2">Blogs</h2>
         <GridList
           items={data}
           where="blog"

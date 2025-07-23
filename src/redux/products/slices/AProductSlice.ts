@@ -5,6 +5,7 @@ import { AddRatingForAProductApiCall } from "../apiCalls/AddRatingApiCall";
 
 const initialState: TAProductsInitialState = {
   data: null,
+  AddingReview: false,
   loading: "idle",
   error: null,
 };
@@ -26,14 +27,18 @@ const aProductsSlice = createSlice({
     });
     builder.addCase(getAProductApiCall.fulfilled, (state, action) => {
       state.loading = "succeeded";
-      state.data = action.payload as TProduct;
+      state.data = action.payload.product as TProduct;
+      state.AddingReview = action.payload.AddingReview;
     });
     builder.addCase(getAProductApiCall.rejected, (state, action) => {
       state.loading = "failed";
       state.error = action.payload as string;
     });
     builder.addCase(AddRatingForAProductApiCall.fulfilled, (state, action) => {
-      state.data = action.payload as TProduct;
+      if (state.data) {
+        state.data.ratings = action.payload.ratings;
+        state.data.totalrating = action.payload.totalrating;
+      }
     });
   },
 });

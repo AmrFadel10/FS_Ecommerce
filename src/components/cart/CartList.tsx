@@ -13,7 +13,7 @@ const CartList = ({ products }: { products: TProductCart[] }) => {
             <th className="p-4 flex-1 min-w-36">TOTAL</th>
           </tr>
         </thead>
-        <tbody className=" p-4 text-xl  divide-y">
+        <tbody className=" p-4 text-xl  ">
           {products.map((product, index) => {
             return <CartProduct key={index} {...product} />;
           })}

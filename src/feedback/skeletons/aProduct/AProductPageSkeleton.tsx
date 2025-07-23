@@ -4,7 +4,7 @@ import RightSideProductPageSkeleton from "./RightSideProductPageSkeleton";
 const AProductPageSkeleton = () => {
   return (
     <section className="mb-16 animate-pulse min-h-screen">
-      <div className="flex my-8 gap-x-8 flex-col md:flex-row ">
+      <div className="flex my-8 gap-6 flex-col md:flex-row ">
         <ImageProductPage />
         <RightSideProductPageSkeleton />
       </div>

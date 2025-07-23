@@ -19,9 +19,9 @@ const toastSlice = createSlice({
     addToast(state, action: PayloadAction<TToast>) {
       const type = action.payload.type;
       state.items.push({
-        id: nanoid(),
-        type: action.payload.type,
-        title: action.payload.title || action.payload.type,
+        id: nanoid(10),
+        type: type,
+        title: action.payload.title || type,
         comment: action.payload.comment,
         color: colors[type],
       });
@@ -35,6 +35,9 @@ const toastSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(addToCart, (state) => {
       state.items.push({
+        id: nanoid(10),
+        title: "success",
+        color: "text-green-600",
         type: "success",
         comment: "Product has been added to the cart",
       });

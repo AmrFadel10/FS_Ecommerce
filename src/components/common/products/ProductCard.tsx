@@ -1,14 +1,17 @@
+//React & Redux
 import { Link } from "react-router-dom";
-
-//Icons
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useAppDispatch } from "@redux/hooks";
-import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistApiCall";
 import { Spinner } from "../Spinner";
 import { addToast } from "@redux/toast/slices/ToastSlice";
-import { MdZoomOutMap } from "react-icons/md";
+//Icons
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+//Types
 import type { TProduct } from "@customeTypes/products";
+//APIS
+import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistApiCall";
+//Component
+import ProductRating from "@components/rating/ProductRating";
 
 const ProductCard = ({
   images,
@@ -16,9 +19,10 @@ const ProductCard = ({
   _id,
   title,
   price,
-  sold,
+  quantity,
   isLiked,
   isActivation,
+  totalrating,
   where,
 }: TProduct & { isLiked: boolean; isActivation: boolean; where?: string }) => {
   const [loading, setLoading] = useState(false);
@@ -60,7 +64,7 @@ const ProductCard = ({
     }
   };
   return (
-    <div
+    <article
       className={`${
         where === "public"
           ? "max-w-[97] sm:max-w-[47%] md:max-w-[31%] lg:max-w-[23%] xl:max-w-[18%] shrink-0 "
@@ -68,20 +72,23 @@ const ProductCard = ({
       } rounded-2xl overflow-hidden group shadow-md bg-white p-2 `}
     >
       <div className=" relative overflow-hidden">
-        <div className="overflow-auto w-full md:h-52 h-36 inline-block ">
+        <Link
+          to={`/product/${_id}`}
+          className="overflow-auto w-full md:h-52 h-36 block "
+        >
           <img
             src={images[0].url}
             alt="music"
             className=" w-full h-full object-contain "
           />
-        </div>
+        </Link>
         <div
           className=" transition-all duration-300  rounded-full p-1 absolute top-[2%] right-0 flex justify-center items-center w-7 h-7"
           onClick={handleToggleWishlist}
         >
           {loading ? (
             <Spinner
-              size={15}
+              size={18}
               className={`w-full h-full ${
                 loading && "bg-blue-500"
               } rounded-full`}
@@ -102,12 +109,6 @@ const ProductCard = ({
             />
           )}
         </div>
-
-        <div className="absolute top-[14%] -right-12 flex gap-2 flex-col group-hover:right-0 transition-all  text-lg">
-          <div className=" transition-all  rounded-full flex justify-center items-center duration-300 w-7 h-7">
-            <MdZoomOutMap size={20} color="#333" title="Quick view" />
-          </div>
-        </div>
       </div>
       <div className="px-4 py-2">
         <h3 className="font-medium text-xs capitalize text-blue-600 cursor-default">
@@ -119,28 +120,18 @@ const ProductCard = ({
         >
           {title}
         </Link>
+        <ProductRating totalrating={totalrating || 0} />
+
         <div className="mt-2 flex  justify-between">
           <div className="flex gap-4">
             <div className="font-semibold md:text-base text-sm">{price}$</div>
           </div>
           <div className="text-blue-500 font-medium md:text-sm text-xs">
-            {sold} Sold
+            {quantity} items
           </div>
         </div>
       </div>
-      {/* {open ? (
-        <FeatureDetailsCard
-          setOpen={setOpen}
-          inWishList={inWishList}
-          images={images}
-          title={title}
-          description={description}
-          price={price}
-          sold={sold}
-          addToWishList={addToWishList}
-        />
-      ) : null} */}
-    </div>
+    </article>
   );
 };
 
