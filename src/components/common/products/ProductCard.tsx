@@ -67,7 +67,7 @@ const ProductCard = ({
     <article
       className={`${
         where === "public"
-          ? "rounded-xl overflow-hidden group shadow-md bg-white lg:min-w-[31%] xl:min-w-[23%] min-w-[47%]"
+          ? "rounded-xl overflow-hidden group shadow-md bg-white lg:min-w-[23%] xl:min-w-[18%] min-w-[47%]"
           : ""
       } rounded-2xl overflow-hidden group shadow-md bg-white p-2 `}
     >
