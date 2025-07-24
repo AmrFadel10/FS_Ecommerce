@@ -17,7 +17,7 @@ import AccountInfoSkeleton from "@feedback/skeletons/profileInfomation/AccountIn
 import BlogsSkeleton from "@feedback/skeletons/blogs/BlogsSkeleton";
 
 const loadingComponents = {
-  wishlist: () => <ProductsListSkeleton count={3} where="public" />,
+  wishlist: () => <ProductsListSkeleton count={3} where="wishlist" />,
   cart: () => <ProductsListSkeleton count={5} where="public" />,
   blogsPage: () => <BlogsPageSkeleton limit={8} />,
   commonLoading: () => <InlineLoading />,
