@@ -39,7 +39,7 @@ const ProductCard = ({
             dispatch(
               addToast({
                 title: "add to wishlist",
-                comment: `${title.slice(0, 40)} is now in your wishlist`,
+                comment: `${title?.slice(0, 40)} is now in your wishlist`,
                 type: "success",
               })
             );
