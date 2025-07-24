@@ -3,11 +3,9 @@ import type { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import { addToast } from "@redux/toast/slices/ToastSlice";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-
 //Components
 import UserIcon from "./UserIcon";
 import CartIcon from "./cartIcon/CartIcon";
-
 //Icons
 import { FiHeart } from "react-icons/fi";
 

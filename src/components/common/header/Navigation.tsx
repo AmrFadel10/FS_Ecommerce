@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 //React
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { cleanUpCategories } from "@redux/categories/slices/categoriesSlice";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-
 //APIS
 import getCategoriesApiCall from "@redux/categories/apiCalls/categoriesApiCall";
-
 //Data
 import { navigationData } from "@utils/data";
 
