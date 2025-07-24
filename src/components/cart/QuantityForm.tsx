@@ -51,7 +51,7 @@ const QuantityForm = ({ count, _id, color }: TQuantityForm) => {
         <div className="flex gap-y-1 flex-col">
           <AiOutlinePlus
             size={4}
-            className={`w-3 h-3 text-center border-gray-400 border ${
+            className={`w-5 h-5 lg:w-4 lg:h-4 text-center border-gray-400 border ${
               count >= 10 || isClicked
                 ? " bg-blue-50"
                 : "cursor-pointer hover:bg-gray-300 bg-gray-200"
@@ -60,7 +60,7 @@ const QuantityForm = ({ count, _id, color }: TQuantityForm) => {
           />
           <AiOutlineMinus
             size={4}
-            className={`w-3 h-3 text-center   border-gray-400 border ${
+            className={`w-5 h-5 lg:w-4 lg:h-4 text-center   border-gray-400 border ${
               count <= 0 || isClicked
                 ? " bg-blue-50"
                 : "cursor-pointer hover:bg-gray-300 bg-gray-200"

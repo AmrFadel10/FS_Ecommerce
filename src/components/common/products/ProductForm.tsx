@@ -62,8 +62,8 @@ const ProductForm = ({
           })}
         </ul>
       </div>
-      <div className="flex py-6 items-center gap-6">
-        <span className="font-semibold text-base">Select quantity:</span>
+      <div className="flex py-6 items-center lg:gap-6 gap-2">
+        <span className="font-semibold text-base">Quantity:</span>
         <div className="flex gap-3 items-center ">
           <input
             type="string"
@@ -78,7 +78,7 @@ const ProductForm = ({
           <div className="flex gap-y-1 flex-col">
             <AiOutlinePlus
               size={4}
-              className={`w-3 h-3 text-center border-gray-400 border ${
+              className={`w-5 h-5 lg:w-4 lg:h-4 text-center border-gray-400 border ${
                 count >= 10 || count >= quantity
                   ? " bg-blue-50 cursor-not-allowed"
                   : "cursor-pointer hover:bg-gray-300 bg-gray-200"
@@ -87,7 +87,7 @@ const ProductForm = ({
             />
             <AiOutlineMinus
               size={4}
-              className={`w-3 h-3 text-center   border-gray-400 border ${
+              className={`w-5 h-5 lg:w-4 lg:h-4 text-center   border-gray-400 border ${
                 count <= 0
                   ? " bg-blue-50 cursor-not-allowed"
                   : "cursor-pointer hover:bg-gray-300 bg-gray-200"
@@ -100,12 +100,12 @@ const ProductForm = ({
             className={`${
               !selectedColor || !(+count > 0)
                 ? "cursor-no-drop bg-gray-300"
-                : "hover:bg-blue-600  cursor-pointer bg-blue-600 text-gray-50"
+                : "hover:bg-blue-600  cursor-pointer bg-blue-600 text-gray-50 ml-3"
             }  px-4 py-2  rounded-full w-fit transition-all text-sm`}
             onClick={handleSubmit}
             disabled={!selectedColor || !(+count > 0)}
           >
-            Add to cart
+            Add
           </button>
         </div>
       </div>

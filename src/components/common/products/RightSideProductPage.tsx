@@ -51,7 +51,7 @@ const RightSideProductPage = memo(
           </Link>
         </div>
         <div className="flex gap-3 my-4 items-center">
-          <span className="font-semibold text-base">Quantity:</span>
+          <span className="font-semibold text-base">Total quantity:</span>
           <span className="  text-gray-500 font-medium text-sm">
             {quantity}
           </span>
