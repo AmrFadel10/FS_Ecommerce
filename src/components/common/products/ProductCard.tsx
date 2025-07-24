@@ -14,15 +14,15 @@ import { toggleWishlistApiCall } from "@redux/wishlist/apicalls/toggleWishlistAp
 import ProductRating from "@components/rating/ProductRating";
 
 const ProductCard = ({
-  images = [],
-  brand = "",
-  _id = "",
-  title = "",
-  price = 0,
-  quantity = 0,
-  isLiked = false,
-  isActivation = false,
-  totalrating = 0,
+  images,
+  brand,
+  _id,
+  title,
+  price,
+  quantity,
+  isLiked,
+  isActivation,
+  totalrating,
   where,
 }: TProduct & { isLiked: boolean; isActivation: boolean; where?: string }) => {
   const [loading, setLoading] = useState(false);
