@@ -67,14 +67,14 @@ const ProductCard = ({
     <article
       className={`${
         where === "public"
-          ? "max-w-[97] sm:max-w-[47%] md:max-w-[31%] lg:max-w-[23%] xl:max-w-[18%] shrink-0 w-fit"
+          ? "rounded-xl overflow-hidden group shadow-md bg-white lg:min-w-[31%] xl:min-w-[23%] min-w-[47%]"
           : ""
       } rounded-2xl overflow-hidden group shadow-md bg-white p-2 `}
     >
       <div className=" relative overflow-hidden">
         <Link
           to={`/product/${_id}`}
-          className="overflow-auto w-full md:h-52 h-36 block min-w-60"
+          className="overflow-auto w-full md:h-52 h-36 block "
         >
           <img
             src={images[0].url}
@@ -116,7 +116,7 @@ const ProductCard = ({
         </h3>
         <Link
           to={`/product/${_id}`}
-          className="my-2 text-sm  text-gray-600 font-medium line-clamp-2 hover:underline min-h-8 max-w-52"
+          className="my-2 md:text-sm text-xs text-gray-600 font-medium line-clamp-2 hover:underline min-h-8 max-w-52"
         >
           {title}
         </Link>

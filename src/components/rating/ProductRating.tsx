@@ -11,7 +11,6 @@ const ProductRating = ({
   totalrating: number;
   handleStarsValue?: (startValue: number) => void;
 }) => {
-  2.5 % 2;
   return (
     <div className="flex gap-x-2 items-center -mt-0.25">
       <ul className="flex ">
@@ -44,9 +43,6 @@ const ProductRating = ({
           );
         })}
       </ul>
-      <span className="font-semibold text-sm mt-1">
-        {totalrating.toFixed(2)}
-      </span>
     </div>
   );
 };
