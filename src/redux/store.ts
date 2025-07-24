@@ -35,7 +35,7 @@ const store = configureStore({
     cart,
     wishlist,
   },
-  devTools: import.meta.env.MODE !== "production",
+  devTools: false,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
