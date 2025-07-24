@@ -69,7 +69,7 @@ const CashOnDeliveryBtn = ({
       <button
         className={`${
           orderLoading === "pending" ? "cursor-not-allowed" : "cursor-pointer"
-        } py-2 px-3  hover:bg-blue-700 bg-blue-600 text-blue-50 rounded-lg lg:text-base text-sm`}
+        } py-2 px-3  hover:bg-blue-700 bg-blue-600 text-blue-50 rounded-lg lg:text-base text-xs flex items-center justify-center`}
         disabled={orderLoading === "pending"}
         onClick={handleCashOnDelivery}
       >
