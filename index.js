@@ -23,7 +23,6 @@ app.use(
       process.env.FRONTENDURI,
       process.env.AdminPanelURI,
       process.env.FRONTENDURI1,
-      process.env.FRONTENDURI2,
     ],
     credentials: true,
   })
