@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "669f1b0f8f7a2f51d2439c01",
+    "name": "SUMMER25",
+    "expiry": "2025-08-01T00:00:00.000Z",
+    "discount": 20,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c02",
+    "name": "WELCOME10",
+    "expiry": "2024-12-31T00:00:00.000Z",
+    "discount": 10,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c03",
+    "name": "EXPIRED2023",
+    "expiry": "2023-11-15T00:00:00.000Z",
+    "discount": 25,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c04",
+    "name": "BLACKFRIDAY",
+    "expiry": "2025-11-29T00:00:00.000Z",
+    "discount": 30,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c05",
+    "name": "EXPIRED22",
+    "expiry": "2022-07-15T00:00:00.000Z",
+    "discount": 15,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c06",
+    "name": "FREESHIP",
+    "expiry": "2025-09-30T00:00:00.000Z",
+    "discount": 5,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c07",
+    "name": "SPRINGSALE",
+    "expiry": "2024-03-20T00:00:00.000Z",
+    "discount": 18,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c08",
+    "name": "NEWYEAR",
+    "expiry": "2025-01-01T00:00:00.000Z",
+    "discount": 22,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c09",
+    "name": "SAVE40",
+    "expiry": "2025-10-10T00:00:00.000Z",
+    "discount": 40,
+    "__v": 0
+  },
+  {
+    "_id": "669f1b0f8f7a2f51d2439c0a",
+    "name": "EXPIREDJULY",
+    "expiry": "2023-07-09T00:00:00.000Z",
+    "discount": 12,
+    "__v": 0
+  }
+]
