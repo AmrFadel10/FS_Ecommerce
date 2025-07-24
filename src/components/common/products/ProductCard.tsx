@@ -72,16 +72,13 @@ const ProductCard = ({
       } rounded-2xl overflow-hidden group shadow-md bg-white p-2 `}
     >
       <div className=" relative overflow-hidden">
-        <Link
-          to={`/product/${_id}`}
-          className="overflow-auto w-full md:h-52 h-36 block "
-        >
+        <div className="overflow-auto w-full md:h-52 h-36">
           <img
             src={images[0].url}
             alt="music"
             className=" w-full h-full object-contain "
           />
-        </Link>
+        </div>
         <div
           className=" transition-all duration-300  rounded-full p-1 absolute top-[2%] right-0 flex justify-center items-center w-7 h-7"
           onClick={handleToggleWishlist}
