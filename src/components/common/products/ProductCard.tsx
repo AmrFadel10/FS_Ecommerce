@@ -122,9 +122,9 @@ const ProductCard = ({
         </Link>
         <ProductRating totalrating={totalrating || 0} />
 
-        <div className="mt-2 flex  justify-between">
+        <div className="mt-2 flex  justify-between items-center">
           <div className="flex gap-4">
-            <div className="font-semibold md:text-base text-sm">
+            <div className="font-medium md:text-sm text-xs">
               {price.toFixed(2)}$
             </div>
           </div>
