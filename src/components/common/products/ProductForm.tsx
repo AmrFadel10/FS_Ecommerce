@@ -2,6 +2,7 @@ import type { TColor } from "@customeTypes/common";
 import { addToCart } from "@redux/cart/slices/cartSlice";
 import { useAppDispatch } from "@redux/hooks";
 import { useState, type ChangeEvent } from "react";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const ProductForm = ({
   color,
@@ -20,6 +21,24 @@ const ProductForm = ({
     if (!!(count > 0) && !!selectedColor) {
       dispatch(addToCart({ id: _id, color: selectedColor, count: +count }));
     }
+  };
+  const increaseQuantity = () => {
+    setCount((pre) => {
+      if (pre >= quantity) {
+        return quantity;
+      } else if (pre >= 10) {
+        return 10;
+      } else {
+        return ++pre;
+      }
+    });
+  };
+
+  const decreaseQuantity = () => {
+    setCount((pre) => {
+      if (pre <= 1) return 1;
+      return --pre;
+    });
   };
 
   return (
@@ -47,7 +66,7 @@ const ProductForm = ({
         <span className="font-semibold text-base">Select quantity:</span>
         <div className="flex gap-3 items-center ">
           <input
-            type="number"
+            type="string"
             className="focus:outline-none w-14 text-gray-500 border border-slate-300  p-2"
             min={1}
             max={quantity > 10 ? 10 : quantity}
@@ -56,6 +75,26 @@ const ProductForm = ({
               setCount(+e.target.value)
             }
           />
+          <div className="flex gap-y-1 flex-col">
+            <AiOutlinePlus
+              size={4}
+              className={`w-3 h-3 text-center border-gray-400 border ${
+                count >= 10 || count >= quantity
+                  ? " bg-blue-50 cursor-not-allowed"
+                  : "cursor-pointer hover:bg-gray-300 bg-gray-200"
+              } `}
+              onClick={increaseQuantity}
+            />
+            <AiOutlineMinus
+              size={4}
+              className={`w-3 h-3 text-center   border-gray-400 border ${
+                count <= 0
+                  ? " bg-blue-50 cursor-not-allowed"
+                  : "cursor-pointer hover:bg-gray-300 bg-gray-200"
+              }`}
+              onClick={decreaseQuantity}
+            />
+          </div>
           <button
             type="submit"
             className={`${

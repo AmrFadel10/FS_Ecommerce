@@ -24,7 +24,6 @@ export default function Cart() {
     cleanUpAction: cleanUpCart,
     stateName: "cart",
   });
-  ("cart");
   return (
     <Loading status={loading} error={error} type="commonLoading">
       <MetaTags title="Cart" />

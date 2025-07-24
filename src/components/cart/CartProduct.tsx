@@ -33,7 +33,7 @@ const CartProduct = ({
             {title}
           </Link>
           <div className="flex gap-2 mt-3">
-            <span className="font-semibold text-sm text-gray-700">Brand :</span>{" "}
+            <span className="font-semibold text-sm text-gray-700">Brand :</span>
             <span className="text-sm font-semibold text-gray-700 capitalize">
               {brand}
             </span>
@@ -41,7 +41,7 @@ const CartProduct = ({
           <div className="flex gap-2 mt-3">
             <span className="font-semibold text-base text-gray-700">
               Color :
-            </span>{" "}
+            </span>
             <span
               className="  rounded-full  block w-6 h-6 ring-2"
               style={{ backgroundColor: `${color}` }}
