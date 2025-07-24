@@ -34,27 +34,31 @@ export default function Product() {
       userId,
     });
 
-  if (!data) return null;
   return (
     <Loading error={error} status={loading} type="productPage">
       <MetaTags title="Product" />
-      <section className="mb-12 min-h-screen ">
-        <div className="flex mt-8 gap-6 flex-col lg:flex-row items-stretch">
-          <ImageProductPage images={data.images} />
-          <RightSideProductPage
-            _id={data._id}
-            title={data.title}
-            color={data.color}
-            brand={data.brand}
+      {!!data && (
+        <section className="mb-12 min-h-screen ">
+          <div className="flex mt-8 gap-6 flex-col lg:flex-row items-stretch">
+            <ImageProductPage images={data.images} />
+            <RightSideProductPage
+              _id={data._id}
+              title={data.title}
+              color={data.color}
+              brand={data.brand}
+              category={data.category}
+              price={data.price}
+              quantity={data.quantity}
+            />
+          </div>
+          <DescriptionProductPage description={data.description!} />
+          <ReviewProductPage />
+          <PopularProductCollections
+            where={"private"}
             category={data.category}
-            price={data.price}
-            quantity={data.quantity}
           />
-        </div>
-        <DescriptionProductPage description={data.description!} />
-        <ReviewProductPage />
-        <PopularProductCollections where={"private"} category={data.category} />
-      </section>
+        </section>
+      )}
     </Loading>
   );
 }

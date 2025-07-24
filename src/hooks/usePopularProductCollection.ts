@@ -17,7 +17,9 @@ const usePopularProductCollection = (
   const { items } = useAppSelector((state) => state.wishlist);
   const { accessToken } = useAppSelector((state) => state.auth);
   const { categories } = useAppSelector((state) => state.categories);
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    categories[0].title
+  );
   const [loading, setLoading] = useState<TLoading>("idle");
   const [error, setError] = useState<null | string>(null);
   const [popularProducts, setpopularProducts] = useState<TProduct[]>([]);
