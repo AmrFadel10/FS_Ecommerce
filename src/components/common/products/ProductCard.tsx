@@ -67,14 +67,14 @@ const ProductCard = ({
     <article
       className={`${
         where === "public"
-          ? "max-w-[97] sm:max-w-[47%] md:max-w-[31%] lg:max-w-[23%] xl:max-w-[18%] shrink-0 "
+          ? "max-w-[97] sm:max-w-[47%] md:max-w-[31%] lg:max-w-[23%] xl:max-w-[18%] shrink-0 w-fit"
           : ""
       } rounded-2xl overflow-hidden group shadow-md bg-white p-2 `}
     >
       <div className=" relative overflow-hidden">
         <Link
           to={`/product/${_id}`}
-          className="overflow-auto w-full md:h-52 h-36 block "
+          className="overflow-auto w-full md:h-52 h-36 block min-w-60"
         >
           <img
             src={images[0].url}
@@ -124,7 +124,9 @@ const ProductCard = ({
 
         <div className="mt-2 flex  justify-between">
           <div className="flex gap-4">
-            <div className="font-semibold md:text-base text-sm">{price}$</div>
+            <div className="font-semibold md:text-base text-sm">
+              {price.toFixed(2)}$
+            </div>
           </div>
           <div className="text-blue-500 font-medium md:text-sm text-xs">
             {quantity} items

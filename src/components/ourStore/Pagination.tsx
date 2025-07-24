@@ -9,13 +9,13 @@ const Pagination = ({ variable }: { variable: "products" | "orders" }) => {
   const nums = Array(lastPage).fill(1);
 
   return (
-    <section className="w-full flex gap-x-2 justify-center my-8 text-sm font-medium ">
+    <section className="w-full flex lg:gap-2 gap-1 justify-center my-8 text-sm font-medium ">
       <button
         className={`${
           page == 1
             ? "cursor-no-drop opacity-65"
             : "hover:bg-blue-700 hover:text-gray-50 cursor-pointer"
-        } border border-gray-400 rounded-md py-[2px] px-3  bg-white transition`}
+        } border border-gray-400 rounded-md py-[2px] px-2  bg-white transition`}
         onClick={() => {
           if (page && !isNaN(+page)) {
             if (+page <= 1) {
@@ -37,7 +37,7 @@ const Pagination = ({ variable }: { variable: "products" | "orders" }) => {
               page == index + 1
                 ? "bg-blue-600 text-gray-50"
                 : "hover:bg-blue-700 hover:text-gray-50 bg-white"
-            } border border-gray-400 rounded-md py-[2px] px-3   transition hover:cursor-pointer`}
+            } border border-gray-400 rounded-md py-[2px] px-2   transition hover:cursor-pointer`}
             onClick={() => {
               query.set("page", `${index + 1}`);
               setQuery(query);
@@ -53,7 +53,7 @@ const Pagination = ({ variable }: { variable: "products" | "orders" }) => {
           +page == lastPage
             ? "cursor-no-drop opacity-65"
             : "hover:bg-blue-700 hover:text-gray-50 cursor-pointer"
-        } border border-gray-400 rounded-md py-[2px] px-3  bg-white transition `}
+        } border border-gray-400 rounded-md py-[2px] px-2  bg-white transition `}
         onClick={() => {
           if (page && !isNaN(+page)) {
             if (+page >= lastPage) {
