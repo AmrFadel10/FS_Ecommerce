@@ -17,9 +17,7 @@ const usePopularProductCollection = (
   const { items } = useAppSelector((state) => state.wishlist);
   const { accessToken } = useAppSelector((state) => state.auth);
   const { categories } = useAppSelector((state) => state.categories);
-  const [activeCategory, setActiveCategory] = useState<string | null>(
-    categories?.[0]?.title || "mobiles"
-  );
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState<TLoading>("idle");
   const [error, setError] = useState<null | string>(null);
   const [popularProducts, setpopularProducts] = useState<TProduct[]>([]);
@@ -37,6 +35,7 @@ const usePopularProductCollection = (
   });
 
   useEffect(() => {
+    if (!activeCategory && where === "public") return;
     setLoading("pending");
     dispatch(
       getPopularProductsApiCall({
@@ -57,8 +56,8 @@ const usePopularProductCollection = (
   }, [dispatch, limit, activeCategory, category, where]);
 
   useEffect(() => {
-    if (where === "private") return;
-    setActiveCategory(categories?.[0]?.title);
+    if (where === "private" || !categories.length) return;
+    setActiveCategory(categories[0].title);
   }, [categories, where]);
 
   return {
