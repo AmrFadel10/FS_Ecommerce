@@ -10,7 +10,7 @@ const app = express();
 
 //Db connection
 DbConnection();
-//------------------------------------------------------------------//
+//------------------------------------------------------------------   //
 
 //Middlewares
 app.use("/images", express.static("./assets/images")); // for get images by useing /images after website link
