@@ -81,7 +81,7 @@ exports.getAllProductsCtrl = async (req, res, next) => {
     );
     const editing2 = JSON.parse(editing1.replace("+", " "));
     let products;
-    let count;
+    let count = null;
     if (req.query.search) {
       products = Product.find({
         $and: [
