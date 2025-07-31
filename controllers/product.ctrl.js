@@ -119,6 +119,7 @@ exports.getAllProductsCtrl = async (req, res, next) => {
     last = await products.populate("color");
     res.status(200).json({ products: last, count });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -191,7 +192,6 @@ exports.getProductCtrl = async (req, res, next) => {
     }
     res.status(200).json({ product: findProduct, AddingReview: order });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
