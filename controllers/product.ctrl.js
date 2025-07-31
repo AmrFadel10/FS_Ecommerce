@@ -64,7 +64,15 @@ exports.getAllProductsCtrl = async (req, res, next) => {
     //1)filteration
     const qu = { ...req.query };
     //exception some words
-    const exeptWords = ["page", "fields", "sort", "limit", "select", "search"];
+    const exeptWords = [
+      "page",
+      "fields",
+      "sort",
+      "limit",
+      "select",
+      "search",
+      "where",
+    ];
     exeptWords.forEach((item) => delete qu[item]);
     const quString = JSON.stringify(qu);
     const editing1 = quString.replace(
@@ -86,20 +94,24 @@ exports.getAllProductsCtrl = async (req, res, next) => {
           },
         ],
       });
-      count = await Product.countDocuments({
-        $and: [
-          editing2,
-          {
-            $or: [
-              { title: { $regex: req.query.search, $options: "i" } },
-              { description: { $regex: req.query.search, $options: "i" } },
-            ],
-          },
-        ],
-      });
+      if (req.query.where !== "public") {
+        count = await Product.countDocuments({
+          $and: [
+            editing2,
+            {
+              $or: [
+                { title: { $regex: req.query.search, $options: "i" } },
+                { description: { $regex: req.query.search, $options: "i" } },
+              ],
+            },
+          ],
+        });
+      }
     } else {
       products = Product.find(editing2);
-      count = await Product.countDocuments(editing2);
+      if (req.query.where !== "public") {
+        count = await Product.countDocuments(editing2);
+      }
     }
     //2)Pagination
     const limit = +req.query.limit || 5;

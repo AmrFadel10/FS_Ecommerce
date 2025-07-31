@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const { DbConnection } = require("./utils/db");
+const { DbConnection, setupDatabaseIndexes } = require("./utils/db");
 const { notFound } = require("./utils/not-found.js");
 const morgan = require("morgan");
 require("dotenv").config();
@@ -9,7 +9,9 @@ require("dotenv").config();
 const app = express();
 
 //Db connection
-DbConnection();
+DbConnection().then(() => {
+  setupDatabaseIndexes();
+});
 //------------------------------------------------------------------   //
 
 //Middlewares
