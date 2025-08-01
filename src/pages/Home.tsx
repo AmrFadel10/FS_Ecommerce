@@ -31,9 +31,14 @@ export default function Home() {
       <LazyWrapper type="info">
         <StoreInfoFeatures />
       </LazyWrapper>
-      {/* popular collections */}
+      {/* Latest collections */}
       <LazyWrapper type="homeProducts">
-        <PopularProductCollections where={"public"} limit={12} />
+        <ProductsCollection
+          where={"public"}
+          limit={12}
+          sort="-createdAt"
+          type="latest"
+        />
       </LazyWrapper>
       {/* feature collections */}
       <LazyWrapper type="homeProducts">
@@ -44,19 +49,11 @@ export default function Home() {
           type="feature"
         />
       </LazyWrapper>
-      {/* Latest collections */}
+      {/* popular collections */}
       <LazyWrapper type="homeProducts">
-        <ProductsCollection
-          where={"public"}
-          limit={12}
-          sort="-createdAt"
-          type="latest"
-        />
+        <PopularProductCollections where={"public"} limit={12} />
       </LazyWrapper>
 
-      {/* {<NewProductsCollections />} */}
-      {/* Special products */}
-      {/* <EventProductCollections /> */}
       <LazyWrapper type="sponsored">
         <SponsoredFeatures />
       </LazyWrapper>
