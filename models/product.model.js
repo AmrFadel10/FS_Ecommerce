@@ -31,11 +31,13 @@ const productSchema = new mongoose.Schema(
     brand: {
       type: String,
       required: true,
-      minLength: 2,
+      minLength: 2,      index: true,
+
     },
     category: {
       type: String,
-      required: true,
+      required: true,      index: true,
+
     },
     quantity: {
       type: Number,
