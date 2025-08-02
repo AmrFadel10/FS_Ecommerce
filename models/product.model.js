@@ -20,27 +20,22 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
       min: 70,
-      index: true,
     },
     price: {
       type: Number,
       required: true,
-      index: true,
     },
     discountPrice: {
       type: Number,
-      index: true,
     },
     brand: {
       type: String,
       required: true,
       minLength: 2,
-      index: true,
     },
     category: {
       type: String,
       required: true,
-      index: true,
     },
     quantity: {
       type: Number,
