@@ -42,6 +42,7 @@ const usePopularProductCollection = (
         limit: limit || 10,
         category: where === "private" ? category : activeCategory,
         sort: "-sold",
+        where,
       })
     )
       .unwrap()

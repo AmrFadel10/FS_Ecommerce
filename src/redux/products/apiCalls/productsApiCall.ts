@@ -53,10 +53,12 @@ export const getPopularProductsApiCall = createAsyncThunk(
       limit,
       category,
       sort,
+      where,
     }: {
       limit: number;
       category?: string | null;
       sort: string;
+      where?: string;
     },
     thunkApi
   ) => {
@@ -65,7 +67,7 @@ export const getPopularProductsApiCall = createAsyncThunk(
       const { data } = await axios.get<{ products: TProduct[]; count: number }>(
         `/product/?limit=${limit}${
           category ? `&category=${category}` : ""
-        }&sort=${sort}`,
+        }&sort=${sort}${where ? `&where=${where}` : ""}`,
         { signal }
       );
       return data;
