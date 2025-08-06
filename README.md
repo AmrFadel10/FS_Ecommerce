@@ -1,95 +1,124 @@
-# 🛍️ Full Stack E-Commerce Application
+# 🛒 Full Stack E-Commerce App
 
-A modern, full-stack e-commerce platform built with **React**, **TypeScript**, **Tailwind CSS**, **Node.js**, **Express**, and **MongoDB** — designed for high performance, scalability, and great user experience.
+A responsive, modern e-commerce web application built with the **MERN** stack, styled using **Tailwind CSS**, and optimized with **TypeScript** and **Redux Toolkit** for a high-performance user experience.
 
-## 🚀 Features
+🌐 **Live Demo** → [medastore.vercel.app](https://medastore.vercel.app)
 
-### 🖥️ Frontend
+---
 
-- Built with **React + TypeScript**
-- Styled using **Tailwind CSS**
-- **Progressive data fetching** on scroll (e.g. Popular Products, Blogs)
-- **Skeleton loaders**, **lazy loading**, and **loading indicators**
-- Optimized rendering with `useMemo`, `React.memo`, and Redux selectors
-- **Responsive design**, mobile-first
-- SEO-ready with `react-helmet` and meta tags
+## ✨ Features
 
-### 🔙 Backend
+### 💻 Frontend
 
-- Developed with **Node.js + Express**
-- **MongoDB** database with **Mongoose**
-- RESTful API with:
-  - 🔐 Auth & Authorization (JWT)
-  - ✅ Input validation & error handling
-  - 🛒 CRUD: Products, Blogs, Orders
-- Clean architecture: routes, controllers, models, middlewares
+- ⚛️ Built with **React + TypeScript**
+- 🎨 Styled using **Tailwind CSS**
+- 🚀 Progressive data fetching & lazy loading
+- 🔍 SEO-ready using `react-helmet`
+- 📱 Fully responsive (Mobile-First)
+- ⚙️ Optimized performance with `useMemo`, `React.memo`, and selective re-rendering
+- 🔧 State management via **Redux Toolkit**
 
-### 🔄 Full Stack Integration
+### 🛠 Backend
 
-- Secure client-server communication using `Axios`
-- Unified error handling and loading indicators
-- Responsive user feedback and toast messages
-- Role-based access (e.g. admin, user)
+- 🌐 RESTful API built with **Express.js**
+- 🗄️ **MongoDB** with **Mongoose**
+- 🔐 JWT Authentication & Role-based Access
+- ✅ Input validation & centralized error handling
+- 📦 CRUD operations: Products, Orders, Blogs
+- 🔍 Clean architecture: routes, controllers, middlewares, services
 
-## 🧠 Tech Stack
+---
 
-| Layer      | Stack                                                        |
-| ---------- | ------------------------------------------------------------ |
-| Frontend   | React, TypeScript, Redux Toolkit, Tailwind CSS, React Router |
-| Backend    | Node.js, Express.js, MongoDB, Mongoose                       |
-| Auth       | JWT, bcrypt                                                  |
-| Deployment | Vercel (frontend), Render/Heroku (backend)                   |
-| Utilities  | Axios, dotenv, React Icons, Helmet, etc.                     |
+## 🧱 Tech Stack
+
+| Layer     | Technologies                                                |
+|-----------|-------------------------------------------------------------|
+| Frontend  | React, TypeScript, Tailwind CSS, Redux Toolkit, React Router |
+| Backend   | Node.js, Express.js, MongoDB, Mongoose                      |
+| Auth      | JWT, bcrypt                                                 |
+| Dev Tools | Vite, dotenv, nodemon, concurrently                        |
+| Deployment| Vercel (frontend), Render / Railway (backend)              |
+| Extras    | Axios, React Helmet, React Icons, Toast notifications      |
 
 ---
 
 ## 📁 Folder Structure
 
-├── client/ # React Frontend
-│ ├── pages/
-│ ├── components/
-│ ├── redux/
-│ ├── types/
-│ └── feedback/
+```bash
+FS_Ecommerce/
+├── client/         # React Frontend
+│   ├── components/
+│   ├── pages/
+│   ├── redux/
+│   ├── types/
+│   └── feedback/
 │
-├── server/ # Express Backend
-│ ├── routes/
-│ ├── controllers/
-│ ├── models/
-│ ├── middleware/
-│ └── config/
-
-🌐 Live Demo[medastore.vercel.app](https://medastore.vercel.app)
+├── server/         # Express Backend
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── middleware/
+│   └── config/
+```
 
 ---
 
-## 🧰 Getting Started
+## ⚙️ Getting Started
 
-# Clone the repository
+> Prerequisites: Node.js, npm, MongoDB (local or Atlas)
 
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/AmrFadel10/FS_Ecommerce.git
 cd FS_Ecommerce
+```
 
-# Start client
+### 2. Start the client
 
+```bash
 cd client
 npm install
 npm run dev
+```
 
-# Start server (in another terminal)
+### 3. Start the server (in another terminal)
 
-cd ../server
+```bash
+cd server
 npm install
 npm run dev
+```
 
 ---
 
-## 🧑‍💻 Author
+## 🔐 Environment Variables
 
-Made with ❤️ by Amr Fadel
+Create a `.env` file in `/server` with:
 
-Portfolio: [[Link](https://amr-fadel.vercel.app/)]
+```env
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+```
 
-LinkedIn: [[Link](https://www.linkedin.com/in/amrfadel/)]
+(Optional) Create `.env` in `/client` for API base URL:
 
-GitHub: github.com/AmrFadel10
+```env
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+
+---
+
+## 👨‍💻 Author
+
+**Amr Fadel**  
+🌐 [Portfolio](https://amr-fadel.vercel.app/)  
+💼 [LinkedIn](https://www.linkedin.com/in/amrfadel/)  
+💻 [GitHub](https://github.com/AmrFadel10)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
